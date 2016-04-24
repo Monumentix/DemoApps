@@ -1,7 +1,7 @@
 
+Configuration Settings and Pre-installed Extensions into the application:
 
-
-
+mdmsoft/yii2-admin - for RBAC mgmt, and menu manager. *migrations required  (yii/rbac/migrations and @mdm/admin/migrations)
 
 
 
