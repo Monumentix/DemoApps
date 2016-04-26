@@ -11,19 +11,37 @@ use kartik\icons\Icon;
 $this->title = Yii::t('app', Yii::$app->name);
 ?>
 <div class="site-index">
+
   <div class="row">
-    <div class="col-sm-12">
-      <br>
-      <h2 class="text-center title">This is my demo area</h2>
-      <h3>
-      <br>
-      <br>
-      <br>
-      <br>
+    <div class="col-sm-9">
+      <div class="introBlock">
+        <div class="jumbotron">
+          <h1 class="">Project Samples: <span class="lead">Solving Common Buisness Issues<span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="authorBlock">
+        <img src="<?=$this->theme->baseUrl?>/images/coder.jpg" class="contact-image img-circle img-coder-logo-thumb img-responsive center-block" alt="">
+
+        <div class="contact-info">
+            <p>Brian Ridsdale</p>
+              <p>15 Colonial Terrace</p>
+              <p>Pompton Plains, NJ 07444</p>
+              <p>973-671-8326</p>
+        </div>
+
+
+      </div>
+
+
+
     </div>
   </div>
-  <div class="row">
 
+  <hr class="seperator">
+
+  <div class="row">
     <div class="col-sm-4">
       <div class="panel panel-monumentix">
         <div class="panel-heading">

@@ -9,11 +9,9 @@ use yii\bootstrap\NavBar;
 
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-  <?php include('menu.php') ;?>
-    <div class="container-fluid no-padding">
-      <?= $content ?>
-    </div>
-</div>
+<?php include('menu.php') ;?>
+  <div id="main" class="container-fluid no-padding">
+    <?= $content ?>
+  </div>
 
 <?php include('footer.php') ;?>

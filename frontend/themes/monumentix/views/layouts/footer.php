@@ -40,25 +40,13 @@ use kartik\icons\Icon;
 
 
       </div>
+
+
+
     </div>
     <!-- LOWER third -->
 
-    <hr>
-
-    <!-- copywright -->
-    <div class="row">
-      <div class="col-md-6">
-        <p class="text-left">&copy; <?= Yii::t('app', Yii::$app->name) ?> <?= date('Y') ?></p>
-      </div>
-      <div class="col-md-6">
-        <p class="text-right"><?= Yii::powered() ?></p>
-      </div>
-    </div>
-    <!-- copywright -->
-
-
   </div>
-
 </footer>
 
 <?php $this->endBody() ?>
