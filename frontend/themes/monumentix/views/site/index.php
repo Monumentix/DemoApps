@@ -16,7 +16,10 @@ $this->title = Yii::t('app', Yii::$app->name);
     <div class="col-sm-9">
       <div class="introBlock">
         <div class="jumbotron">
-          <h1 class="">Project Samples: <span class="lead">Solving Common Buisness Issues<span></h2>
+          <h1 class="">Project Samples</h1>
+          <h2>Solving Common Buisness Scenarios</h2>
+          <p>Presenting small samples to some common buisness problems using principals and concepts from Applications i have developed.  These solutions are not intended to be complete packages, instead focusing on core skills.  Login Information and Sample data is provided where neccessary. </p>  
+
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'name'=>'Monumentix | Brian Ridsdale',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
@@ -15,7 +16,7 @@ return [
         'view' => [
           'theme'=>[
             'pathMap'=>['@app/views'=>'@app/themes/monumentix/views'],
-            'baseUrl'=>'@web/themes/monumentix'       
+            'baseUrl'=>'@web/themes/monumentix'
           ],
         ],
         'user' => [
