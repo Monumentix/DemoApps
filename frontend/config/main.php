@@ -12,6 +12,12 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'view' => [
+          'theme'=>[
+            'pathMap'=>['@app/views'=>'@app/themes/monumentix/views'],
+            'baseUrl'=>'@web/themes/monumentix'       
+          ],
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -41,7 +47,7 @@ return [
     'as access' => [
       'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-          'site/*',          
+          'site/*',
           // The actions listed here will be allowed to everyone including guests.
           // So, 'admin/*' should not appear here in the production, of course.
           // But in the earlier stages of your development, you may probably want to

@@ -8,6 +8,10 @@
 namespace frontend\assets;
 
 use yii\web\AssetBundle;
+use Yii;
+
+// set @themes alias so we do not have to update baseUrl every time we change themes
+Yii::setAlias('@themes', Yii::$app->view->theme->baseUrl);
 
 /**
  * @author Qiang Xue <qiang.xue@gmail.com>
@@ -16,9 +20,10 @@ use yii\web\AssetBundle;
 class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $baseUrl = '@themes';
     public $css = [
         'css/site.css',
+        'css/monumentix.css',
     ];
     public $js = [
     ];
