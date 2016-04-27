@@ -44,6 +44,12 @@ return [
         ],
     ],
 
+    'modules' => [
+        'crud' => [
+            'class' => 'app\modules\cruddemo\Module',
+        ],
+    ],
+
     /* - COMMENTED OUT TO RUN MIGRATIONS - */
     'as access' => [
       'class' => 'mdm\admin\components\AccessControl',
