@@ -45,9 +45,12 @@ return [
     ],
 
     'modules' => [
-        'crud' => [
-            'class' => 'app\modules\cruddemo\Module',
-        ],
+      'crud' => [
+        'class' => 'app\modules\cruddemo\Module',
+      ],
+      'apidemo' => [
+        'class' => 'app\modules\apidemo\Module',
+      ],
     ],
 
     /* - COMMENTED OUT TO RUN MIGRATIONS - */
