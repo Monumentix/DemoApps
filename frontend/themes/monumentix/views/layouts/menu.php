@@ -39,6 +39,17 @@ $callback = function($menu){
 //$items  = MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback);
 $items = MenuHelper::getAssignedMenu(Yii::$app->user->id,null, $callback, true);
 
+if (Yii::$app->user->isGuest){
+  $items[] =['label' =>Icon::show('sign-in').'&nbsp;'.Yii::t('app', 'Login'), 'url' => ['/site/login']];
+}else{
+  $items [] = [
+    'label'=>Icon::show('sign-out').'&nbsp;'.Yii::t('app', 'Logout'). ' (' . Yii::$app->user->identity->username . ')',
+    'url' => ['/site/logout'],
+    'linkOptions' => ['data-method' => 'post']
+  ];
+}
+
+
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => $items,
