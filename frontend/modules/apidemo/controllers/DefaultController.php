@@ -42,35 +42,18 @@ class DefaultController extends Controller
     }
 
 
+    public function actionLoadProducts($shopping_cat_id){
 
-
-
-    public function OLDactionCategories(){
-      $catModel = new ProductCategoriesSearch();
-
-      $searchCat = 0;
-      $cats = $this->module->shopCurl->getCategory($searchCat);
-
-      /*
-      foreach($cats->category as $category){
-          echo "<li><h2>".$category->attributes()->id." - ".$category->name."</h2></li>";
-          if(isset($category->categories)){
-            echo "<ul>";
-            foreach($category->categories->category as $childCategory){
-              echo "<li><h3>".$childCategory->attributes()->id." - ".$childCategory->name. "</h3></li>";
-            }
-            echo "</ul>";
-          }
-      }
-      */
-
-
-      return $this->render(
-        'categories',[
-          'cats'=>$cats,
-        ]);
+      echo $shopping_cat_id;
 
     }
+
+
+    private function loadProduct(){
+
+    }
+
+
 
 
 
@@ -82,7 +65,7 @@ class DefaultController extends Controller
           $catModel = new ProductCategories();
 
           $catModel->shopping_cat_id = $category->attributes()->id;
-          $catModel->name = $category->name;  //The top level one wwouldnt save, so this is jsut a fix for now
+          $catModel->name = $category->name;
 
               if(!$catModel->save()){
                 //record didnt save add error message?
