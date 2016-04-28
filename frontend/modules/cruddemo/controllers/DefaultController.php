@@ -2,7 +2,15 @@
 
 namespace app\modules\cruddemo\controllers;
 
+use yii;
 use yii\web\Controller;
+
+use yii\data\ActiveDataProvider;
+
+use app\models\ProductCategories;
+use app\models\ProductCategoriesSearch;
+
+
 
 /**
  * Default controller for the `cruddemo` module
@@ -15,6 +23,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->redirect('/crud/categories');
     }
+
 }

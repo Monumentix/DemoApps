@@ -12,13 +12,14 @@ class Module extends \yii\base\Module
      */
     public $controllerNamespace = 'app\modules\apidemo\controllers';
 
+
     /**
      * @inheritdoc
      */
     public function init()
     {
         parent::init();
-
+        // /Yii::app()->setComponents($moduleConfig['components']);
         // custom initialization code goes here
     }
 }

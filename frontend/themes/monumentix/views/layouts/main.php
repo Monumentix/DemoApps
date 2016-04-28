@@ -1,6 +1,6 @@
 <?php
 use frontend\assets\AppAsset;
-use frontend\widgets\Alert;
+use common\widgets\Alert;
 
 use yii\helpers\Html;
 use yii\bootstrap\NavBar;
@@ -24,7 +24,7 @@ use yii\widgets\Breadcrumbs;
       </div>
 
         <div class="container">
-          <?php //= Alert::widget() ?>
+          <?= Alert::widget() ?>
           <?= $content ?>
         </div>
   </div>

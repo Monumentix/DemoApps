@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "08e9666daa6244547786d32ca7fe8695",
-    "content-hash": "5a4dbcdd9b0d120077c2894f08965809",
+    "hash": "d8644af1f572bcf28b2840a05e1ae426",
+    "content-hash": "4472be241f9b98cc2c2be74bbf226921",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -282,16 +282,16 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icon-css.git",
-                "reference": "343fc74c6153eab084143eef7594fe5506c8020f"
+                "reference": "c79bf8fc99026160ac3cd89e61107328545f869d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/343fc74c6153eab084143eef7594fe5506c8020f",
-                "reference": "343fc74c6153eab084143eef7594fe5506c8020f",
+                "url": "https://api.github.com/repos/lipis/flag-icon-css/zipball/c79bf8fc99026160ac3cd89e61107328545f869d",
+                "reference": "c79bf8fc99026160ac3cd89e61107328545f869d",
                 "shasum": ""
             },
             "type": "component",
@@ -316,7 +316,7 @@
                 }
             ],
             "description": "CSS for vector based country flags",
-            "time": "2016-04-12 08:57:32"
+            "time": "2016-04-26 20:41:44"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -508,6 +508,49 @@
                 "yii2"
             ],
             "time": "2016-04-11 09:07:40"
+        },
+        {
+            "name": "linslin/yii2-curl",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/linslin/Yii2-Curl.git",
+                "reference": "9bf2af281fba4e4f0923a055ee673ac2db955513"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/linslin/Yii2-Curl/zipball/9bf2af281fba4e4f0923a055ee673ac2db955513",
+                "reference": "9bf2af281fba4e4f0923a055ee673ac2db955513",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "linslin\\yii2\\curl\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nils Gajsek",
+                    "email": "info@linslin.org"
+                }
+            ],
+            "description": "Easy and nice cURL extension with RESTful support for Yii2",
+            "keywords": [
+                " curl",
+                "extension",
+                "restful",
+                "yii2"
+            ],
+            "time": "2016-04-20 14:14:59"
         },
         {
             "name": "mdmsoft/yii2-admin",

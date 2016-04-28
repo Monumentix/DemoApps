@@ -50,6 +50,14 @@ return [
       ],
       'apidemo' => [
         'class' => 'app\modules\apidemo\Module',
+          'components' => [
+            'shopCurl'=>[
+                'class'=>'app\modules\apidemo\components\CurlComponent',
+            ],
+          ],
+        ],
+      'gridview' => [
+        'class'=>'kartik\grid\Module',
       ],
     ],
 
