@@ -15,6 +15,13 @@ class m160427_155635_create_product_categories extends Migration
         ]);
 
         $this->createIndex(
+          'idx_shopping_cat_id_uniques',
+          'product_categories',
+          'shopping_cat_id',
+          true
+        );
+
+        $this->createIndex(
           'idx_shopping_cat_id',
           'product_categories',
           'shopping_cat_id'
