@@ -71,6 +71,21 @@ class CurlComponent extends Component{
     }
 
 
+    public function getProducts($catId, $pageNumber = null){
+      if(!is_null($pageNumber)){
+        $pageNumber = '&pageNumber='.$pageNumber;
+        $url = $this->path.'GeneralSearch?categoryId='.$catId.$this->auth.$pageNumber;
+      }else{
+        $url = $this->path.'GeneralSearch?categoryId='.$catId.$this->auth;
+      }
+
+      $simpXml = simplexml_load_string($this->get($url));
+
+      return $simpXml;
+    }
+
+
+
     public function getCategory($catId, $pageNumber = null){
       if(!is_null($pageNumber)){
         $url = $this->path.'CategoryTree?categoryId='.$catId.$this->auth.$pageNumber;

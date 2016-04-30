@@ -35,16 +35,23 @@ use kartik\grid\GridView;
           [
             'label'=>'Parent',
             'attribute' => 'parent_shopping_cat_id',
-          //  'value'=>$dataProvider->name,
-
             'value'=>function($data, $model, $key){
-
               if($data->parent_shopping_cat_id == null ){
                   return '';
               }
               return $data->parentShoppingCat->name;
             },
-
+          ],
+          [
+          'label'=>"Load Category",
+          'format'=>'raw',
+          'value'=>function ($data){
+            if(is_null($data->parent_shopping_cat_id)){
+              return Html::a("Load Top Level Load",["/apidemo/default/load-products","shopping_cat_id"=>$data->shopping_cat_id,"pgStart"=>1,"pgEnd"=>10]);
+            }else{
+              return Html::a("Try Sub Level Load",["/apidemo/default/load-products","blnTop"=>"false","shopping_cat_id"=>$data->shopping_cat_id,"pgStart"=>1,"pgEnd"=>10]);
+              }
+            }
           ],
         ],
       'pjax'=>true,
