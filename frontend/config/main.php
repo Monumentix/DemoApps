@@ -42,9 +42,26 @@ return [
             'rules' => [
             ],
         ],
+
+        'httpclient' => [
+           'class' =>'understeam\httpclient\Client',
+           'detectMimeType' => true, // automatically transform request to data according to response Content-Type header
+           'requestOptions' => [
+               // see guzzle request options documentation               
+
+           ],
+           'requestHeaders' => [
+               // specify global request headers (can be overrided with $options on making request)
+       ],
+   ],
+
+
     ],
 
     'modules' => [
+        'comics' => [
+            'class' => 'app\modules\comics\Module',
+        ],
         'crud' => [
             'class' => 'app\modules\cruddemo\Module',
         ],
