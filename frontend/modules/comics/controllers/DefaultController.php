@@ -20,6 +20,8 @@ class DefaultController extends Controller
      */
     public function actionIndex($offset = 0)
     {
+        //$this->module->marvel->
+
         $response = $this->queryEndpoint(['offset'=>$offset]);
 
         /*

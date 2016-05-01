@@ -16,7 +16,6 @@ class ComicsController extends Controller
   public function actionIndex($offset = 0)
   {
     $response = $this->queryEndpoint(['offset'=>$offset]);
-
     $pager = $this->buildPager($response['data']['total'],$response['data']['offset'],$response['data']['limit'],$response['data']['count']);
 
     return $this->render('index',[
