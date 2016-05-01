@@ -48,7 +48,7 @@ class DefaultController extends Controller
     public function actionSearch($offset){
       $response = $this->queryEndpoint(['offset'=>$offset]);
 
-      $pager = $this->buildPager($response['data']['total'],$response['data']['offset'],$response['data']['limit'],$response['data']['count']);
+
 
       return $this->renderPartial('_comicsItem',[
           'response' => $response,

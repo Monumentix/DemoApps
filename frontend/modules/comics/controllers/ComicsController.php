@@ -13,22 +13,35 @@ use yii\data\ArrayDataProvider;
  */
 class ComicsController extends Controller
 {
-  public function actionIndex($offset = 0)
-  {
-    $response = $this->queryEndpoint(['offset'=>$offset]);
-    $pager = $this->buildPager($response['data']['total'],$response['data']['offset'],$response['data']['limit'],$response['data']['count']);
+  public function actionIndex($offset = 0)  {
 
-    return $this->render('index',[
-        'response' => $response,
-        'pager'=>$pager,
-      ]
-    );
+    $params = [
+      'filterBy'=>['characters'=>'1009268'],
+      'pager'=>[
+        'offset'=>$offset,
+        'limit'=>10,
+        ]
+    ];
 
-  }
+    $results = $this->module->marvel->search('comics',$params);
 
+    if($offset == 0){
+      //No offset show/render whole page
+      return $this->render('index',[
+          'response' => $results['response'],
+          'pager'=>$results['pager'],
+        ]
+      );
+    }else{
+      //There was an offset, partial render
+        return $this->render('/shared/_comicsItem',[
+            'response' => $results['response'],
+            'pager'=>$results['pager'],
+          ]
+        );
+    }//end if offset
 
-
-
+  }//end actionIndex
 
 
 
