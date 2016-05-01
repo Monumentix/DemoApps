@@ -61,6 +61,13 @@ body{
 }
 
 
+
+
+
+
+
+
+
 /*
 #main{
   overflow:auto;
@@ -156,14 +163,11 @@ body{
 .footer .blogTitle {font-size:130%;}
 .img-blog-footer{max-width:90px; float:right; margin:0px 0px 0px 0px;}
 
-
 .footer hr{margin:10px 0px; border-color:#eee}
 
 #quicklinks {padding-left:0px;}
 #quicklinks li {list-style-type:none;}
 #quicklinks li {list-style-type:none;}
-
-
 
 h1, h2, h3, h4, h5 { font-family: 'Fjalla One', sans-serif; }
 
@@ -204,17 +208,3 @@ h1, h2, h3, h4, h5 { font-family: 'Fjalla One', sans-serif; }
 .img-coder-logo-thumb{max-width:120px; border:4px solid #223F55;}
 
 .seperator{border-bottom: 2px solid #223F55;}
-
-
-.blog-view{padding-top:20px;}
-.blog-devider{border-top-color: #356385;}
-
-.blog-view .blogTitle{font-size:140%;}
-.blog-view .blogAuthor{font-size:120%;}
-
-.blogPostOverview{margin-left: 0px;}
-
-
-
-
-.recentTitles{}

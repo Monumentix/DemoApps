@@ -8,17 +8,19 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-2 col-md-4 text-center">
-        <img class="img img-thumbnail" src="<?=$comic['thumbnail']['path']."/landscape_medium.".$comic['thumbnail']['extension']; ?>">
+      <div class="col-xs-2  text-center">
+        <a onClick="showModal('<?=$comic['thumbnail']['path']."/detail.".$comic['thumbnail']['extension']; ?>','<?=$comic['title']?>')" >
+          <img class="img img-thumbnail img-responsive" src="<?=$comic['thumbnail']['path']."/standard_medium.".$comic['thumbnail']['extension']; ?>">
+        </a>
       </div>
-      <div class="col-sm-10 col-md-8">
+      <div class="col-xs-10 ">
         <div class="row">
-          <div class="col-sm-8">
+          <div class="col-xs-8">
             <h4><?=$comic['title']; ?></h4>
             <Br>
               <p><?=$comic['description']; ?></p>
           </div>
-          <div class="col-sm-4 text-center">
+          <div class="col-xs-4 text-center">
             <p><b>Issue Number: </b><?=$comic['issueNumber']; ?><b>UPC: </b><?=$comic['upc']; ?></p>
             <p ><b>Comics id: </b><?=$comic['id']; ?></p>
             <p><b>URI: </b><?// echo $comic['resourceURI']; ?></p>
@@ -30,9 +32,11 @@
   <?php endforeach ?>
   </div>
 
-  <?= $this->render('/shared/_comicsPager',[
-    'pager'=>$pager,
-    'response'=>$response,
-    ])
-  ?>
+
 </div>
+
+<?= $this->render('/shared/_comicsPager',[
+  'pager'=>$pager,
+  'response'=>$response,
+  ])
+?>

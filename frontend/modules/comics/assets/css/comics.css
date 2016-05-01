@@ -1,0 +1,15 @@
+.modal-backdrop{
+  position:fixed !important;  
+}
+
+.coverView {
+
+}
+
+.marvel-pager{
+  background-color: #e3e3e3;
+}
+
+.marvel-pager:last-child{
+  margin-bottom:20px;
+}

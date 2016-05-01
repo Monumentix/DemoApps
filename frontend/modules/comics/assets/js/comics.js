@@ -15,6 +15,28 @@ $(document).ready(function(){
 
 });
 
+
+
+function showModal(path, title){
+  //alert("move the thing");
+
+    //Fix to move modal before showing it
+  $("#coverImageTitle").html(title);
+  $("#coverImageUrl").attr("src",path);
+
+  $('#coverView').css("zIndex",1500);
+
+  $('#coverView').appendTo("#wrap").modal('show');
+  $('.modal-backdrop').appendTo("#wrap")
+
+  //$('#coverView').modal('show');
+
+
+
+  //But we also set some data from our rows into the form
+}
+
+
 /*
 function fetchNextPage(offsetVal){
   intOffset = offsetVal;

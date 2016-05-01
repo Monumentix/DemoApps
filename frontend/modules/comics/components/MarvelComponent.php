@@ -72,14 +72,17 @@ class MarvelComponent extends Component{
       "&hash=".$this->hash;
 
       if(isset($params['filterBy'])){
-        foreach($params['filterBy'] as $key => $value){
-          $fullUrl = $fullUrl ."&".$key."=".$value;
+        foreach($params['filterBy'] as $filter){
+          $key = key($filter);
+          if($filter[$key] <> ''){
+            $fullUrl = $fullUrl ."&".$key."=".$filter[$key];
+          }
         }
       }
 
       if(isset($params['pager'])){
         foreach($params['pager'] as $key => $value){
-          $fullUrl = $fullUrl ."&".$key."=".$value;
+            $fullUrl = $fullUrl ."&".$key."=".$value;
         }
       }
 
@@ -101,11 +104,15 @@ class MarvelComponent extends Component{
     $offset = $response['data']['offset'];
     $limit = $response['data']['limit'];
 
+
     $pager['firstPage'] =  0 ;
     $pager['prevPage'] = ($offset - $limit);
     $pager['curPage'] = (($offset/$limit) + 1);
     $pager['nextPage'] = ($offset + $limit);
     $pager['lastPage'] = ceil(($total / $limit));
+    $pager['pageSize'] = $limit;
+    $pager['offset'] = $offset;
+    $pager['total'] = $total;
 
     return $pager;
   }
