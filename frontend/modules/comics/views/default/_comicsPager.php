@@ -7,8 +7,9 @@ use kartik\icons\Icon;
 <div id="comicsPagerWrapper" class="pagerWrapper">
   <div class="row alert alert-link">
     <div class="col-sm-12 text-center">
+      <h4>Page <?=$pager['curPage'] ?> out of  <?=$pager['lastPage'] ?> </h4>
         <a href="search?offset=<?=$pager['nextPage'];?>"
-           class="nextPage shadow btn btn-lg btn-primary "
+           class="nextPageScroller shadow btn btn-lg btn-primary "
             data-offset="<?=$pager['nextPage'];?>"  >
         <?=Icon::show('angle-double-down')?> More <?=Icon::show('angle-double-down')?></a>
     </div>

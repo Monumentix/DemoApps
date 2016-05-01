@@ -47,7 +47,7 @@ return [
            'class' =>'understeam\httpclient\Client',
            'detectMimeType' => true, // automatically transform request to data according to response Content-Type header
            'requestOptions' => [
-               // see guzzle request options documentation               
+               // see guzzle request options documentation
 
            ],
            'requestHeaders' => [
@@ -61,6 +61,11 @@ return [
     'modules' => [
         'comics' => [
             'class' => 'app\modules\comics\Module',
+            'components' => [
+              'marvel'=>[
+                  'class'=>'app\modules\comics\components\MarvelComponent',
+              ],
+            ],
         ],
         'crud' => [
             'class' => 'app\modules\cruddemo\Module',

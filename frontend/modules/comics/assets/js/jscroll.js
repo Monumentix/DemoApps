@@ -13,6 +13,10 @@
  * @version 2.3.5
  * @requires jQuery v1.4.3+
  * @preserve
+ *
+ *
+ *  https://github.com/pklauzinski/jscroll
+ *
  */
 (function($) {
 
