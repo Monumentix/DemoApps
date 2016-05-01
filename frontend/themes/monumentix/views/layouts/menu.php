@@ -25,14 +25,23 @@ $menuItems[] = ['label' => Icon::show('envelope').' '.Yii::t('app', 'Contact'), 
 $menuItems[] = ['label' => Icon::show('rss-square').' '.Yii::t('app', 'Blog'), 'url' => ['/blog/index']];
 
 $callback = function($menu){
-    $data = eval($menu['data']);
+    if(isset($menu['data']) == true){
+      $data = eval($menu['data']);
 
-    return [
-        'label' => Icon::show($data['icon']).' '.$menu['name'],
-        'url' => [$menu['route']],
-        'options' => $data['options'],
-        'items' => $menu['children']
-    ];
+      return [
+          'label' => Icon::show($data['icon']).' '.$menu['name'],
+          'url' => [$menu['route']],
+          'options' => isset($data['options']) ? $data['options'] : '',
+          'items' => $menu['children']
+      ];
+    }else{
+      return [
+          'label' => $menu['name'],
+          'url' => [$menu['route']],          
+          'items' => $menu['children']
+      ];
+
+    }
 };
 
 
