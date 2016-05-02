@@ -7,13 +7,14 @@ use kartik\icons\Icon;
 
 
 ?>
-
-<h3>Comics Search Form</h3>
 <?php $form = ActiveForm::begin([
   'method'=>'GET',
 ]); ?>
 
 <div class="row">
+  <div class="col-sm-12">
+    <h2 class="title">Marvel API (/comics) : <span class="lead">Fetches lists of comics with optional filters</span></h2>
+  </div>
   <div class="col-sm-6">
     <?=$form->field($comicsModel,'title')?>
     <?=$form->field($comicsModel,'titleStartsWith')?>

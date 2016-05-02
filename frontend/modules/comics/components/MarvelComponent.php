@@ -34,7 +34,7 @@ class MarvelComponent extends Component{
   *
   *
   */
-  public function search($endpoint, $params = null){
+  public function search($endpoint, $params = null, $debug=false){
 
     $fullUrl = $this->base.$endpoint.
       "?ts=".$this->ts .
@@ -69,7 +69,7 @@ class MarvelComponent extends Component{
   }
 
 
-  private function buildPager($response, $params =null){
+  private function buildPager($response, $params = null){
 
     $total = $response['data']['total'];
     $offset = $response['data']['offset'];

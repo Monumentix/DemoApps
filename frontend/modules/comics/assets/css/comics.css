@@ -1,3 +1,18 @@
+/*Set up our content area */
+#content-wrapper{
+  background-color: #f7f7f7;
+  border-top:0px #162836 solid;
+  border-color:#162836;
+  box-shadow:0px 0px 2px #666;
+}
+
+
+.prettyprint{
+  width:auto;
+  overflow:auto;
+  max-height:400px;
+}
+
 a.modalLaunch:hover{
   cursor:pointer;
 }
@@ -23,7 +38,7 @@ a.modalLaunch:hover{
 }
 
 .comics-comics-detail{
-  margin-top:30px;
+  
 }
 
 
@@ -33,6 +48,7 @@ a.modalLaunch:hover{
 }
 
 .detail-blurb p, .long-description p{
-  font-weight:bold;
-  font-size:110%;
+  font-size:115%;
 }
+
+.panel-monumentix p.limited-to {margin-bottom:0px;}

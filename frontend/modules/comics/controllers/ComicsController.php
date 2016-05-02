@@ -41,13 +41,16 @@ class ComicsController extends Controller
     //CHECH IF 1st SEARCH QUERY or
     if(isset($_GET['Comics'])){
       $params['filterBy'] = [];
-      $readableSearchString = 'Search For: ';
 
       //Search Criteria For Getting Started
         foreach($_GET['Comics'] as $key => $val){
           if(isset($val) && ($val <> '')){
             array_push($params['filterBy'],[$key => $val]);
-            $readableSearchString = $readableSearchString .' '.$key.' = '. $val .' ';
+            if($readableSearchString == ''){
+              $readableSearchString = 'Searching On: '.$key.' = '. $val .' ';
+            }else{
+              $readableSearchString = $readableSearchString .', '.$key.' = '. $val .' ';  
+            }
           }
         }
     }else{
@@ -125,7 +128,7 @@ class ComicsController extends Controller
     //No offset show/render whole page
     return $this->render('detail',[
         'comicsModel'=>$comicsModel,
-        'response' => $results['response'],        
+        'response' => $results['response'],
       ]
     );
 

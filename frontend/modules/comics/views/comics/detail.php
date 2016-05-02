@@ -1,6 +1,7 @@
 <?php
 
 //use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\ListView;
 use app\modules\comics\ComicsMainAsset;
 
@@ -21,9 +22,9 @@ ComicsMainAsset::register($this);
       <!--START Detail Section -->
       <div class="row">
         <div class="col-sm-12">
-          <h2 class="title"><?=$comic['title']?> -
-            <span class="lead text-right">
-              <?=$comic['issueNumber']?>
+          <h2 class="title"><?=$comic['title']?>
+            <span class="lead pull-right">
+              Issue # <?=$comic['issueNumber']?>
             </span>
           </h2>
         </div>
@@ -32,8 +33,8 @@ ComicsMainAsset::register($this);
         <div class="col-sm-12">
           <p class="detail-blurb">
             <span class="lbl">Blurb:</span>
-            <?php if(isset($comic['textObjects'])) {
-              echo $comic['textObjects'][0]['text'];
+            <?php if(isset($comic['textObjects']) && !empty($comic['textObjects'])) {
+                echo array_shift($comic['textObjects'])['text'];
             };?>
           </p>
         </div>
@@ -45,15 +46,19 @@ ComicsMainAsset::register($this);
         </div>
 
         <div class="col-sm-12">
+
           <p class="series">
             <span class="lbl">Series:</span>
               <?php
                 if(isset($comic['series'])){
-                  echo $comic['series']['name'] ."/". array_pop(explode("/",$comic['series']['resourceURI']));
+                  echo Html::a($comic['series']['name'],
+                    ['series/detail','id'=>array_pop(explode("/",$comic['series']['resourceURI']))
+                  ]);
                 }
               ?>
             </span>
           </p>
+          
         </div>
 
 

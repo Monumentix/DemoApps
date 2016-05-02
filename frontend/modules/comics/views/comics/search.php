@@ -5,16 +5,16 @@ use yii\widgets\ListView;
 use app\modules\comics\ComicsMainAsset;
 
 ComicsMainAsset::register($this);
+
+
+$this->title = 'Search Comics '; //Yii::t('detail', 'Details');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-default-index scroll">
-  <div class="row">
-    <div class="col-sm-12">
-      <h2 class="title">Marvel Comics API : <span class="lead">Ineracting with there REST api for developers!</span></h2>
-    </div>
-  </div>
+<div class="comics-comics-search scroll">
   <div class="row">
     <div class="col-sm-12">
       <div class="well">
