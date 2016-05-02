@@ -40,6 +40,18 @@ class Comics extends Model
       'collection'=>'collection'
     ];
 
+    public static $ORDER_BY_TYPES = [
+      ''=>'Order By...',
+      'focDate'=>'focDate - ASC',
+      'onsaleDate'=>'On Sale Date - ASC',
+      'title'=>'Title - ASC',
+      'issueNumber'=>'Issue Number - ASC',
+      '-focDate'=>'focDate - DESC',
+      '-onsaleDate'=>'On Sale Date - DESC',
+      '-title'=>'Title - DESC',
+      '-issueNumber'=>'Issue Number - DESC',
+    ];
+
     public function attributeLabels()
     {
         return [
@@ -54,6 +66,10 @@ class Comics extends Model
 
     public function getFormats(){
       return self::$COMIC_FORMATS;
+    }
+
+    public function getOrderByTypes(){
+      return self::$ORDER_BY_TYPES;
     }
 
 }

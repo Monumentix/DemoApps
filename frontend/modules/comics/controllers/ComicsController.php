@@ -15,8 +15,89 @@ class ComicsController extends Controller
 {
   public function actionIndex($offset = 0)  {
 
+
+    $comicsModel = new Comics();
+    //Not working as intended and loading searched values into the form
+    if(isset($_GET['Comics'])){
+      foreach($_GET['Comics'] as $key =>$val){
+        $comicsModel->$key = $val;
+      }
+    }
+
+
+    //Handles our pager params settings
+    $params = [
+      'pager'=>[
+        'offset'=>$offset,
+        'limit'=>10,  //this will need to get moved to be dynamic
+        ]
+    ];
+
+
+    //This is for our search results page and basically works as intended
+    $readableSearchString = '';
+
+    //CHECH IF 1st SEARCH QUERY or
+    if(isset($_GET['Comics'])){
+      $params['filterBy'] = [];
+      $readableSearchString = 'Search For: ';
+
+      //Search Criteria For Getting Started
+        foreach($_GET['Comics'] as $key => $val){
+          if(isset($val) && ($val <> '')){
+            array_push($params['filterBy'],[$key => $val]);
+            $readableSearchString = $readableSearchString .' '.$key.' = '. $val .' ';
+          }
+        }
+    }else{
+    //ITS A SECOND CALL TO OUR SEACH PARAMS
+      //Check to see if this a call from our next page buttons
+      $readableSearchString = 'Search For: ';
+      $params['filterBy'] = [];
+
+        foreach($_GET as $key => $val){
+          if(isset($val) && ($val <> '')){
+            array_push($params['filterBy'],[$key => $val]);
+            $readableSearchString = $readableSearchString .' '.$key.' = '. $val .' ';
+          }
+        }
+    }
+
+    //GET OUR DATA
+    $results = $this->module->marvel->search('comics',$params);
+
+
+    //DECIDE WHICH VIEW TO RENDER
+    if($offset === 0){
+      //No offset show/render whole page
+      return $this->render('index',[
+          'comicsModel'=>$comicsModel,
+          'readableSearchString'=>$readableSearchString,
+          'response' => $results['response'],
+          'pager'=>$results['pager'],
+          'urlCalled'=>$results['urlCalled'],
+        ]
+      );
+    }else{
+      //There was an offset, partial render
+      echo $this->renderPartial('/shared/_comicsItem',[
+            'comicsModel'=>$comicsModel,
+            'response' => $results['response'],
+            'pager'=>$results['pager'],
+            'urlCalled'=>$results['urlCalled'],
+          ]
+        );
+    }//end if offset
+
+  }//end actionIndex
+
+
+
+
+  private function actionDetail($id){
     $comicsModel = new Comics();
 
+    /*
     $params = [
       //'filterBy'=>['characters'=>'1009268'],
       'pager'=>[
@@ -35,8 +116,9 @@ class ComicsController extends Controller
         }
         $params['filterBy'];
     }
+    */
 
-    $results = $this->module->marvel->search('comics',$params);
+    $results = $this->module->marvel->search('comics/'.$id,null);
 
     if($offset === 0){
       //No offset show/render whole page
@@ -56,7 +138,7 @@ class ComicsController extends Controller
         );
     }//end if offset
 
-  }//end actionIndex
+  }
 
 
 

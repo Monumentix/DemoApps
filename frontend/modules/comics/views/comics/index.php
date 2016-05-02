@@ -27,6 +27,10 @@ ComicsMainAsset::register($this);
     </div>
   </div>
 
+
+  <h3><?=$readableSearchString?></h3>
+
+
   <?=$this->render('/shared/_comicsItem',[
         'response' => $response,
         'pager'=>$pager,

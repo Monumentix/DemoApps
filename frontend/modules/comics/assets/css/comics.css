@@ -1,13 +1,21 @@
+a.modalLaunch:hover{
+  cursor:pointer;
+}
+
 .modal-backdrop{
-  position:fixed !important;  
+  position:fixed !important;
 }
 
-.coverView {
-
+#loadingImg .loading-text{
+  text-align:center;
+  font-size:5em;
+  vertical-align:middle;
 }
 
-.marvel-pager{
-  background-color: #e3e3e3;
+#loadingImg .loading-icon{
+  text-align:center;
+  font-size:10em;
+  vertical-align:middle;
 }
 
 .marvel-pager:last-child{

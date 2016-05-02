@@ -10,6 +10,7 @@ use kartik\icons\Icon;
 
 <h3>Comics Search Form</h3>
 <?php $form = ActiveForm::begin([
+  'method'=>'GET',
 ]); ?>
 
 <div class="row">
@@ -28,6 +29,11 @@ use kartik\icons\Icon;
         <?=$form->field($comicsModel,'formatType')->dropDownList($comicsModel->getFormatTypes());?>
       </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <?=$form->field($comicsModel,'orderBy')->dropDownList($comicsModel->getOrderByTypes());?>
   </div>
 </div>
 <div class="row">

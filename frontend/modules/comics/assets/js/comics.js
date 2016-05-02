@@ -29,6 +29,15 @@ function showModal(path, title){
   $('#coverView').appendTo("#wrap").modal('show');
   $('.modal-backdrop').appendTo("#wrap")
 
+  //Show our spinner on our modal
+  $('#coverImageUrl').hide();
+  $('#loadingImg').show();
+  
+  $('#coverImageUrl').on('load',function(){
+    $('#coverImageUrl').show();
+    $('#loadingImg').hide();
+  });
+
   //$('#coverView').modal('show');
 
 

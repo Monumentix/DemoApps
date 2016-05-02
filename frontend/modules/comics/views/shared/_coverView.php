@@ -9,7 +9,10 @@ Modal::begin([
     ]
   ]);
 ?>
-
+<div id="loadingImg">
+  <h4 class="loading-text">Fetching Image</h4>
+  <span class="loading-icon"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
+</div>
 <img id="coverImageUrl" class="img center-block" src="">
 
 <?php

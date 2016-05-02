@@ -26,36 +26,6 @@ class MarvelComponent extends Component{
     $this->hash = md5($this->ts.$this->privateKey.$this->publicKey);
   }
 
-
-
-
-
-
-  /*
-  $path = "comics?characters=";
-  $charId = "1009268";
-
-  if(isset($params['offset'])){
-    $offset = $params['offset'];
-  }
-
-
-
-
-  $fullUrl = $base . $path . $charId
-    ."&limit=10"
-    ."&offset=". $offset
-    ."&ts=" . $ts
-    ."&apikey=d17809da6bca9abbbe0eaceee5ef8eff"
-    ."&hash=" . $hash;
-
-
-  $response = Yii::$app->httpclient->get($fullUrl);
-
-  return $response;
-  */
-
-
   /*
   * endpoint - the endpoint we want to access
   * params - array of filterBy conditions, and
@@ -64,7 +34,7 @@ class MarvelComponent extends Component{
   *
   *
   */
-  public function search($endpoint, $params){
+  public function search($endpoint, $params = null){
 
     $fullUrl = $this->base.$endpoint.
       "?ts=".$this->ts .
@@ -87,9 +57,10 @@ class MarvelComponent extends Component{
       }
 
     $response = Yii::$app->httpclient->get($fullUrl);
-    $pager = $this->buildPager($response);
+    $pager = $this->buildPager($response, $params);
 
     $results = [
+        'urlCalled'=>$fullUrl,
         'response'=> $response,
         'pager' => $pager,
       ];
@@ -98,7 +69,7 @@ class MarvelComponent extends Component{
   }
 
 
-  private function buildPager($response){
+  private function buildPager($response, $params =null){
 
     $total = $response['data']['total'];
     $offset = $response['data']['offset'];
@@ -113,6 +84,23 @@ class MarvelComponent extends Component{
     $pager['pageSize'] = $limit;
     $pager['offset'] = $offset;
     $pager['total'] = $total;
+
+
+    $pager['nextPageLink'] = "";
+
+    if(isset($params['filterBy'])){
+      foreach($params['filterBy'] as $filter){
+        $key = key($filter);
+        if($filter[$key] <> ''){
+          if($pager['nextPageLink'] == ''){
+              //first time through
+              $pager['nextPageLink'] = "?".$key."=".$filter[$key];
+          }else{
+            $pager['nextPageLink'] = $pager['nextPageLink'] ."&".$key."=".$filter[$key];
+          }
+        }
+      }
+    }
 
     return $pager;
   }
