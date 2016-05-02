@@ -21,3 +21,18 @@ a.modalLaunch:hover{
 .marvel-pager:last-child{
   margin-bottom:20px;
 }
+
+.comics-comics-detail{
+  margin-top:30px;
+}
+
+
+.detail-blurb span, .long-description span, .series span{
+  font-weight:bold;
+  font-size:120%;
+}
+
+.detail-blurb p, .long-description p{
+  font-weight:bold;
+  font-size:110%;
+}

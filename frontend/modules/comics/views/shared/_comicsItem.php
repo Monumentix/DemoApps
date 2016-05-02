@@ -22,7 +22,7 @@
             <h4><b>Issue Number: </b><?=$comic['issueNumber']; ?><b></h4>
             <p>UPC: </b><?=$comic['upc']; ?></p>
             <p><b>Comics id: </b><?=$comic['id']; ?></p>
-            <p><b>Detail View: </b><?= $comic['id']; ?></p>
+            <h4><b><a href="detail?id=<?= $comic['id']; ?>" class="detail-link">Details</a></b></h4>
           </div>
         </div>
       </div>

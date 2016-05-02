@@ -13,7 +13,9 @@ use app\modules\comics\models\Comics;
  */
 class ComicsController extends Controller
 {
-  public function actionIndex($offset = 0)  {
+  public $defaultAction = 'search';
+
+  public function actionSearch($offset = 0)  {
 
 
     $comicsModel = new Comics();
@@ -23,7 +25,6 @@ class ComicsController extends Controller
         $comicsModel->$key = $val;
       }
     }
-
 
     //Handles our pager params settings
     $params = [
@@ -70,7 +71,7 @@ class ComicsController extends Controller
     //DECIDE WHICH VIEW TO RENDER
     if($offset === 0){
       //No offset show/render whole page
-      return $this->render('index',[
+      return $this->render('search',[
           'comicsModel'=>$comicsModel,
           'readableSearchString'=>$readableSearchString,
           'response' => $results['response'],
@@ -94,7 +95,7 @@ class ComicsController extends Controller
 
 
 
-  private function actionDetail($id){
+  public function actionDetail($id){
     $comicsModel = new Comics();
 
     /*
@@ -120,25 +121,15 @@ class ComicsController extends Controller
 
     $results = $this->module->marvel->search('comics/'.$id,null);
 
-    if($offset === 0){
-      //No offset show/render whole page
-      return $this->render('index',[
-          'comicsModel'=>$comicsModel,
-          'response' => $results['response'],
-          'pager'=>$results['pager'],
-        ]
-      );
-    }else{
-      //There was an offset, partial render
-      echo $this->renderPartial('/shared/_comicsItem',[
-            'comicsModel'=>$comicsModel,
-            'response' => $results['response'],
-            'pager'=>$results['pager'],
-          ]
-        );
-    }//end if offset
 
-  }
+    //No offset show/render whole page
+    return $this->render('detail',[
+        'comicsModel'=>$comicsModel,
+        'response' => $results['response'],        
+      ]
+    );
+
+  }//end actionDetail
 
 
 
