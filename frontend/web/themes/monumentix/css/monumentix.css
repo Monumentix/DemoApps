@@ -34,18 +34,17 @@ body{
   text-shadow:none;
 }
 
-
-#breadcrumbWrapper{
-  padding: 50px 0px 0px 0px;
-  background-color:#bdccd7;
-  box-shadow:0px 0px 2px #000;
+.breadcrumb{
+  border-radius: 0px;
+  background-color: #F7F7F7;
+  box-shadow:0px 1px 0px #ccc;
+  margin-bottom:5px;
 }
 
-.breadcrumb {
-  background-color:#bdccd7;
-  margin:0px 0px 0px 0px;
-  padding: 10px 10px 10px 10px;
+.breadcrumb>li+li:before{
+  content: ">\00a0";
 }
+
 
 #wrap{min-height:100%;background-color:#e9e9e9;}
 #main{
@@ -60,6 +59,15 @@ body{
   padding-top: 10px;
 }
 
+<<<<<<< Updated upstream
+=======
+/*--This is extgended at the module level requring better content view--*/
+#content-wrapper{
+  margin-top:50px;
+  padding-bottom:20px;
+}
+
+>>>>>>> Stashed changes
 
 /*
 #main{
@@ -93,10 +101,9 @@ body{
 .authorBlock img{margin-bottom:10px;}
 
 
-
+/*
 #contactme{
   background-color:#356385;
-  /* border-bottom:4px solid #15344e;*/
   box-shadow:0px 0px 2px #000;
 }
 
@@ -104,6 +111,7 @@ body{
   text-shadow:2px 2px 1px #333;
   color:#e3e3e3;
 }
+*/
 
 #contactme .contact-info, .blog-view .contact-info, .authorBlock .contact-info{
     background-color: #2A4F6A;
@@ -124,8 +132,10 @@ body{
 #contactme .contact-info p:last-child, .blog-view .contact-info p:last-child, .authorBlock .contact-info p:last-child{
   border-bottom: none;
 }
-#contactme .extra-padding{padding:0px 30px 0px 30px;}
 
+/*
+#contactme .extra-padding{padding:0px 30px 0px 30px;}
+*/
 
 .footer{
     text-shadow:2px 2px 1px #333;
@@ -179,7 +189,7 @@ h1, h2, h3, h4, h5 { font-family: 'Fjalla One', sans-serif; }
 }
 
 .panel-monumentix .panel-body{
-  background-color: #fff;
+  background-color: #f7f7f7;
   font-size:110%;
 }
 
