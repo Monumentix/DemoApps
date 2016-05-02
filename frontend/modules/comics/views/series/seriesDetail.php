@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-sm-3 text-center ">
       <?php
         if(!empty($series['thumbnail']))
-        echo "<img src=". $series['thumbnail']['path'] ."/portrait_incredible.". $series['thumbnail']['extension']. " class='img img-thumbnail center-block' ><br>";
+        echo "<img src=". $series['thumbnail']['path'] ."/portrait_incredible.". $series['thumbnail']['extension']. " class='img img-comic-cover center-block' ><br>";
       ?>
     </div>
     <div class="col-sm-9 text-left">
@@ -46,6 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
       <div class="row">
         <div class="col-sm-12 text-left long-description">
+          <p class=""><?//=$series['textObjects'];?></p>
           <p class=""><?=$series['description'];?></p>
           <div class="eventsList">
             <?php echo $this->render('/shared/_eventsList',[
@@ -60,14 +61,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
+
   <div class="row">
-    <div class="col-sm-4">
-        <?php echo $this->render('/shared/_creatorsList',[
-            'id'=>$id,
-            'series'=>$series,
-          ]);
-        ?>
-    </div>
     <div class="col-sm-4">
       <?php echo $this->render('/shared/_charactersList',[
           'id'=>$id,
@@ -75,6 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
       ?>
     </div>
+
     <div class="col-sm-4">
       <?php echo $this->render('/shared/_storiesList',[
           'id'=>$id,
@@ -82,29 +78,41 @@ $this->params['breadcrumbs'][] = $this->title;
         ]);
       ?>
     </div>
+
+    <div class="col-sm-4">
+        <?php echo $this->render('/shared/_creatorsList',[
+            'id'=>$id,
+            'series'=>$series,
+          ]);
+        ?>
+    </div>
   </div>
 
+
   <div class="row">
-    <div class="col-sm-3">
+
+
+    <div class="col-sm-6 col-md-2 pull-right">
+      <?=$this->render('/shared/series/_nextInSeries',[
+        'id'=>$id,
+        'series'=>$series,
+        ]); ?>
+    </div>
+
+    <div class="col-sm-6 col-md-2 pull-left">
       <?=$this->render('/shared/series/_prevInSeries',[
         'id'=>$id,
         'series'=>$series,
         ]); ?>
     </div>
 
-    <div class="col-sm-6">
-      <?=$this->render('/shared/series/_comicsItem',[
+    <div class="col-sm-12 col-md-8">
+      <?=$this->render('/shared/_seriesComicsList',[
         'id'=>$id,
         'comics'=>$series['comics'],
         ]); ?>
     </div>
 
-    <div class="col-sm-3">
-      <?=$this->render('/shared/series/_nextInSeries',[
-        'id'=>$id,
-        'series'=>$series,
-        ]); ?>
-    </div>
 
   </div>
 

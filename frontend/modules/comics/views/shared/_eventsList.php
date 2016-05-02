@@ -5,7 +5,7 @@
 <?php if(!empty($events['events'])) : ?>
   <div class="panel panel-monumentix panel-seriesEventsItems">
     <div class='panel-heading'>
-      <h3 class="panel-title">Events: (<?=$events['events']['available']?>)</h3>
+      <h3 class="panel-title">Events:<span class="pull-right">(<?=$events['events']['available']?>)</span></h3>
     </div>
     <div class='panel-body'>
       <ul class="seriesEventsItems">
@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class='panel-footer text-center'>
-          <p class="text-center limited-to">Limited to <b><?=$events['events']['returned']?></b> results.
+          <p class="text-center limited-to">Showing <b><?=$events['events']['returned']?></b> out of <b><?=$events['events']['available']?></b> results.
             &nbsp;
             <?=Html::a('View More',
               ['events','id'=>$id]);?>

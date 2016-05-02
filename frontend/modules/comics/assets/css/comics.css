@@ -61,7 +61,6 @@ a.modalLaunch:hover{
   padding:0px;
 }
 
-
 ul.seriesEventsItems{
   margin:0px;
   padding:5px;
@@ -73,4 +72,18 @@ li.seriesEventItem{
   font-wieght:bold;
   display:inline-block;
   margin:0px 10px 0px 10px;
+}
+
+img.img-comic-cover{
+  border:1px solid #666;
+  box-shadow: 10px 10px 10px #666;
+}
+
+
+.seriesComics .seriesComicsTitle {
+  max-width:100%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  font-size:90%;
 }

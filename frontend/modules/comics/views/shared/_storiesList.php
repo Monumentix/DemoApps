@@ -5,7 +5,7 @@
 <?php if(!empty($series['stories'])) : ?>
   <div class="panel panel-monumentix ">
     <div class='panel-heading'>
-      <h3 class="panel-title">Stories (<?=$series['stories']['available']?>)</h3>
+      <h3 class="panel-title">Stories: <span class="pull-right">(<?=$series['stories']['available']?>)</span></h3>
     </div>
     <div class='panel-body'>
       <ul class="creators">
@@ -15,7 +15,7 @@
       </ul>
     </div>
     <div class='panel-footer'>
-      <p class="text-center limited-to">Limited to <b><?=$series['stories']['returned']?></b> results. &nbsp;
+      <p class="text-center limited-to">Showing <b><?=$series['stories']['returned']?></b> out of <b><?=$series['stories']['available']?></b> results. &nbsp;
         <?=Html::a('View More',
           ['stories','id'=>$id]);?>
       </p>
