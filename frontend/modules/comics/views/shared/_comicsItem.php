@@ -19,8 +19,8 @@
               <p><?=$comic['description']; ?></p>
           </div>
           <div class="col-xs-4 text-center">
-            <h4><b>Issue Number: </b><?=$comic['issueNumber']; ?><b></h4>
-            <p>UPC: </b><?=$comic['upc']; ?></p>
+            <h4><b>Issue Number: </b><?=(!empty($comic['issueNumber']) ? $comic['issueNumber']:'' );?><b></h4>
+            <p>UPC: </b><?=(!empty($comic['upc']) ? $comic['upc'] : '' );?></p>
             <p><b>Comics id: </b><?=$comic['id']; ?></p>
             <h4><b><a href="detail?id=<?= $comic['id']; ?>" class="detail-link">Details</a></b></h4>
           </div>

@@ -106,4 +106,34 @@ class MarvelComponent extends Component{
   }
 
 
+
+
+
+  /*
+  * getImage() - Used to get the cover image of the series
+  *   when we only have a resourceURI to use as an id
+  *
+  *
+  *
+  *
+  * returns STRING -full img http path
+  */
+  public function getImage($endpoint, $id, $size){
+    //Using and endpoint and ID we should be able to get the thumbnail or images array and grab one
+    //for use in disaplying a cover image for something
+    $fullUrl = $this->base.$endpoint.
+      "?ts=".$this->ts .
+      "&apikey=".$this->publicKey .
+      "&hash=".$this->hash;
+
+    //This call and its response need better error handling
+    $response = Yii::$app->httpclient->get($fullUrl);
+    $results = (array_shift($response['data']['results']));
+
+    //Now we want to extract our image information
+    return $results['thumbnail']['path']."/".$size.".".$results['thumbnail']['extension'];
+  }
+
+
+
 }

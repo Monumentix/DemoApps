@@ -38,7 +38,7 @@ a.modalLaunch:hover{
 }
 
 .comics-comics-detail{
-  
+
 }
 
 
@@ -52,3 +52,25 @@ a.modalLaunch:hover{
 }
 
 .panel-monumentix p.limited-to {margin-bottom:0px;}
+
+.eventsList p.limited-to  {font-size:100%;}
+.eventsList p.limited-to a{font-weight:bold;}
+
+.panel-seriesEventsItems .panel-body{
+  margin:0px;
+  padding:0px;
+}
+
+
+ul.seriesEventsItems{
+  margin:0px;
+  padding:5px;
+  text-align:center;
+}
+
+li.seriesEventItem{
+  font-size:125%;
+  font-wieght:bold;
+  display:inline-block;
+  margin:0px 10px 0px 10px;
+}
