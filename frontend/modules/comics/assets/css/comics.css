@@ -10,7 +10,8 @@
 .prettyprint{
   width:auto;
   overflow:auto;
-  max-height:400px;
+  max-height:600px;
+  word-wrap:normal;
 }
 
 a.modalLaunch:hover{
@@ -74,9 +75,10 @@ li.seriesEventItem{
   margin:0px 10px 0px 10px;
 }
 
-img.img-comic-cover{
+img.img-series-cover{
   border:1px solid #666;
   box-shadow: 10px 10px 10px #666;
+  margin-bottom:20px;
 }
 
 
@@ -86,4 +88,9 @@ img.img-comic-cover{
   overflow:hidden;
   text-overflow: ellipsis;
   font-size:90%;
+}
+
+
+h2.endpoint{
+  border-bottom: 2px solid #e3e3e3;
 }

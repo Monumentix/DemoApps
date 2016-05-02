@@ -2,7 +2,7 @@
   use yii\helpers\Html;
 ?>
 
-<?php if(!empty($events['events'])) : ?>
+<?php if(!empty($events['events']['available'])) : ?>
   <div class="panel panel-monumentix panel-seriesEventsItems">
     <div class='panel-heading'>
       <h3 class="panel-title">Events:<span class="pull-right">(<?=$events['events']['available']?>)</span></h3>
@@ -27,26 +27,3 @@
     </div>
   </div>
 <?php endif ?>
-
-
-
-
-
-
-
-
-<?php
-if(!empty($series['events'])){
-  echo'<ul class="seriesEventsItems">';
-
-    foreach($series['events']['items'] as $event ){
-      echo'<li class="seriesEventItem">';
-      echo Html::a($event['name'],[
-        'events','id'=>array_pop(explode("/",$event['resourceURI']))
-      ]);
-      echo"</li>";
-    }
-
-  echo'</ul">';
-}
-?>
