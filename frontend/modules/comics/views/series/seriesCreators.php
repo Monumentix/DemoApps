@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-creator scroll">
+<div class="comics-series-creator">
 
   <div class="row">
     <div class="col-sm-12">
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="col-sm-12">
       <div class="seriesDetail">
-        <?php echo $this->render('/shared/series/_seriesDetail',[
+        <?php echo $this->render('/shared/detail/_seriesDetail',[
             'id'=>$id,
             'series'=>$series,
           ]);
@@ -52,51 +52,95 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 
   <div class="row">
-    <div class="col-sm-6">
-      <div class="seriesStories">
-        <?php echo $this->render('/shared/_storiesList',[
-            'id'=>$id,
-            'series'=>$series,
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
+    <div class="col-sm-12">
+
+      CREATORS Lists - THIS IS OUR FILTERD/PAGED DATA SET AREA
+
+
       </div>
     </div>
 
 
-    <div class="col-sm-6">
-      <div class="seriesStories">
-        <?php echo $this->render('/shared/_charactersList',[
-            'id'=>$id,
-            'series'=>$series,
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
-      </div>
+    <div class="row well well-sm info">
+      <h3 class="text-center"> Also in this series:</h3>
     </div>
-
-
-  </div>
-
-
-
 
 
   <div class="row">
-    <div class="col-sm-12">
-        <?php echo $this->render('/shared/series/_creatorsPages',[
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/list/_storiesList',[
             'id'=>$id,
-            'creators'=>$creators,
+            'stories'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
           ]);
         ?>
+      </div>
     </div>
+
+
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/list/_charactersList',[
+            'id'=>$id,
+            'characters'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/list/_comicsList',[
+            'id'=>$id,
+            'comics'=>$series['comics'],
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/list/_eventsList',[
+            'id'=>$id,
+            'events'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+
   </div>
+
+
+
+
+
+
+
 
 
 </div>
 <hr>
 <p class="text-center"><?=$attributionHTML?></p>
+
+<div class="row">
+  <div class="col-sm-12">
+    <pre class="prettyprint">
+      <?php
+      //echo print_r($series);
+      ?>
+    </pre>
+  </div>
+</div>

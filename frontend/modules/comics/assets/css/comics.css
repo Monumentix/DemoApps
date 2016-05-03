@@ -86,8 +86,7 @@ img.img-series-cover{
   max-width:100%;
   white-space:nowrap;
   overflow:hidden;
-  text-overflow: ellipsis;
-  font-size:90%;
+  text-overflow: ellipsis;  
 }
 
 .seriesComicsRow .seriesComicsComic {

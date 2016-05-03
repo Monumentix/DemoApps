@@ -10,14 +10,11 @@ ComicsMainAsset::register($this);
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
 //AND ALLOW US TO USE THE TITLE IN OUR NAVIGATION
 $series = $seriesResponse['response']['data']['results'][0];
-$comics = $comicsResponse['response']['data']['results'];
+$characters = $charactersResponse['response']['data']['results'];
 $attributionHTML = $seriesResponse['response']['attributionHTML'];
 
-
-//SET OUR PAGE TITLE
-$this->title = 'Series Creator - '.$series['title']; //Yii::t('detail', 'Details');
-
 //SET OUR BREADCRUMBS
+$this->title = 'Series Comics - '.$series['title']; //Yii::t('detail', 'Details');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Series'), 'url' => ['/comics/series']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -25,12 +22,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-comics">
+<div class="comics-series-characters">
 
   <div class="row">
     <div class="col-sm-12">
-        <h2 class="endpoint">(/v1/public/series/{seriesId}/comics) : <small>Fetches lists of comics that  appears in a specific series</small></h2>
-      </div>
+    <h2 class="endpoint">(/v1/public/series/{seriesId}/characters) : <span class="lead">Fetches lists of characters which are published as part of a specific series. </span></h2>
+    </div>
   </div>
 
 
@@ -47,28 +44,27 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
   </div>
 
+
+
   <div class="row well well-sm info">
     <h3 class="text-center"> Optional Filters:</h3>
   </div>
-
   <div class="row">
     <div class="col-sm-12">
 
-      COMICS Lists - THIS IS OUR FILTERD/PAGED DATA SET AREA
+      CHARACHTERS Lists - THIS IS OUR FILTERD/PAGED DATA SET AREA
 
-
-      </div>
     </div>
+  </div>
 
 
-    <div class="row well well-sm info">
-      <h3 class="text-center"> Also in this series:</h3>
-    </div>
-
+  <div class="row well well-sm info">
+    <h3 class="text-center"> Also in this series:</h3>
+  </div>
 
   <div class="row">
     <div class="col-sm-6">
-      <div class="seriesStories">
+      <div class="">
         <?php echo $this->render('/shared/list/_storiesList',[
             'id'=>$id,
             'stories'=>$series,
@@ -82,10 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <div class="col-sm-6">
-      <div class="seriesStories">
-        <?php echo $this->render('/shared/list/_charactersList',[
+      <div class="">
+        <?php echo $this->render('/shared/list/_creatorsList',[
             'id'=>$id,
-            'characters'=>$series,
+            'creators'=>$series,
             'listOptions'=>[
               'columnClass'=>'col-sm-6',
             ],
@@ -95,10 +91,10 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-sm-6">
-      <div class="seriesStories">
-        <?php echo $this->render('/shared/list/_charactersList',[
+      <div class="">
+        <?php echo $this->render('/shared/list/_comicsList',[
             'id'=>$id,
-            'characters'=>$series,
+            'comics'=>$series['comics'],
             'listOptions'=>[
               'columnClass'=>'col-sm-6',
             ],
@@ -108,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="col-sm-6">
-      <div class="seriesStories">
+      <div class="">
         <?php echo $this->render('/shared/list/_eventsList',[
             'id'=>$id,
             'events'=>$series,
@@ -130,16 +126,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-
+  </div>
 </div>
+
 <hr>
 <p class="text-center"><?=$attributionHTML?></p>
+
 
 <div class="row">
   <div class="col-sm-12">
     <pre class="prettyprint">
       <?php
-      //echo print_r($series);
+      //echo print_r($charactersResponse);
       ?>
     </pre>
   </div>

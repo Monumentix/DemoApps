@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="col-sm-12">
       <div class="seriesDetail">
-        <?php echo $this->render('/shared/series/_seriesDetail',[
+        <?php echo $this->render('/shared/detail/_seriesDetail',[
             'id'=>$id,
             'series'=>$series,
           ]);
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
     <div class="col-sm-12">
       <div class="eventsList">
-        <?php echo $this->render('/shared/_eventsList',[
+        <?php echo $this->render('/shared/list/_eventsList',[
             'id'=>$id,
             'events'=>$series,
           ]);
@@ -58,25 +58,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
     <div class="col-sm-4">
-      <?php echo $this->render('/shared/_charactersList',[
+      <?php echo $this->render('/shared/list/_charactersList',[
           'id'=>$id,
-          'series'=>$series,
+          'characters'=>$series,
         ]);
       ?>
     </div>
 
     <div class="col-sm-4">
-      <?php echo $this->render('/shared/_storiesList',[
+      <?php echo $this->render('/shared/list/_storiesList',[
           'id'=>$id,
-          'series'=>$series,
+          'stories'=>$series,
         ]);
       ?>
     </div>
 
     <div class="col-sm-4">
-        <?php echo $this->render('/shared/_creatorsList',[
+        <?php echo $this->render('/shared/list/_creatorsList',[
             'id'=>$id,
-            'series'=>$series,
+            'creators'=>$series,
           ]);
         ?>
     </div>
@@ -86,22 +86,28 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="row">
 
 
-    <div class="col-sm-6 col-md-2 pull-right">
-      <?=$this->render('/shared/series/_nextInSeries',[
+    <div class="col-sm-6 col-md-2 pull-right text-center">
+      <?=$this->render('/shared/navigation/_seriesNavigation',[
         'id'=>$id,
         'series'=>$series,
+        'navOptions'=>[
+          'direction'=>'next',
+          ],
         ]); ?>
     </div>
 
-    <div class="col-sm-6 col-md-2 pull-left">
-      <?=$this->render('/shared/series/_prevInSeries',[
+    <div class="col-sm-6 col-md-2 pull-left text-center">
+      <?=$this->render('/shared/navigation/_seriesNavigation',[
         'id'=>$id,
         'series'=>$series,
+        'navOptions'=>[
+          'direction'=>'prev',
+          ],
         ]); ?>
     </div>
 
     <div class="col-sm-12 col-md-8">
-      <?=$this->render('/shared/_seriesComicsList',[
+      <?=$this->render('/shared/list/_comicsList',[
         'id'=>$id,
         'comics'=>$series['comics'],
         ]); ?>
