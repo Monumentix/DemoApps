@@ -114,3 +114,12 @@ box-shadow: 5px 5px 5px #666;
 h2.endpoint{
   border-bottom: 2px solid #e3e3e3;
 }
+
+.bigComicPreview{
+  border: 1px solid #cccccc;
+  background-color:#e3e3e3
+}
+
+.seriesComicsDetails {
+  display:none;
+}

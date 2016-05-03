@@ -16,6 +16,23 @@ $(document).ready(function(){
 });
 
 
+$('.seriesComicsComic').on('click','.img-thumbnail',function(){
+  var detailsPanel = $(this).parent().next('.seriesComicsDetails');
+  $(detailsPanel).toggle();
+  $('.seriesComicsRow').hide().fadeIn('fast');
+});
+
+
+$('.seriesComicsDetails').on('click','.details',function(){
+  //$(this).parent().removeClass('bigComicPreview');
+  $(this).parent().toggle();
+  $('.seriesComicsRow').hide().fadeIn('fast');
+});
+
+
+
+
+
 
 function showModal(path, title){
   //alert("move the thing");
@@ -32,7 +49,7 @@ function showModal(path, title){
   //Show our spinner on our modal
   $('#coverImageUrl').hide();
   $('#loadingImg').show();
-  
+
   $('#coverImageUrl').on('load',function(){
     $('#coverImageUrl').show();
     $('#loadingImg').hide();

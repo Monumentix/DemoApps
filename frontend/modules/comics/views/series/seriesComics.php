@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="col-sm-12">
     <pre class="prettyprint">
       <?php
-        print_r($comicsResponse['response']);
+      //  print_r($comicsResponse['response']);
       ?>
     </pre>
   </div>

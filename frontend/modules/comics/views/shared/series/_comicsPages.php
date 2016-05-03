@@ -14,9 +14,19 @@
         };
       ?>
       <img src="<?=$url?>" class='img img-thumbnail center-block'>
-      <div class="issueNumber">#<?=$comic['issueNumber']?></div>
+      <div class="issueNumber">#<?=$comic['issueNumber']?>
+      </div>
       <br>
     </div>
+
+    <div class="seriesComicsDetails bigComicPreview col-xs-8 col-sm-6">
+      <div class="details text-left">
+        <h4><?=$comic['title']?></h4>
+        <p class="descrption"><?=$comic['title']?> </p>
+        <br><br><br><br><br>
+      </div>
+    </div>
+
   <?php  endforeach ?>
 </div>
 <h4 class="text-center">Click for next Page</h4>
