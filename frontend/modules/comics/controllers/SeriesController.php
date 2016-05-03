@@ -25,6 +25,13 @@ class SeriesController extends Controller
   }
 
 
+
+
+
+  /*
+  * MARVEL = GET /v1/public/series/{seriesId}
+  *
+  */
   public function actionDetail($id){
     //GET OUR DATA
     $response = $this->module->marvel->search('series/'.$id,null);
@@ -36,22 +43,32 @@ class SeriesController extends Controller
     );
   }//end actionDetail
 
+
+
+  /*
+  * MARVEL = GET /v1/public/series/{seriesId}/creators
+  *
+  */
   public function actionCreators($id){
-    $response = $this->module->marvel->search('series/'.$id.'/creators',null);
+    //GET OUR DATA
+    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $creatorsResponse = $this->module->marvel->search('series/'.$id.'/creators',null);
     return $this->render('seriesCreators',[
-    //  'series'=>array_pop($response['response']['data']['results']),
       'id'=>$id,
-      'response'=>$response,
+      'seriesResponse'=>$seriesResponse,
+      'creatorsResponse'=>$creatorsResponse,
       ]
     );
   }
 
   public function actionComics($id){
-    $response = $this->module->marvel->search('series/'.$id.'/comics',null);
+    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $comicsResponse = $this->module->marvel->search('series/'.$id.'/comics',null);
     return $this->render('seriesComics',[
     //  'series'=>array_pop($response['response']['data']['results']),
       'id'=>$id,
-      'response'=>$response,
+      'seriesResponse'=>$seriesResponse,
+      'comicsResponse'=>$comicsResponse,
       ]
     );
   }
