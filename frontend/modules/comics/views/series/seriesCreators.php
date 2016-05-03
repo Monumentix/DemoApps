@@ -33,9 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
   </div>
 
-  <div class="row well well-sm info">
-    <h3 class="text-center"> Optional Filters:</h3>
-  </div>
+
 
   <div class="row">
     <div class="col-sm-12">
@@ -48,6 +46,45 @@ $this->params['breadcrumbs'][] = $this->title;
       </div>
     </div>
   </div>
+
+  <div class="row well well-sm info">
+    <h3 class="text-center"> Optional Filters:</h3>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/_storiesList',[
+            'id'=>$id,
+            'series'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/_charactersList',[
+            'id'=>$id,
+            'series'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
 
   <div class="row">
     <div class="col-sm-12">

@@ -29,4 +29,5 @@
 
   <?php  endforeach ?>
 </div>
+
 <h4 class="text-center">Click for next Page</h4>

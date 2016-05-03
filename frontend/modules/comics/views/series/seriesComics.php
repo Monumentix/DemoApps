@@ -26,13 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
   <div class="row">
     <div class="col-sm-12">
-    <h2>(/v1/public/series/{seriesId}/comics) : <span class="lead">Fetches lists of comics which are published as part of a specific series. </span></h2>
+    <h2 class="endpoint">(/v1/public/series/{seriesId}/comics) : <span class="lead">Fetches lists of comics which are published as part of a specific series. </span></h2>
     </div>
   </div>
 
-  <div class="row well well-sm info">
-    <h3 class="text-center"> Optional Filters:</h3>
-  </div>
+
 
   <div class="row">
     <div class="col-sm-12">
@@ -47,12 +45,56 @@ $this->params['breadcrumbs'][] = $this->title;
   </div>
 
   <div class="row">
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/_storiesList',[
+            'id'=>$id,
+            'series'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-6',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="seriesStories">
+        <?php echo $this->render('/shared/_creatorsList',[
+            'id'=>$id,
+            'series'=>$series,
+            'listOptions'=>[
+              'columnClass'=>'col-sm-4',
+            ],
+          ]);
+        ?>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="row well well-sm info">
+    <h3 class="text-center"> Optional Filters:</h3>
+  </div>
+
+
+  <div class="row">
     <div class="col-sm-12">
 
 
       <div class="panel panel-monumentix">
         <div class='panel-heading'>
-          <h3 class="panel-title">Other Comics In This Series: <span class="pull-right">(<?//=$comicsResponse['available']?>)</span></h3>
+          <h3 class="panel-title"><?=$comicsResponse['response']['data']['total'] ?> Total Comics In This Series: <span class="pull-right"></span></h3>
         </div>
         <div class='panel-body'>
 
@@ -84,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
   <div class="col-sm-12">
     <pre class="prettyprint">
       <?php
-      //  print_r($comicsResponse['response']);
+      echo print_r($comicsResponse);
       ?>
     </pre>
   </div>

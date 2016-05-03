@@ -111,8 +111,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <hr>
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
 
-<?php $DEBUG==FALSE ?>
-<?php if($DEBUG == TRUE)) : ?>
+<?php $debug = FALSE ?>
+<?php if($debug == TRUE) : ?>
   <h3 class="text-center">DEBUG</h3>
   <pre class="prettyprint">
     <?php
