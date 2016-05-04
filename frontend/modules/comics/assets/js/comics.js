@@ -8,11 +8,11 @@ $(window).ajaxStart(function (){
 
 $(document).ready(function(){
   $('.scroll').jscroll({
-    nextSelector : 'a.nextPageScroller:last',
+    nextSelector : 'a.nextPagedData:last',
     autoTrigger: false,
+    contentSelector: '.pages-wrapper',
     loadingHtml : '<h2 class="text-center"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></h2>'
   });
-
 });
 
 
@@ -61,6 +61,67 @@ function showModal(path, title){
 
   //But we also set some data from our rows into the form
 }
+
+
+function getNextPage(dataAttrs){
+  console.log(dataAttrs);
+  try{
+
+    $.ajax({
+        type: "POST",
+        url: '/comics/series',
+        data: dataAttrs,
+        dataType : 'html',
+        success: function(data, status, xhr){
+          //$("#ComicsItemWrapper").append(data);
+          //console.log(data);
+          //wrapper = $($.parseHTML(data)).filter("#comicsItemWrapper");
+          //$("#comicsPagerWrapper").remove();
+          //$("#comicsItemWrapper").append(wrapper.html());
+
+
+
+          pagedData = ($(data).find('.pages-wrapper'));
+          $(".pages-wrapper").append(pagedData);
+
+          pageButton = ($(data).find('.nextPageWrapper'));
+          $(".nextPageWrapper").replaceWith(pageButton);
+
+          /*
+          newRows = ($(data).find('.pages-wrapper').html());
+          newButton = ($(data).find('.nextPageWrapper').html());
+
+          console.log(pagedData);
+          */
+
+
+          /*
+          $(".pages-wrapper").append(newRows).html();
+          $(".nextPageWrapper").replaceWith(newButton).html();
+          */
+
+
+          //console.log(data);
+          //$(".pages-wrapper").append(data.find('.pages-wrapper').html());
+        },
+        error: function(xhr, status, error){
+          alert("Error Fetching Next Page: " + error);
+        },
+        complete: function(){
+          $('body').removeClass('wait');
+          //alert("complete");
+        }
+    });
+
+
+
+
+  }
+  catch (ex){
+    alert(ex);
+  }
+}
+
 
 
 /*

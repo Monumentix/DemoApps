@@ -6,37 +6,51 @@ namespace app\modules\comics\controllers;
 use yii;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
-use app\modules\comics\models\Comics;
+use app\modules\comics\models\Series;
 
 /**
  * Default controller for the `cruddemo` module
  */
 class SeriesController extends Controller
 {
-
-  public $defaultAction = 'search';
-
-  public function actionSearch(){
-    return $this->render('search',[
-      ]
-    );
-  }
-
-
   /*
+  * MARVEL = GET /v1/public/series
   * MARVEL = GET /v1/public/series/{seriesId}
   *
   */
-  public function actionDetail($id){
-    //GET OUR DATA
-    $response = $this->module->marvel->search('series/'.$id,null);
+  public function actionIndex($id = null){
+    $endpoint = 'series';
+
+    $model = new Series();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Series'])){
+      $model->attributes = $_POST['Series'];
+        foreach($_POST['Series'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+    }
+
+
+    if(!(is_null($id))){
+      $endpoint = $endpoint."/".$id;
+    }
+    $response = $this->module->marvel->search($endpoint,$params);
+
     return $this->render('seriesDetail',[
-    //  'series'=>array_pop($response['response']['data']['results']),
+      'model'=>$model,
       'id'=>$id,
       'response'=>$response,
-      ]
-    );
-  }//end actionDetail
+    ]);
+
+
+
+  }//end actionIndex
+
+
+
 
 
   /*
@@ -93,6 +107,7 @@ class SeriesController extends Controller
   *
   */
   public function actionEvents($id){
+
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
     $eventsResponse = $this->module->marvel->search('series/'.$id.'/events',null);
     return $this->render('seriesEvents',[
@@ -123,6 +138,29 @@ class SeriesController extends Controller
 
 
 
+  /*
+  * MARVEL = GET /v1/public/series/{seriesId}
+  *
+  */
+  /*
+  public function actionDetail($id){
+    //GET OUR DATA
+    $response = $this->module->marvel->search('series/'.$id,null);
+    return $this->render('seriesDetail',[
+    //  'series'=>array_pop($response['response']['data']['results']),
+      'id'=>$id,
+      'response'=>$response,
+      ]
+    );
+  }//end actionDetail
 
+
+  //public $defaultAction = 'search';
+  public function actionSearch(){
+    return $this->render('search',[
+      ]
+    );
+  }
+  */
 
 }//end class

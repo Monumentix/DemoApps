@@ -50,19 +50,23 @@ class MarvelComponent extends Component{
         }
       }
 
+      /*
       if(isset($params['pager'])){
         foreach($params['pager'] as $key => $value){
             $fullUrl = $fullUrl ."&".$key."=".$value;
         }
       }
+      */
+
 
     $response = Yii::$app->httpclient->get($fullUrl);
-    $pager = $this->buildPager($response, $params);
+
+    //$pager = $this->buildPager($response, $params);
 
     $results = [
         'urlCalled'=>$fullUrl,
         'response'=> $response,
-        'pager' => $pager,
+      //  'pager' => $pager,
       ];
 
     return $results;

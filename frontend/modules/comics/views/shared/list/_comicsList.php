@@ -5,19 +5,35 @@
 <?php if(!empty($comics['items'])) : ?>
   <div class="panel panel-monumentix">
     <div class='panel-heading'>
-      <h3 class="panel-title">Other Comics In This Series: <span class="pull-right">(<?=$comics['available']?>)</span></h3>
+      <h3 class="panel-title">Comics: <span class="pull-right">(<?=$comics['available']?>)</span></h3>
     </div>
     <div class='panel-body'>
-      <div class="row seriesComics text-left">
-        <?php  foreach($comics['items'] as $comic) : ?>
-          <div class="col-sm-6 seriesComicsTitle"><?=$comic['name']; ?></div>
-        <?php  endforeach ?>
-      </div>
+      <?php if($comics['returned'] > 0 ) : ?>
+        <?php if(!empty($listOptions['columnClass'])) : ?>
+          <div class="comics">
+            <?php foreach($comics['items'] as $comic) : ?>
+              <div class="<?=$listOptions['columnClass']?>"><?=$comic['name']; ?></div>
+            <?php endforeach ?>
+          </div>
+          <?php else : ?>
+          <ul class="comics">
+            <?php foreach($comics['items'] as $comic) : ?>
+              <li><?=$comic['name']; ?></li>
+            <?php endforeach ?>
+          </ul>
+        <?php endif ?>
+      <?php else :?>
+        <h3>No results returned.</h3>
+      <?php endif ?>
     </div>
     <div class='panel-footer'>
       <p class="text-center limited-to">Showing <b><?=$comics['returned']?></b> out of <b><?=$comics['available'] ?></b> results. &nbsp;
-        <?=Html::a('View More',
-          ['comics','id'=>$id]);?>
+        <?php
+          if(!(empty($id))){
+            echo Html::a('View More',
+              ['comics','id'=>$id]);
+          }
+        ?>
       </p>
     </div>
   </div>
