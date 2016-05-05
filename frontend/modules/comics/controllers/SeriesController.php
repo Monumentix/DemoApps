@@ -7,6 +7,9 @@ use yii;
 use yii\web\Controller;
 use yii\data\ArrayDataProvider;
 use app\modules\comics\models\Series;
+use app\modules\comics\models\Comics;
+use app\modules\comics\models\Characters;
+use app\modules\comics\models\Creators;
 
 /**
  * Default controller for the `cruddemo` module
@@ -33,7 +36,6 @@ class SeriesController extends Controller
       }
     }
 
-
     if(!(is_null($id))){
       $endpoint = $endpoint."/".$id;
     }
@@ -43,10 +45,8 @@ class SeriesController extends Controller
       'model'=>$model,
       'id'=>$id,
       'response'=>$response,
+      'pager'=>$this->buildRecordPager($response),
     ]);
-
-
-
   }//end actionIndex
 
 
@@ -58,16 +58,33 @@ class SeriesController extends Controller
   *
   */
   public function actionCharacters($id){
+    $endpoint = 'series/'.$id.'/characters';
+
+    $model = new Characters();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Characters'])){
+      $model->attributes = $_POST['Characters'];
+        foreach($_POST['Characters'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->seriesId = $id;
+    }
+
+    $charactersResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-    $charactersResponse = $this->module->marvel->search('series/'.$id.'/characters',null);
+
     return $this->render('seriesCharacters',[
-    //  'series'=>array_pop($response['response']['data']['results']),
+      'model'=>$model,
       'id'=>$id,
-      'seriesResponse'=>$seriesResponse,
-      'charactersResponse'=>$charactersResponse,
-      ]
-    );
-  }
+      'response'=>$charactersResponse,
+      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($charactersResponse),
+    ]);
+  }//end actionCharacters
 
 
   /*
@@ -75,31 +92,70 @@ class SeriesController extends Controller
   *
   */
   public function actionComics($id){
+    $endpoint = 'series/'.$id.'/comics';
+
+    $model = new Comics();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Comics'])){
+      $model->attributes = $_POST['Comics'];
+        foreach($_POST['Comics'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->seriesId = $id;
+    }
+
+    $comicsResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-    $comicsResponse = $this->module->marvel->search('series/'.$id.'/comics',null);
+
     return $this->render('seriesComics',[
-    //  'series'=>array_pop($response['response']['data']['results']),
+      'model'=>$model,
       'id'=>$id,
-      'seriesResponse'=>$seriesResponse,
-      'comicsResponse'=>$comicsResponse,
-      ]
-    );
-  }
+      'response'=>$comicsResponse,
+      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($comicsResponse),
+    ]);
+  }//end actionCharacters
+
+
 
   /*
   * MARVEL = GET /v1/public/series/{seriesId}/creators
   *
   */
   public function actionCreators($id){
-    //GET OUR DATA
+    $endpoint = 'series/'.$id.'/creators';
+
+    $model = new Creators();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Creators'])){
+      $model->attributes = $_POST['Creators'];
+        foreach($_POST['Creators'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->seriesId = $id;
+    }
+
+    $creatorsResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-    $creatorsResponse = $this->module->marvel->search('series/'.$id.'/creators',null);
+
     return $this->render('seriesCreators',[
+      'model'=>$model,
       'id'=>$id,
-      'seriesResponse'=>$seriesResponse,
-      'creatorsResponse'=>$creatorsResponse,
-      ]
-    );
+      'response'=>$creatorsResponse,
+      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($creatorsResponse),
+    ]);
+
+
+
   }//end actionCreators
 
   /*
@@ -162,5 +218,16 @@ class SeriesController extends Controller
     );
   }
   */
+
+  private function buildRecordPager($response){
+    //Set up our pager variables for use later
+      $pager['count'] = $response['response']['data']['count'];
+      $pager['total'] = $response['response']['data']['total'];
+      $pager['offset'] = $response['response']['data']['offset'];
+      $pager['limit'] = $response['response']['data']['limit'];
+
+    return $pager;
+  }
+
 
 }//end class

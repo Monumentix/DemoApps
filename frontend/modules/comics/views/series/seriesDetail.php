@@ -27,7 +27,7 @@ if(!(empty($id))){
 ?>
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-index"></div>
+<div class="comics-series-index">
 
 <div class="row">
   <div class="col-sm-12">
@@ -49,25 +49,27 @@ if(!(empty($id))){
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-12">
+    <h5 class="text-right">
+      <?='Records '.(($pager['offset'] == 0) ? '1' : $pager['offset'] ) .' through '. $pager['count'] .' out of '.$pager['total'].' records'?>
+    </h5>
+  </div>
+</div>
+
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/paged/_seriesPaged.php',[
+        'seriesId'=>$id,
         'seriesPages'=>$data,
+        'pager'=>$pager,
         ]);
     ?>
   </div>
 </div>
 
 <hr class="comics-divider">
-
-<div class="row">
-  <div class="col-sm-12">
-      <?php if(empty($id)) :?>
-        <h3 class="text-center">No record selected for detail views</h3>
-      <?php endif; ?>
-    </div>
-</div>
 
 <div class="row">
   <div class="col-sm-12">
@@ -128,17 +130,16 @@ if(!(empty($id))){
   </div>
 </div>
 
+</div>
+
 <hr class="comics-divider">
 
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
 
-
-
-
-    <?php if(1==0) {
-        echo '<h5 class="text-center">Marvel API Response</h5>';
-        echo '<pre class="prettyprint">';
-          print_r($response);
-        echo '</pre>';
-      }
-    ?>
+<?php if(1==0) {
+    echo '<h5 class="text-center">Marvel API Response</h5>';
+    echo '<pre class="prettyprint">';
+      print_r($response);
+    echo '</pre>';
+  }
+?>

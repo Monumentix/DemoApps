@@ -44,6 +44,7 @@ use kartik\icons\Icon;
 <div class="row display-table">
   <div class="col-xs-4 col-xs-offset-1 display-cell text-center">
     <?=$form->field($model,'limit')->dropDownList($model->getLimitByTypes());?>
+    <?=$form->field($model,'id')->hiddenInput()->label(false)?>
     <?php //=$form->field($model,'offset')->hiddenInput()->label(false)?>
     <?=$form->field($model,'offset')?>
   </div>

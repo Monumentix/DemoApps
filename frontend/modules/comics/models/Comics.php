@@ -6,26 +6,46 @@ use yii\base\Model;
 
 class Comics extends Model
 {
+    public $seriesId;
 
     public $format;
     public $formatType;
 
+    public $noVariants;
+    public $dateDescriptor;
+    public $dateRange;
+
     public $title;
     public $titleStartsWith;
-    public $characters;
-
-    public $id;
-    public $digitalId;
-
+    public $startYear;
     public $issueNumber;
-    public $description;
+
+    public $diamondCode;
+    public $digitalId;
     public $upc;
-    public $textObjects;
-    public $thumbnail;
-    public $images;
+    public $isbn;
+    public $issn;
+
+    public $hadDigitalIssue;
+    public $modifiedSince;
+
+    public $creators;
+    public $characters;
+    public $events;
+    public $stories;
+    public $sharedApperances;
+    public $collaborators;
 
     public $orderBy;
+    public $limit;
+    public $offset;
 
+    public static $LIMIT_BY_TYPES = [
+      '5'=>'5 rows per page',
+      '10'=>'10 rows per page',
+      '20'=>'20 rows per page',
+      '50'=>'50 rows per page'
+    ];
 
     public static $COMIC_FORMATS = [
       ''=>'Select Format...',
@@ -52,11 +72,21 @@ class Comics extends Model
       '-issueNumber'=>'Issue Number - DESC',
     ];
 
+    public function rules(){
+      return[
+        [['seriesId', 'format', 'formatType', 'noVariants', 'dateDescriptor', 'dateRange'],'safe'],
+        [['title', 'titleStartsWith', 'startYear', 'issueNumber', 'diamondCode', 'digitalId'],'safe'],
+        [['upc', 'isbn', 'issn', 'hadDigitalIssue', 'modifiedSince'],'safe'],
+        [['creators', 'characters', 'events', 'stories', 'sharedApperances', 'collaborators'],'safe'],
+        [['orderBy', 'limit', 'offset'],'safe'],
+      ];
+    }
+
+
     public function attributeLabels()
     {
         return [
-            'format' => 'Format',
-            'title' => 'Title',
+
         ];
     }
 
@@ -70,6 +100,10 @@ class Comics extends Model
 
     public function getOrderByTypes(){
       return self::$ORDER_BY_TYPES;
+    }
+
+    public function getLimitByTypes(){
+      return self::$LIMIT_BY_TYPES;
     }
 
 }

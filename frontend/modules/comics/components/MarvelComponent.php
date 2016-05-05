@@ -50,67 +50,51 @@ class MarvelComponent extends Component{
         }
       }
 
-      /*
-      if(isset($params['pager'])){
-        foreach($params['pager'] as $key => $value){
-            $fullUrl = $fullUrl ."&".$key."=".$value;
-        }
-      }
-      */
-
-
     $response = Yii::$app->httpclient->get($fullUrl);
-
-    //$pager = $this->buildPager($response, $params);
-
     $results = [
         'urlCalled'=>$fullUrl,
         'response'=> $response,
-      //  'pager' => $pager,
       ];
 
     return $results;
   }
 
 
-  private function buildPager($response, $params = null){
 
-    $total = $response['data']['total'];
-    $offset = $response['data']['offset'];
-    $limit = $response['data']['limit'];
+  /*
+  * idDate = key/pair of modelField and id
+  *   modelFieldName = field name in model / id = value
+  * modelName = name of model
+  * pager = pager Array Object of count/offset/limit/total
+  */
+  public function buildNextParams($idData = null, $modelName,$pager ){
+    //BSR - This needs to be moved to an application wide parameter or something
+    $params = [];
 
+    if(!(empty($_POST[$modelName]))){
+      foreach($_POST[$modelName] as $key => $value ){
+        $paramKey = $modelName."[". $key ."]";
 
-    $pager['firstPage'] =  0 ;
-    $pager['prevPage'] = ($offset - $limit);
-    $pager['curPage'] = (($offset/$limit) + 1);
-    $pager['nextPage'] = ($offset + $limit);
-    $pager['lastPage'] = ceil(($total / $limit));
-    $pager['pageSize'] = $limit;
-    $pager['offset'] = $offset;
-    $pager['total'] = $total;
-
-
-    $pager['nextPageLink'] = "";
-
-    if(isset($params['filterBy'])){
-      foreach($params['filterBy'] as $filter){
-        $key = key($filter);
-        if($filter[$key] <> ''){
-          if($pager['nextPageLink'] == ''){
-              //first time through
-              $pager['nextPageLink'] = "?".$key."=".$filter[$key];
-          }else{
-            $pager['nextPageLink'] = $pager['nextPageLink'] ."&".$key."=".$filter[$key];
-          }
+        if($key == "offset"){
+          $value = ($value + $_POST[$modelName]['limit']);
         }
+
+        $params[$paramKey] = $value;
       }
     }
 
-    return $pager;
+    //Set our limit and offsets from our pager object
+    $params[$modelName."[offset]"] = (($pager['offset'] + $pager['limit']) );
+    $params[$modelName."[limit]"] = $pager['limit'];
+
+    //We also have an ID field that needs setting up
+    if(!(is_null($idData))){
+      $paramKey = $modelName."[". $idData['modelFieldName'] ."]";
+      $params[$paramKey] = $idData['id'];
+    }
+
+    return $params;
   }
-
-
-
 
 
   /*
@@ -137,6 +121,69 @@ class MarvelComponent extends Component{
     //Now we want to extract our image information
     return $results['thumbnail']['path']."/".$size.".".$results['thumbnail']['extension'];
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+    private function buildPager($response, $params = null){
+
+      $total = $response['data']['total'];
+      $offset = $response['data']['offset'];
+      $limit = $response['data']['limit'];
+
+
+      $pager['firstPage'] =  0 ;
+      $pager['prevPage'] = ($offset - $limit);
+      $pager['curPage'] = (($offset/$limit) + 1);
+      $pager['nextPage'] = ($offset + $limit);
+      $pager['lastPage'] = ceil(($total / $limit));
+      $pager['pageSize'] = $limit;
+      $pager['offset'] = $offset;
+      $pager['total'] = $total;
+
+
+      $pager['nextPageLink'] = "";
+
+      if(isset($params['filterBy'])){
+        foreach($params['filterBy'] as $filter){
+          $key = key($filter);
+          if($filter[$key] <> ''){
+            if($pager['nextPageLink'] == ''){
+                //first time through
+                $pager['nextPageLink'] = "?".$key."=".$filter[$key];
+            }else{
+              $pager['nextPageLink'] = $pager['nextPageLink'] ."&".$key."=".$filter[$key];
+            }
+          }
+        }
+      }
+
+      return $pager;
+
+    }
+    */
+
+
+
+
+
+
 
 
 

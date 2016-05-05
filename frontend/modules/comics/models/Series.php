@@ -6,6 +6,7 @@ use yii\base\Model;
 
 class Series extends Model
 {
+    public $id;
     public $format;
     public $formatType;
 
@@ -60,17 +61,15 @@ class Series extends Model
     ];
 
     public static $LIMIT_BY_TYPES = [
-      '2'=>'2 rows per page',
       '5'=>'5 rows per page',
       '10'=>'10 rows per page',
-      '15'=>'15 rows per page',
       '20'=>'20 rows per page',
-      '40'=>'40 rows per page'
+      '50'=>'50 rows per page'
     ];
 
     public function rules(){
       return[
-        [['format','formatType','title','titleStartsWith','modifiedSince','startYear'],'safe'],
+        [['id','format','formatType','title','titleStartsWith','modifiedSince','startYear'],'safe'],
         [['comics','stories','events','creators','characters'],'safe'],
         [['seriesType','containsType','orderByType','limit','offset'],'safe'],
       ];
