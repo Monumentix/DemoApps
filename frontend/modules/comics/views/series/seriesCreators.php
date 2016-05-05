@@ -45,6 +45,12 @@ $data = $response['response']['data']['results'];
 </div>
 
 <div class="row">
+  <div class="col-xs-12">
+    <h2 class="text-center">Filter Creators For This Series</h2>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/forms/_seriesCreatorsSearch.php',[

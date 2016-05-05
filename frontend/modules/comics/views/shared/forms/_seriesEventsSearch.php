@@ -1,4 +1,3 @@
-
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -17,20 +16,6 @@ use kartik\icons\Icon;
     <?=$form->field($model,'nameStartsWith')?>
   </div>
 </div>
-
-<div class="row">
-  <div class="col-sm-4">
-    <?=$form->field($model,'firstNameStartsWith')?>
-  </div>
-  <div class="col-sm-4">
-    <?=$form->field($model,'middleNameStartsWith')?>
-  </div>
-  <div class="col-sm-4">
-    <?=$form->field($model,'lastNameStartsWith')?>
-  </div>
-</div>
-
-
 
 <div class="row">
   <div class="col-sm-12">

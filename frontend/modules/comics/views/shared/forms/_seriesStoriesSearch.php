@@ -1,4 +1,3 @@
-
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -14,23 +13,24 @@ use kartik\icons\Icon;
 
 <div class="row">
   <div class="col-sm-12">
-    <?=$form->field($model,'nameStartsWith')?>
+    <?=$form->field($model,'modifiedSince')?>
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-4">
-    <?=$form->field($model,'firstNameStartsWith')?>
+  <div class="col-sm-3">
+    <?=$form->field($model,'comics')?>
   </div>
-  <div class="col-sm-4">
-    <?=$form->field($model,'middleNameStartsWith')?>
+  <div class="col-sm-3">
+    <?=$form->field($model,'events')?>
   </div>
-  <div class="col-sm-4">
-    <?=$form->field($model,'lastNameStartsWith')?>
+  <div class="col-sm-3">
+    <?=$form->field($model,'creators')?>
+  </div>
+  <div class="col-sm-3">
+    <?=$form->field($model,'characters')?>
   </div>
 </div>
-
-
 
 <div class="row">
   <div class="col-sm-12">

@@ -7,140 +7,131 @@ use app\modules\comics\ComicsMainAsset;
 
 ComicsMainAsset::register($this);
 
-//LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
-//AND ALLOW US TO USE THE TITLE IN OUR NAVIGATION
-$series = $seriesResponse['response']['data']['results'][0];
-$stories = $storiesResponse['response']['data']['results'];
-$attributionHTML = $seriesResponse['response']['attributionHTML'];
-
 //SET OUR BREADCRUMBS
-$this->title = 'Series Comics - '.$series['title']; //Yii::t('detail', 'Details');
+$this->title = 'Stories In '.$seriesResponse['title'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Series'), 'url' => ['/comics/series']];
 $this->params['breadcrumbs'][] = $this->title;
+
+//LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
+//AND ALLOW US TO USE THE TITLE IN OUR NAVIGATION
+//GRAB just our results for easy use later
+
+//Tell our view which section of the response data has our results
+$data = $response['response']['data']['results'];
 ?>
 
 <?php echo $this->render('/shared/_coverView');?>
 
 <div class="comics-series-stories">
 
-  <div class="row">
-    <div class="col-sm-12">
-    <h2 class="endpoint">(/v1/public/series/{seriesId}/stories) : <span class="lead">Fetches lists of stories which occur in a specific series. </span></h2>
+<div class="row">
+  <div class="col-sm-12">
+    <?php if(!(empty($id))) : ?>
+      <h2 class="endpoint">(/v1/public/series/{seriesId}/stories) : <small>Fetches lists of comic stories from a specific series with optional filters. </small></h2>
+    <?php endif; ?>
     </div>
-  </div>
-
-
-
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="seriesDetail">
-        <?php echo $this->render('/shared/detail/_seriesDetail',[
-            'id'=>$id,
-            'series'=>$series,
-          ]);
-        ?>
-      </div>
-    </div>
-  </div>
-
-
-
-  <div class="row well well-sm info">
-    <h3 class="text-center"> Optional Filters:</h3>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-
-      STORIES Lists - THIS IS OUR FILTERD/PAGED DATA SET AREA
-
-    </div>
-  </div>
-
-
-  <div class="row well well-sm info">
-    <h3 class="text-center"> Also in this series:</h3>
-  </div>
-
-  <div class="row">
-
-    <div class="col-sm-6">
-      <div class="">
-        <?php echo $this->render('/shared/list/_comicsList',[
-            'id'=>$id,
-            'comics'=>$series['comics'],
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
-      </div>
-    </div>
-
-    <div class="col-sm-6">
-      <div class="">
-        <?php echo $this->render('/shared/list/_charactersList',[
-            'id'=>$id,
-            'characters'=>$series,
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="">
-        <?php echo $this->render('/shared/list/_eventsList',[
-            'id'=>$id,
-            'events'=>$series,
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
-      </div>
-    </div>
-
-
-    <div class="col-sm-6">
-      <div class="">
-        <?php echo $this->render('/shared/list/_creatorsList',[
-            'id'=>$id,
-            'creators'=>$series,
-            'listOptions'=>[
-              'columnClass'=>'col-sm-6',
-            ],
-          ]);
-        ?>
-      </div>
-    </div>
-    
-  </div>
-
-
-
-
-
-
-
-
-  </div>
 </div>
-
-<hr>
-<p class="text-center"><?=$attributionHTML?></p>
-
 
 <div class="row">
   <div class="col-sm-12">
-    <pre class="prettyprint">
-      <?php
-      echo print_r($stories);
-      ?>
-    </pre>
+      <?php if(!empty($id)){
+        echo $this->render('/shared/detail/_seriesDetail',[
+          'id'=>$id,
+          'series'=>$seriesResponse,
+        ]);
+      }?>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h2 class="text-center">Filter Stories For This Series</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <?php
+      echo $this->render('/shared/forms/_seriesStoriesSearch.php',[
+        'model'=>$model,
+        ]);
+    ?>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <h5 class="text-right">
+      <?='Records '.(($pager['offset'] == 0) ? '1' : $pager['offset'] ) .' through '. $pager['count'] .' out of '.$pager['total'].' records'?>
+    </h5>
+  </div>
+</div>
+
+<div class="row pagedData">
+  <div class="col-sm-12">
+    <?php
+      echo $this->render('/shared/paged/_seriesStoriesPaged.php',[
+        'seriesId'=>$id,
+        'storiesPaged'=>$data,
+        'pager'=>$pager,
+      ]);
+    ?>
+  </div>
+</div>
+
+<hr class="comics-divider">
+<div class="row">
+  <div class="col-sm-12">
+    <h3 class="text-center">Additional Series Information:</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <?php
+      echo $this->render('/shared/list/_comicsList',[
+          'listOptions'=>[
+            'columnClass'=>'col-xs-6',
+          ],
+          'id'=>$id,
+          'comics'=>$seriesResponse['comics'],
+        ]);
+      ?>
+  </div>
+
+  <div class="col-sm-4">
+    <?php if(!empty($id)){
+      echo $this->render('/shared/list/_creatorsList',[
+          'id'=>$id,
+          'creators'=>$seriesResponse['creators'],
+        ]);
+      }?>
+  </div>
+
+  <div class="col-sm-4">
+    <?php if(!empty($id)){
+
+      echo $this->render('/shared/list/_charactersList',[
+        'id'=>$id,
+        'characters'=>$seriesResponse['characters'],
+      ]);
+
+    }?>
+  </div>
+
+  <div class="col-sm-4">
+    <?php if(!empty($id)){
+       echo $this->render('/shared/list/_eventsList',[
+        'id'=>$id,
+        'events'=>$seriesResponse['events'],
+      ]);
+    }?>
+  </div>
+</div>
+
+</div>
+
+<hr class="comics-divider">
+<p class="text-center">
+  <?=$response['response']['attributionHTML']?>
+</p>

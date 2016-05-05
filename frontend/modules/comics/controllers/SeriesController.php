@@ -10,6 +10,8 @@ use app\modules\comics\models\Series;
 use app\modules\comics\models\Comics;
 use app\modules\comics\models\Characters;
 use app\modules\comics\models\Creators;
+use app\modules\comics\models\Events;
+use app\modules\comics\models\Stories;
 
 /**
  * Default controller for the `cruddemo` module
@@ -48,9 +50,6 @@ class SeriesController extends Controller
       'pager'=>$this->buildRecordPager($response),
     ]);
   }//end actionIndex
-
-
-
 
 
   /*
@@ -153,45 +152,95 @@ class SeriesController extends Controller
       'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($creatorsResponse),
     ]);
-
-
-
   }//end actionCreators
 
+
+
+
+
+
+
   /*
-  * MARVEL = GET /v1/public/series/{seriesId}/comics
+  * MARVEL = GET /v1/public/series/{seriesId}/events
   *
   */
   public function actionEvents($id){
+    $endpoint = 'series/'.$id.'/events';
 
+    $model = new Events();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Events'])){
+      $model->attributes = $_POST['Events'];
+        foreach($_POST['Events'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->seriesId = $id;
+    }
+
+    $eventsResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-    $eventsResponse = $this->module->marvel->search('series/'.$id.'/events',null);
+
     return $this->render('seriesEvents',[
-    //  'series'=>array_pop($response['response']['data']['results']),
+      'model'=>$model,
       'id'=>$id,
-      'seriesResponse'=>$seriesResponse,
-      'eventsResponse'=>$eventsResponse,
-      ]
-    );
-  }
+      'response'=>$eventsResponse,
+      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($eventsResponse),
+    ]);
+  }//end actionCreators
+
 
   /*
   * MARVEL = GET /v1/public/series/{seriesId}/stories
   *
   */
   public function actionStories($id){
-    //GET OUR DATA
+    $endpoint = 'series/'.$id.'/stories';
+
+    $model = new Stories();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Stories'])){
+      $model->attributes = $_POST['Stories'];
+        foreach($_POST['Stories'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->seriesId = $id;
+    }
+
+    $storiesResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
     $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-    $storiesResponse = $this->module->marvel->search('series/'.$id.'/stories',null);
+
     return $this->render('seriesStories',[
+      'model'=>$model,
       'id'=>$id,
-      'seriesResponse'=>$seriesResponse,
-      'storiesResponse'=>$storiesResponse,
-      ]
-    );
-  }//end actionCreators
+      'response'=>$storiesResponse,
+      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($storiesResponse),
+    ]);
+  }//end actionStories
 
 
+
+
+
+
+  private function buildRecordPager($response){
+    //Set up our pager variables for use later
+      $pager['count'] = $response['response']['data']['count'];
+      $pager['total'] = $response['response']['data']['total'];
+      $pager['offset'] = $response['response']['data']['offset'];
+      $pager['limit'] = $response['response']['data']['limit'];
+
+    return $pager;
+  }
 
 
   /*
@@ -219,15 +268,26 @@ class SeriesController extends Controller
   }
   */
 
-  private function buildRecordPager($response){
-    //Set up our pager variables for use later
-      $pager['count'] = $response['response']['data']['count'];
-      $pager['total'] = $response['response']['data']['total'];
-      $pager['offset'] = $response['response']['data']['offset'];
-      $pager['limit'] = $response['response']['data']['limit'];
+  /*
+  * MARVEL = GET /v1/public/series/{seriesId}/comics
+  *
 
-    return $pager;
+  public function actionEvents($id){
+
+    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $eventsResponse = $this->module->marvel->search('series/'.$id.'/events',null);
+    return $this->render('seriesEvents',[
+    //  'series'=>array_pop($response['response']['data']['results']),
+      'id'=>$id,
+      'seriesResponse'=>$seriesResponse,
+      'eventsResponse'=>$eventsResponse,
+      ]
+    );
   }
+  */
+
+
+
 
 
 }//end class
