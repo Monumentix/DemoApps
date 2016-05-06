@@ -1,4 +1,5 @@
 <?php
+
   use yii\helpers\Html;
 ?>
 
@@ -61,6 +62,8 @@
                 </div>
             </div>
           <?php
+
+          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id );
           $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
             [
               'modelFieldName'=>'seriesId',
@@ -73,7 +76,7 @@
           if(!(empty($params))){
             echo Html::button('Next Page',[
               'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('/comics/series/comics?id=".$seriesId."',".json_encode($params).")",
+              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
               ]);
            }
           ?>
