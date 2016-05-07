@@ -42,7 +42,7 @@ if(!(empty($id))){
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_seriesSearch.php',[
+      echo $this->render('/shared/forms/_SeriesSearch.php',[
         'model'=>$model,
         ]);
     ?>
@@ -60,7 +60,7 @@ if(!(empty($id))){
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_seriesPaged.php',[
+      echo $this->render('/shared/paged/_SeriesPaged.php',[
         'seriesId'=>$id,
         'seriesPages'=>$data,
         'pager'=>$pager,

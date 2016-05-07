@@ -8,7 +8,7 @@ use kartik\icons\Icon;
 ?>
 <?php $form = ActiveForm::begin([
   //'method'=>'POST',
-  'action'=>'series',
+  'action'=>'',
 ]); ?>
 
 

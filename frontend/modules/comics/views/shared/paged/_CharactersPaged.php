@@ -10,7 +10,7 @@
 ?>
 <?php if(!(empty($charactersPaged))) : ?>
   <?php $cnt = 0; ?>
-  <div class="pages-wrapper ">
+  <div class="pages-wrapper fjalla">
     <?php foreach($charactersPaged as $character) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 text-center display-cell">
@@ -21,22 +21,22 @@
       </div>
       <div class="col-xs-3 display-cell text-center">
         <?php if(!(empty($character['comics']))) : ?>
-          Appears in <?=$character['comics']['available']?> Comics
+          <?=$character['comics']['available']?> <br>Comics
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($character['series']))) : ?>
-          Appears in <?=$character['series']['available']?> Series
+          <?=$character['series']['available']?> <br> Series
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($character['stories']))) : ?>
-          Appears in <?=$character['stories']['available']?> Stories
+          <?=$character['stories']['available']?> <br>Stories
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($character['events']))) : ?>
-          Appears in <?=$character['events']['available']?> Events
+          <?=$character['events']['available']?> <br>Events
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">

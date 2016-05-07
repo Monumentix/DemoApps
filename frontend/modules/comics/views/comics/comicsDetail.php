@@ -9,7 +9,7 @@ ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
 $this->title = 'Comics ';
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics/comics']];
 
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
@@ -42,7 +42,7 @@ if(!(empty($id))){
 <div class="row">
   <div class="col-sm-12">
     <?php if(empty($id)){
-      echo $this->render('/shared/forms/_seriesComicsSearch.php',[
+      echo $this->render('/shared/forms/_ComicsSearch.php',[
         'model'=>$model,
         ]);
       }
@@ -61,7 +61,7 @@ if(!(empty($id))){
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_seriesComicsPaged.php',[
+      echo $this->render('/shared/paged/_ComicsPaged.php',[
         'seriesId'=>$id,
         'comicsPaged'=>$data,
         'pager'=>$pager,
@@ -137,11 +137,3 @@ if(!(empty($id))){
 <hr class="comics-divider">
 
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
-
-<?php if(1==1) {
-    echo '<h5 class="text-center">Marvel API Response</h5>';
-    echo '<pre class="prettyprint">';
-      print_r($response);
-    echo '</pre>';
-  }
-?>

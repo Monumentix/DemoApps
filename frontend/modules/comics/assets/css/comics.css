@@ -3,6 +3,9 @@ body.wait{
   cursor: wait;
 }
 
+.bangers{font-family: 'Bangers', cursive;}
+.fjalla{font-family: 'Fjalla One', sans-serif;}
+
 #content-wrapper{
   background-color: #f7f7f7;
   border-top:0px #162836 solid;

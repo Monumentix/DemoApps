@@ -11,41 +11,41 @@
 ?>
 <?php if(!(empty($comicsPaged))) : ?>
   <?php $cnt = 0; ?>
-  <div class="pages-wrapper ">
+  <div class="pages-wrapper fjalla ">
     <?php foreach($comicsPaged as $comic) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
-      <div class="col-xs-2 text-center display-cell">
+      <div class="col-xs-2 col-sm-2 text-center display-cell hidden-xs">
         <?php if(!(empty($comic['thumbnail']))) : ?>
           <img src="<?=$comic['thumbnail']['path']?>/standard_medium.<?=$comic['thumbnail']['extension']?>" class="img img-thumbnail img-rounded">
         <?php endif; ?>
       </div>
-      <div class="col-xs-4 display-cell text-center">
+      <div class="col-xs-5 col-sm-4 display-cell text-left">
         <?php if(!(empty($comic['title']))) : ?>
-          <h4><?=$comic['title']?> </h4>
+          <h4 class="fjalla"><?=$comic['title']?> </h4>
         <?php endif; ?>
       </div>
-      <div class="col-xs-2 display-cell text-center">
+      <div class="col-xs-2 col-sm-1 display-cell text-center">
         <?php if(!(empty($comic['stories']))) : ?>
-          Appears in <?=$comic['stories']['available']?> Stories
+          <?=$comic['stories']['available']?> <br> Stories
         <?php endif; ?>
       </div>
-      <div class="col-xs-2 display-cell text-center">
+      <div class="col-xs-2 col-sm-1 display-cell text-center">
         <?php if(!(empty($comic['characters']))) : ?>
-          Appears in <?=$comic['characters']['available']?> Characters
+          <?=$comic['characters']['available']?> <br>Characters
         <?php endif; ?>
       </div>
-      <div class="col-xs-2 display-cell text-center">
+      <div class="col-xs-2 col-sm-1 display-cell text-center">
         <?php if(!(empty($comic['creators']))) : ?>
-          Appears in <?=$comic['creators']['available']?> Creators
+          <?=$comic['creators']['available']?> <br>Creators
         <?php endif; ?>
       </div>
-      <div class="col-xs-2 display-cell text-center">
+      <div class="col-xs-2 col-sm-1 display-cell text-center">
         <?php if(!(empty($comic['events']))) : ?>
-          Appears in <?=$comic['events']['available']?> Events
+          <?=$comic['events']['available']?> <br> Events
         <?php endif; ?>
       </div>
-      <div class="col-xs-1 display-cell text-center">
-        <a href="/comics/comics?id=<?=$comic['id']?>" class="btn btn-info btn-xs text-center">Details</a>
+      <div class="col-xs-2 col-sm-1 display-cell">
+        <a href="/comics/comics?id=<?=$comic['id']?>" class="btn btn-info btn-xs text-center shadow">Details</a>
       </div>
     </div>
     <?php $cnt++ ?>

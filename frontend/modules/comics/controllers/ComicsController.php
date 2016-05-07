@@ -19,8 +19,8 @@ use app\modules\comics\models\Stories;
 class ComicsController extends Controller
 {
   /*
-  * MARVEL = GET /v1/public/series
-  * MARVEL = GET /v1/public/series/{seriesId}
+  * MARVEL = GET /v1/public/comics
+  * MARVEL = GET /v1/public/comics/{seriesId}
   *
   */
   public function actionIndex($id = null){
@@ -53,11 +53,11 @@ class ComicsController extends Controller
 
 
   /*
-  * MARVEL = GET /v1/public/series/{seriesId}/characters
+  * MARVEL = GET /v1/public/comics/{comicsId}/characters
   *
-
+  */
   public function actionCharacters($id){
-    $endpoint = 'series/'.$id.'/characters';
+    $endpoint = 'comics/'.$id.'/characters';
 
     $model = new Characters();
     $params['filterBy'] = [];
@@ -74,13 +74,13 @@ class ComicsController extends Controller
 
     $charactersResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $comicsResponse = $this->module->marvel->search('comics/'.$id,null);
 
-    return $this->render('seriesCharacters',[
+    return $this->render('comicsCharacters',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$charactersResponse,
-      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'comicsResponse'=>$comicsResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($charactersResponse),
     ]);
   }//end actionCharacters

@@ -8,9 +8,11 @@ use app\modules\comics\ComicsMainAsset;
 ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
-$this->title = 'Characters In '.$comicsResponse['title'];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic'), 'url' => ['/comics/series']];
+
+$this->title = 'Characters In '.(!(empty($comicsResponse['title'])) ? $comicsResponse['title'] :  ' No results ' );
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics/comics']];
 $this->params['breadcrumbs'][] = $this->title;
 
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
@@ -21,15 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
 $data = $response['response']['data']['results'];
 ?>
 
-
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-characters">
+<div class="comics-comics-characters">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/series/{seriesId}/characters) : <small>Fetches lists of characters which appear in specific series, with optional filters.</small></h2>
+      <h2 class="endpoint">(/v1/public/comics/{comicsId}/characters) : <small>Fetches lists of characters which appear in a specific comic with optional filters.</small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -37,9 +38,9 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
       <?php if(!empty($id)){
-        echo $this->render('/shared/detail/_seriesDetail',[
+        echo $this->render('/shared/detail/_comicDetail',[
           'id'=>$id,
-          'series'=>$comicsResponse,
+          'comic'=>$comicsResponse,
         ]);
       }?>
   </div>
@@ -78,9 +79,11 @@ $data = $response['response']['data']['results'];
 <hr class="comics-divider">
 <div class="row">
   <div class="col-sm-12">
-    <h3 class="text-center">Additional Series Information:</h3>
+    <h3 class="text-center">Additional Comic Information:</h3>
   </div>
 </div>
+
+<?php if(!(empty($comicsResponse['comics']))) : ?>
 <div class="row">
   <div class="col-sm-12">
     <?php
@@ -106,9 +109,9 @@ $data = $response['response']['data']['results'];
   <div class="col-sm-4">
     <?php if(!empty($id)){
 
-      echo $this->render('/shared/list/_charactersList',[
+      echo $this->render('/shared/list/_eventsList',[
         'id'=>$id,
-        'characters'=>$comicsResponse['characters'],
+        'events'=>$comicsResponse['events'],
       ]);
 
     }?>
@@ -134,6 +137,7 @@ $data = $response['response']['data']['results'];
       }?>
   </div>
 </div>
+<?php endif; ?>
 
 </div>
 

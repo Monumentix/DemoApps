@@ -2,7 +2,6 @@
   use yii\helpers\Html;
 ?>
 
-<?php if(!empty($creators['items'])) : ?>
   <div class="panel panel-monumentix">
     <div class='panel-heading'>
       <h3 class="panel-title">Creators: <span class="pull-right">(<?=$creators['available']?>)</span></h3>
@@ -42,4 +41,3 @@
 
     </div>
   </div>
-<?php endif ?>

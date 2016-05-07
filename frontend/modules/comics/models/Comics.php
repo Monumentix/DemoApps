@@ -40,6 +40,13 @@ class Comics extends Model
     public $limit;
     public $offset;
 
+
+    public static $NO_VARIANTS_TYPES = [
+      ''=>'Include Variants...',
+      'true'=>'True',
+      'false'=>'False',
+    ];
+
     public static $LIMIT_BY_TYPES = [
       '5'=>'5 rows per page',
       '10'=>'10 rows per page',
@@ -90,6 +97,10 @@ class Comics extends Model
         ];
     }
 
+    public function getNoVariantsTypes(){
+      return self::$NO_VARIANTS_TYPES;
+    }
+
     public function getFormatTypes(){
       return self::$COMIC_FORMAT_TYPE;
     }
@@ -105,5 +116,6 @@ class Comics extends Model
     public function getLimitByTypes(){
       return self::$LIMIT_BY_TYPES;
     }
+
 
 }

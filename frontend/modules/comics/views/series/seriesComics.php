@@ -47,7 +47,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_seriesComicsSearch.php',[
+      echo $this->render('/shared/forms/_ComicsSearch.php',[
         'model'=>$model,
         ]);
     ?>
@@ -65,7 +65,7 @@ $data = $response['response']['data']['results'];
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_seriesComicsPaged.php',[
+      echo $this->render('/shared/paged/_ComicsPaged.php',[
         'seriesId'=>$id,
         'comicsPaged'=>$data,
         'pager'=>$pager,
