@@ -63,7 +63,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <h5 class="text-right">
-      <?='Records '.(($pager['offset'] == 0) ? '1' : $pager['offset'] ) .' through '. $pager['count'] .' out of '.$pager['total'].' records'?>
+      <?='Records '. (($pager['count'] == 0) ? '0' : (($pager['offset'] == 0) ? '1' : $pager['offset'])) .' through '. $pager['count'] .' out of '.$pager['total'].' records'?>
     </h5>
   </div>
 </div>

@@ -10,16 +10,16 @@
 ?>
 <?php if(!(empty($storiesPaged))) : ?>
   <?php $cnt = 0; ?>
-  <div class="pages-wrapper ">
+  <div class="pages-wrapper fjalla">
     <?php foreach($storiesPaged as $story) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 text-center display-cell">
         <?php if(!(empty($story['thumbnail']))) : ?>
           <img src="<?=$story['thumbnail']['path']?>/standard_medium.<?=$story['thumbnail']['extension']?>" class="img img-thumbnail img-rounded">
         <?php endif; ?>
-        <h5><?= $story['title']; ?></h5>
+        <h4><?= $story['title']; ?></h4>
       </div>
-      <div class="col-xs-5 display-cell text-center">
+      <div class="col-xs-5 display-cell text-left">
         <?php if(!(empty($story['originalIssue']))) : ?>
           <?=$story['originalIssue']['name']?>
         <?php endif; ?>
@@ -45,7 +45,7 @@
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
-        <a href="/comics/characters?id=<?=$story['id']?>" class="btn btn-info btn-xs text-center">Details</a>
+        <a href="/comics/stories?id=<?=$story['id']?>" class="btn btn-info btn-xs text-center shadow">Details</a>
       </div>
     </div>
     <?php $cnt++ ?>
@@ -90,3 +90,12 @@
     </div>
   </div>
 <?php endif; ?>
+
+
+
+<?php if(1==0) {
+    echo '<h5 class="text-center">Marvel API Response</h5>';
+    echo '<pre class="prettyprint">';
+      print_r($storiesPaged);
+    echo '</pre>';
+  }

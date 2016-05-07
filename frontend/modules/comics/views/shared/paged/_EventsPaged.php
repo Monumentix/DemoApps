@@ -10,7 +10,7 @@
 ?>
 <?php if(!(empty($eventsPaged))) : ?>
   <?php $cnt = 0; ?>
-  <div class="pages-wrapper ">
+  <div class="pages-wrapper fjalla">
     <?php foreach($eventsPaged as $event) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 text-center display-cell">
@@ -21,7 +21,7 @@
       </div>
       <div class="col-xs-5 display-cell text-center">
         <?php if(!(empty($event['description']))) : ?>
-          <?=$event['description']?>
+          <p><?=$event['description']?></p>
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
@@ -45,7 +45,7 @@
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
-        <a href="/comics/characters?id=<?=$event['id']?>" class="btn btn-info btn-xs text-center">Details</a>
+        <a href="/comics/events?id=<?=$event['id']?>" class="btn btn-info shadow btn-xs text-center">Details</a>
       </div>
     </div>
     <?php $cnt++ ?>

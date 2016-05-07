@@ -12,13 +12,16 @@
         <?php if(!empty($listOptions['columnClass'])) : ?>
           <div class="comics">
             <?php foreach($comics['items'] as $comic) : ?>
-              <div class="<?=$listOptions['columnClass']?>"><?=$comic['name']; ?></div>
+              <div class="<?=$listOptions['columnClass']?>"><a href="/comics/comics?id=<?=array_pop(explode("/",$comic['resourceURI'])); ?>">  <?=$comic['name']; ?> </a></div>
             <?php endforeach ?>
           </div>
           <?php else : ?>
           <ul class="comics">
             <?php foreach($comics['items'] as $comic) : ?>
-              <li><?=$comic['name']; ?></li>
+              <li>
+                <a href="/comics/comics?id=<?=$comic['id']; ?> "> <?=$comic['name']; ?>  </a>
+                </a>
+              </li>
             <?php endforeach ?>
           </ul>
         <?php endif ?>
@@ -38,3 +41,9 @@
     </div>
   </div>
 <?php endif ?>
+
+<pre>
+<?php
+print_r($comics);
+?>
+</pre>

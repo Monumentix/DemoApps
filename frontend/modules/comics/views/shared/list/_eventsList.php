@@ -2,8 +2,8 @@
   use yii\helpers\Html;
 ?>
 
-<?php if(!empty($events['available'])) : ?>
-  <div class="panel panel-monumentix panel-seriesEventsItems">
+
+  <div class="panel panel-monumentix  --panel-seriesEventsItems">
     <div class='panel-heading'>
       <h3 class="panel-title">Events:<span class="pull-right">(<?=$events['available']?>)</span></h3>
     </div>
@@ -47,4 +47,3 @@
           </p>
     </div>
   </div>
-<?php endif ?>

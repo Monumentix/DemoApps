@@ -10,7 +10,7 @@
 ?>
 <?php if(!(empty($creatorsPaged))) : ?>
   <?php $cnt = 0; ?>
-  <div class="pages-wrapper ">
+  <div class="pages-wrapper fjalla">
     <?php foreach($creatorsPaged as $creator) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 text-center display-cell">
