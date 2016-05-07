@@ -15,7 +15,11 @@
       <div class="row display-table  <?=(($cnt & 1 ) ? 'even' : 'odd' );?> ">
         <div class="col-xs-2 display-cell">
           <?php if(!(empty($seriesItem['thumbnail']))) : ?>
-            <img title="<?=$seriesItem['id']?>" src="<?=$seriesItem['thumbnail']['path']?>/standard_medium.<?=$seriesItem['thumbnail']['extension']?>" class="img img-thumbnail">
+            <img
+            title="<?=$seriesItem['id']?>"
+            src="<?=$seriesItem['thumbnail']['path']?>/standard_medium.<?=$seriesItem['thumbnail']['extension']?>"
+            class="img img-thumbnail img-cover-small" 
+            onClick="showModal('<?=$seriesItem['thumbnail']['path']?>/detail.<?=$seriesItem['thumbnail']['extension']?>','<?=$seriesItem['title']?>')">
           <?php endif; ?>
         </div>
         <div class="col-xs-5 display-cell">

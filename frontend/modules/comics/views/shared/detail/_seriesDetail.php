@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-sm-3 text-center ">
     <?php if(!empty($series['thumbnail'])) : ?>
-      <img class="img img-responsive img-series-cover center-block" src="<?=$series['thumbnail']['path']."/detail.".$series['thumbnail']['extension']; ?>">
+      <img class="img img-responsive img-series-cover center-block"
+      src="<?=$series['thumbnail']['path']."/detail.".$series['thumbnail']['extension']; ?>"
+      onClick="showModal('<?=$series['thumbnail']['path']?>/detail.<?=$series['thumbnail']['extension']?>','<?=$series['title']?>')">      
     <?php endif ?>
   </div>
 

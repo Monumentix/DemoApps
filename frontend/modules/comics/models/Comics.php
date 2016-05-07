@@ -6,7 +6,8 @@ use yii\base\Model;
 
 class Comics extends Model
 {
-    public $seriesId;
+    public $seriesId;  //For series searches
+    public $comicId;   //for comics searches
 
     public $format;
     public $formatType;

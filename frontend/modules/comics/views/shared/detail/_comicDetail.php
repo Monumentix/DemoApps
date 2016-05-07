@@ -1,7 +1,9 @@
 <div class="row">
   <div class="col-sm-3 text-center ">
     <?php if(!empty($comic['thumbnail'])) : ?>
-      <img class="img img-responsive img-series-cover center-block" src="<?=$comic['thumbnail']['path']."/detail.".$comic['thumbnail']['extension']; ?>">
+      <img src="<?=$comic['thumbnail']['path']."/detail.".$comic['thumbnail']['extension']; ?>"
+      class="img img-responsive img-series-cover center-block"
+      onClick="showModal('<?=$comic['thumbnail']['path']?>/detail.<?=$comic['thumbnail']['extension']?>','<?=$comic['title']?>')">
     <?php endif ?>
   </div>
 

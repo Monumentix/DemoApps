@@ -52,6 +52,8 @@ class ComicsController extends Controller
   }//end actionIndex
 
 
+
+
   /*
   * MARVEL = GET /v1/public/comics/{comicsId}/characters
   *
@@ -69,7 +71,7 @@ class ComicsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->seriesId = $id;
+      $model->comicId = $id;
     }
 
     $charactersResponse = $this->module->marvel->search($endpoint,$params);
@@ -85,48 +87,13 @@ class ComicsController extends Controller
     ]);
   }//end actionCharacters
 
-
-  /*
-  * MARVEL = GET /v1/public/series/{seriesId}/comics
-  *
-
-  public function actionComics($id){
-    $endpoint = 'series/'.$id.'/comics';
-
-    $model = new Comics();
-    $params['filterBy'] = [];
-
-    if(isset($_POST['Comics'])){
-      $model->attributes = $_POST['Comics'];
-        foreach($_POST['Comics'] as $key => $val){
-        if(isset($val) && ($val <> '')){
-          array_push($params['filterBy'],[$key => $val]);
-        }
-      }
-      $model->seriesId = $id;
-    }
-
-    $comicsResponse = $this->module->marvel->search($endpoint,$params);
-    //This gets our series information to display at the top
-    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
-
-    return $this->render('seriesComics',[
-      'model'=>$model,
-      'id'=>$id,
-      'response'=>$comicsResponse,
-      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
-      'pager'=>$this->buildRecordPager($comicsResponse),
-    ]);
-  }//end actionCharacters
-
-
-
   /*
   * MARVEL = GET /v1/public/series/{seriesId}/creators
   *
+  */
 
   public function actionCreators($id){
-    $endpoint = 'series/'.$id.'/creators';
+    $endpoint = 'comics/'.$id.'/creators';
 
     $model = new Creators();
     $params['filterBy'] = [];
@@ -138,18 +105,18 @@ class ComicsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->seriesId = $id;
+      $model->comicId = $id;
     }
 
     $creatorsResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $comicsResponse = $this->module->marvel->search('comics/'.$id,null);
 
-    return $this->render('seriesCreators',[
+    return $this->render('comicsCreators',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$creatorsResponse,
-      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'comicsResponse'=>$comicsResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($creatorsResponse),
     ]);
   }//end actionCreators

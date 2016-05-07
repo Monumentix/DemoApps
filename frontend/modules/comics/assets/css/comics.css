@@ -169,3 +169,5 @@ hr.comics-divider{
 .characterPortrait{
   font-family: 'Bangers', cursive;
 }
+
+.img-cover-small:hover{cursor:pointer;}

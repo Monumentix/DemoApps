@@ -13,7 +13,7 @@ Modal::begin([
   <h4 class="loading-text">Fetching Image</h4>
   <span class="loading-icon"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
 </div>
-<img id="coverImageUrl" class="img center-block" src="">
+<img id="coverImageUrl" class="img img-responsive center-block" src="">
 
 <?php
 Modal::end();

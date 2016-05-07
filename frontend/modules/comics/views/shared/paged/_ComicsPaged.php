@@ -16,7 +16,9 @@
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 col-sm-2 text-center display-cell hidden-xs">
         <?php if(!(empty($comic['thumbnail']))) : ?>
-          <img src="<?=$comic['thumbnail']['path']?>/standard_medium.<?=$comic['thumbnail']['extension']?>" class="img img-thumbnail img-rounded">
+          <img src="<?=$comic['thumbnail']['path']?>/standard_medium.<?=$comic['thumbnail']['extension']?>"
+          class="img img-thumbnail img-rounded img-cover-small"
+          onClick="showModal('<?=$comic['thumbnail']['path']?>/detail.<?=$comic['thumbnail']['extension']?>','<?=$comic['title']?>')">
         <?php endif; ?>
       </div>
       <div class="col-xs-5 col-sm-4 display-cell text-left">
