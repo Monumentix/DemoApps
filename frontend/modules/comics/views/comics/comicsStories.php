@@ -99,7 +99,8 @@ $data = $response['response']['data']['results'];
     }
   ?>
   </div>
-
+</div>
+<div class="row">
   <div class="col-sm-6">
     <?php if(!empty($id)){
 
@@ -111,23 +112,29 @@ $data = $response['response']['data']['results'];
     }?>
   </div>
 
-  <div class="col-sm-6">
-    <?php if(!empty($id)){
-      echo $this->render('/shared/list/_eventsList',[
+
+    <div class="col-sm-6">
+      <?php if(!empty($id)){
+        echo $this->render('/shared/list/_creatorsList',[
           'id'=>$id,
-          'events'=>$comicsResponse['events'],
+          'creators'=>$comicsResponse['creators'],
         ]);
       }?>
-  </div>
+    </div>
 
-  <div class="col-sm-6">
-    <?php if(!empty($id)){
-      echo $this->render('/shared/list/_creatorsList',[
-        'id'=>$id,
-        'creators'=>$comicsResponse['creators'],
-      ]);
-    }?>
-  </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-sm-6">
+      <?php if(!empty($id)){
+        echo $this->render('/shared/list/_eventsList',[
+            'id'=>$id,
+            'events'=>$comicsResponse['events'],
+          ]);
+        }?>
+    </div>
 
     <div class="col-sm-6">
       <?php if(!empty($id)){

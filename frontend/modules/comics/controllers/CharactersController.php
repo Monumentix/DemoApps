@@ -148,7 +148,7 @@ class CharactersController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->comicsId = $id;
+      $model->characterId = $id;
     }
 
     $eventsResponse = $this->module->marvel->search($endpoint,$params);
@@ -182,23 +182,65 @@ class CharactersController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->comicsId = $id;
+      $model->characterId = $id;
     }
 
     $storiesResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $charactersResponse = $this->module->marvel->search('comics/'.$id,null);
+    $charactersResponse = $this->module->marvel->search('characters/'.$id,null);
 
-    return $this->render('comicsStories',[
+    return $this->render('charactersStories',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$storiesResponse,
-      'comicsResponse'=>$charactersResponse['response']['data']['results'][0],
+      'charactersResponse'=>$charactersResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($storiesResponse),
     ]);
   }//end actionStories
 
-  
+
+  /*
+  * MARVEL = GET /v1/public/characters/{characterId}/stories
+  *
+  */
+  public function actionSeries($id){
+    $endpoint = 'characters/'.$id.'/series';
+
+    $model = new Series();
+    $params['filterBy'] = [];
+
+    if(isset($_POST['Stories'])){
+      $model->attributes = $_POST['Stories'];
+        foreach($_POST['Stories'] as $key => $val){
+        if(isset($val) && ($val <> '')){
+          array_push($params['filterBy'],[$key => $val]);
+        }
+      }
+      $model->characterId = $id;
+    }
+
+    $seriesResponse = $this->module->marvel->search($endpoint,$params);
+    //This gets our series information to display at the top
+    $charactersResponse = $this->module->marvel->search('characters/'.$id,null);
+
+    return $this->render('charactersSeries',[
+      'model'=>$model,
+      'id'=>$id,
+      'response'=>$seriesResponse,
+      'charactersResponse'=>$charactersResponse['response']['data']['results'][0],
+      'pager'=>$this->buildRecordPager($seriesResponse),
+    ]);
+  }//end actionStories
+
+
+
+
+
+
+
+
+
+
 
 
   /*

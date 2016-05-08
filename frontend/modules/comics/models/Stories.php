@@ -8,6 +8,7 @@ class Stories extends Model
 {
     public $seriesId;
     public $comicsId;
+    public $characterId;    
 
     public $modifiedSince;
 

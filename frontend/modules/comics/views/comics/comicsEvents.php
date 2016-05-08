@@ -80,6 +80,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <h3 class="text-center">Additional Comic Information:</h3>
+    <hr class="comics-divider">
   </div>
 </div>
 
@@ -88,7 +89,6 @@ $data = $response['response']['data']['results'];
   <div class="col-sm-12">
     <?php
     if(!empty($comicsResponse['comics'])){
-
       echo $this->render('/shared/list/_comicsList',[
           'listOptions'=>[
             'columnClass'=>'col-xs-6',
@@ -100,7 +100,7 @@ $data = $response['response']['data']['results'];
   ?>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <?php if(!empty($id)){
 
       echo $this->render('/shared/list/_charactersList',[
@@ -111,7 +111,7 @@ $data = $response['response']['data']['results'];
     }?>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <?php if(!empty($id)){
       echo $this->render('/shared/list/_storiesList',[
           'id'=>$id,
@@ -120,7 +120,7 @@ $data = $response['response']['data']['results'];
       }?>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-sm-4">
     <?php if(!empty($id)){
       echo $this->render('/shared/list/_creatorsList',[
         'id'=>$id,
