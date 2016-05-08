@@ -48,7 +48,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_CharacterSearch.php',[
+      echo $this->render('/shared/forms/_CharactersSearch.php',[
         'model'=>$model,
         ]);
     ?>
