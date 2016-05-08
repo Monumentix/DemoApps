@@ -8,6 +8,7 @@ class Comics extends Model
 {
     public $seriesId;  //For series searches
     public $comicId;   //for comics searches
+    public $characterId;   //for character searches
 
     public $format;
     public $formatType;

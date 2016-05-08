@@ -8,9 +8,9 @@ use app\modules\comics\ComicsMainAsset;
 ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
-$this->title = 'Comics In '.$seriesResponse['title'];
+$this->title = 'Events In '.$charactersResponse['name'];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Series'), 'url' => ['/comics/series']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Characters'), 'url' => ['/comics/characters']];
 $this->params['breadcrumbs'][] = $this->title;
 
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
@@ -23,12 +23,12 @@ $data = $response['response']['data']['results'];
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-comics">
+<div class="comics-characters-events">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/series/{seriesId}/comics) : <small>Fetches lists of comics which are published as part of a specific series, with optional filters.</small></h2>
+      <h2 class="endpoint">(/v1/public/characters/{characterId}/events) :<small></small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -36,9 +36,9 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
       <?php if(!empty($id)){
-        echo $this->render('/shared/detail/_seriesDetail',[
+        echo $this->render('/shared/detail/_characterDetail',[
           'id'=>$id,
-          'series'=>$seriesResponse,
+          'character'=>$charactersResponse,
         ]);
       }?>
   </div>
@@ -47,7 +47,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_ComicsSearch.php',[
+       echo $this->render('/shared/forms/_EventsSearch.php',[
         'model'=>$model,
         ]);
     ?>
@@ -68,12 +68,13 @@ $data = $response['response']['data']['results'];
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_ComicsPaged.php',[
+      echo $this->render('/shared/paged/_EventsPaged.php',[
+        //'seriesId'=>$id,
         'buttonParams'=>[
-          'idField'=>'seriesId',
+          'idField'=>'characterId',
           'idValue'=>$id,
         ],
-        'comicsPaged'=>$data,
+        'eventsPaged'=>$data,
         'pager'=>$pager,
       ]);
     ?>
@@ -83,45 +84,45 @@ $data = $response['response']['data']['results'];
 <hr class="comics-divider">
 <div class="row">
   <div class="col-sm-12">
-    <h3 class="text-center">Additional Series Information:</h3>
+    <h3 class="text-center">Additional Character Information:</h3>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
-      echo $this->render('/shared/list/_eventsList',[
+      echo $this->render('/shared/list/_comicsList',[
           'id'=>$id,
-          'events'=>$seriesResponse['events'],
+          'comics'=>$charactersResponse['comics'],
         ]);
       }?>
   </div>
-
-  <div class="col-sm-4">
-    <?php if(!empty($id)){
-
-      echo $this->render('/shared/list/_charactersList',[
-        'id'=>$id,
-        'characters'=>$seriesResponse['characters'],
-      ]);
-
-    }?>
-  </div>
-
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
        echo $this->render('/shared/list/_storiesList',[
         'id'=>$id,
-        'stories'=>$seriesResponse['stories'],
+        'stories'=>$charactersResponse['stories'],
       ]);
     }?>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-6">
+    <?php if(!empty($id)){
+
+      echo $this->render('/shared/list/_seriesList',[
+        'id'=>$id,
+        'series'=>$charactersResponse['series'],
+      ]);
+    } ?>
+  </div>
+
+
+
+  <div class="col-sm-6">
       <?php if(!empty($id)){
 
-         echo $this->render('/shared/list/_creatorsList',[
+         echo $this->render('/shared/list/_eventsList',[
           'id'=>$id,
-          'creators'=>$seriesResponse['creators'],
+          'events'=>$charactersResponse['events'],
         ]);
 
       }?>
@@ -137,7 +138,7 @@ $data = $response['response']['data']['results'];
 <?php if(1==0) {
     echo '<h5 class="text-center">Marvel API Response</h5>';
     echo '<pre class="prettyprint">';
-      print_r($data);
+      print_r($charactersResponse);
     echo '</pre>';
   }
 ?>

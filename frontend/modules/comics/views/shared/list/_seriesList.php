@@ -5,7 +5,7 @@
 
   <div class="panel panel-monumentix">
     <div class='panel-heading'>
-      <h3 class="panel-title">Characters: <span class="pull-right">(<?=(!(empty($series['available'])) ? $series['available'] : 0 )?>)</span></h3>
+      <h3 class="panel-title">Series: <span class="pull-right">(<?=(!(empty($series['available'])) ? $series['available'] : 0 )?>)</span></h3>
     </div>
     <div class='panel-body'>
 

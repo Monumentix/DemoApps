@@ -15,7 +15,6 @@ use kartik\icons\Icon;
 
 <div class="row">
   <div class="col-sm-8">
-    <?=$form->field($model,'name')?>
     <?=$form->field($model,'nameStartsWith')?>
   </div>
   <div class="col-sm-4">
@@ -24,7 +23,6 @@ use kartik\icons\Icon;
         <?=$form->field($model,'orderBy')->dropDownList($model->getOrderByTypes());?>
         <?=$form->field($model,'limit')->dropDownList($model->getLimitByTypes());?>
         <?=$form->field($model,'offset')->hiddenInput()->label(false)?>
-        <?=$form->field($model,'seriesId')->hiddenInput()->label(false)?>
       </div>
     </div>
   </div>

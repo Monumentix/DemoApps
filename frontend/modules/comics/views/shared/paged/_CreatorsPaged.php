@@ -25,22 +25,22 @@
       </div>
       <div class="col-xs-3 display-cell text-center">
         <?php if(!(empty($creator['comics']))) : ?>
-          Appears in <?=$creator['comics']['available']?> Comics
+          <?=$creator['comics']['available']?> <br>Comics
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($creator['series']))) : ?>
-          Appears in <?=$creator['series']['available']?> Series
+          <?=$creator['series']['available']?> <br> Series
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($creator['stories']))) : ?>
-          Appears in <?=$creator['stories']['available']?> Stories
+          <?=$creator['stories']['available']?> <br>Stories
         <?php endif; ?>
       </div>
       <div class="col-xs-2 display-cell text-center">
         <?php if(!(empty($creator['events']))) : ?>
-          Appears in <?=$creator['events']['available']?> Events
+          <?=$creator['events']['available']?> <br>Events
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
@@ -61,10 +61,13 @@
                 </div>
             </div>
           <?php
+
+
+          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id ).(!(empty($buttonParams['idValue'])) ? "?id=".$buttonParams['idValue'] : '' );
           $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
             [
-              'modelFieldName'=>'seriesId',
-              'id'=> $seriesId,
+              'modelFieldName'=>$buttonParams['idField'],
+              'id'=> $buttonParams['idValue'],
             ],
             'Creators',
             $pager
@@ -73,9 +76,11 @@
           if(!(empty($params))){
             echo Html::button('Next Page',[
               'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('/comics/series/creators?id=".$seriesId."',".json_encode($params).")",
+              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
               ]);
            }
+
+
           ?>
         </h5>
       </div>

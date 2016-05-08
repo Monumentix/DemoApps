@@ -65,11 +65,11 @@
             </div>
           <?php
 
-          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id );
+          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id ).(!(empty($buttonParams['idValue'])) ? "?id=".$buttonParams['idValue'] : '' );
           $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
             [
-              'modelFieldName'=>'seriesId',
-              'id'=> $seriesId,
+              'modelFieldName'=>$buttonParams['idField'],
+              'id'=> $buttonParams['idValue'],
             ],
             'Comics',
             $pager

@@ -18,7 +18,7 @@
             <img
             title="<?=$seriesItem['id']?>"
             src="<?=$seriesItem['thumbnail']['path']?>/standard_medium.<?=$seriesItem['thumbnail']['extension']?>"
-            class="img img-thumbnail img-cover-small" 
+            class="img img-thumbnail img-cover-small"
             onClick="showModal('<?=$seriesItem['thumbnail']['path']?>/detail.<?=$seriesItem['thumbnail']['extension']?>','<?=$seriesItem['title']?>')">
           <?php endif; ?>
         </div>
@@ -85,10 +85,11 @@
                 </div>
             </div>
           <?php
+          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id ).(!(empty($buttonParams['idValue'])) ? "?id=".$buttonParams['idValue'] : '' );
           $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
             [
-              'modelFieldName'=>'id',
-              'id'=> ((!(empty($seriesId))) ? $seriesId : '' ),
+              'modelFieldName'=>$buttonParams['idField'],
+              'id'=> $buttonParams['idValue'],
             ],
             'Series',
             $pager
@@ -97,7 +98,7 @@
           if(!(empty($params))){
             echo Html::button('Next Page',[
               'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('/comics/series',".json_encode($params).")",
+              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
               ]);
            }
           ?>

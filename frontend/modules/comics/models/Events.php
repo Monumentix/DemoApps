@@ -7,6 +7,8 @@ use yii\base\Model;
 class Events extends Model
 {
     public $seriesId;
+    public $comicsId;
+    public $characterId;
 
     public $nameStartsWith;
     public $modifiedSince;
@@ -21,6 +23,7 @@ class Events extends Model
     public $offset;
 
     public static $LIMIT_BY_TYPES = [
+      '2'=>'FOR TESTING - 2 rows per page',
       '5'=>'5 rows per page',
       '10'=>'10 rows per page',
       '20'=>'20 rows per page',
@@ -40,7 +43,7 @@ class Events extends Model
     public function rules(){
       return[
         [['seriesId','nameStartsWith','modifiedSince'],'safe'],
-        [['comics','events','characters','stories'],'safe'],        
+        [['comics','events','characters','stories'],'safe'],
         [['orderBy', 'limit', 'offset'],'safe'],
       ];
     }

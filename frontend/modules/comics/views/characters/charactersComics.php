@@ -23,12 +23,12 @@ $data = $response['response']['data']['results'];
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-series-comics">
+<div class="comics-characters-comics">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/series/{seriesId}/comics) : <small>Fetches lists of comics which are published as part of a specific series, with optional filters.</small></h2>
+      <h2 class="endpoint">(/v1/public/characters/{charcterId}/comics) : <small></small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -47,9 +47,9 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      /* echo $this->render('/shared/forms/_CharactersSearch.php',[
+       echo $this->render('/shared/forms/_ComicsSearch.php',[
         'model'=>$model,
-        ]); */
+        ]);
     ?>
   </div>
 </div>
@@ -69,7 +69,11 @@ $data = $response['response']['data']['results'];
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/paged/_ComicsPaged.php',[
-        'seriesId'=>$id,
+        //'seriesId'=>$id,
+        'buttonParams'=>[
+          'idField'=>'characterId',
+          'idValue'=>$id,
+        ],
         'comicsPaged'=>$data,
         'pager'=>$pager,
       ]);

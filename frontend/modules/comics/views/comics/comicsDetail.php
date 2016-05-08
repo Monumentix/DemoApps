@@ -65,7 +65,10 @@ if(!(empty($id))){
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/paged/_ComicsPaged.php',[
-        'seriesId'=>$id,
+        'buttonParams'=>[
+          'idField'=>'comicId',
+          'idValue'=>$id,
+        ],        
         'comicsPaged'=>$data,
         'pager'=>$pager,
         ]);

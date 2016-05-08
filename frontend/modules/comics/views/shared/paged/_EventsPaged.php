@@ -62,10 +62,11 @@
                 </div>
             </div>
           <?php
+          $urlPath = '/comics/'.Yii::$app->controller->id .(  (Yii::$app->controller->action->id == 'index') ? '' : "/".Yii::$app->controller->action->id ).(!(empty($buttonParams['idValue'])) ? "?id=".$buttonParams['idValue'] : '' );
           $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
             [
-              'modelFieldName'=>'seriesId',
-              'id'=> $seriesId,
+              'modelFieldName'=>$buttonParams['idField'],
+              'id'=> $buttonParams['idValue'],
             ],
             'Events',
             $pager
@@ -74,7 +75,7 @@
           if(!(empty($params))){
             echo Html::button('Next Page',[
               'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('/comics/series/events?id=".$seriesId."',".json_encode($params).")",
+              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
               ]);
            }
           ?>

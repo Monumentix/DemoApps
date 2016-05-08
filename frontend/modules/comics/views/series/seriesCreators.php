@@ -75,7 +75,10 @@ $data = $response['response']['data']['results'];
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/paged/_CreatorsPaged.php',[
-        'seriesId'=>$id,
+        'buttonParams'=>[
+          'idField'=>'seriesId',
+          'idValue'=>$id,
+        ],              
         'creatorsPaged'=>$data,
         'pager'=>$pager,
       ]);
