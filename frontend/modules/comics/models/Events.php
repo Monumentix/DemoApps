@@ -9,6 +9,7 @@ class Events extends Model
     public $seriesId;
     public $comicsId;
     public $characterId;
+    public $creatorId;
 
     public $nameStartsWith;
     public $modifiedSince;

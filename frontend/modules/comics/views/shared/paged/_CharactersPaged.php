@@ -70,38 +70,17 @@
             $pager
           );
 
-          if(!(empty($params))){
-            echo Html::button('Next Page',[
-              'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
-              ]);
-           }
+          if(!($pager['count'] < $pager['limit'])){
+            if(!(empty($params))){
+              echo Html::button('Next Page',[
+                'class'=>'text-center btn btn-success btn-lg shadow',
+                'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
+                ]);
+             }
+          }
 
 
 
-
-
-
-
-
-
-          /*
-          $params= Yii::$app->getModule('comics')->marvel->buildNextParams(
-            [
-              'modelFieldName'=>$buttonParams['idField'],
-              'id'=> $buttonParams['idValue'],
-            ],
-            'Characters',
-            $pager
-          );
-
-          if(!(empty($params))){
-            echo Html::button('Next Page',[
-              'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('/comics/series/characters?id=".$buttonParams['idValue']."',".json_encode($params).")",
-              ]);
-           }
-           */
           ?>
         </h5>
       </div>

@@ -44,7 +44,7 @@
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
-        <a href="/comics/creator?id=<?=$creator['id']?>" class="btn btn-info btn-xs text-center">Details</a>
+        <a href="/comics/creators?id=<?=$creator['id']?>" class="btn btn-info btn-xs text-center">Details</a>
       </div>
     </div>
     <?php $cnt++ ?>
@@ -73,12 +73,14 @@
             $pager
           );
 
-          if(!(empty($params))){
-            echo Html::button('Next Page',[
-              'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
-              ]);
-           }
+          if(!($pager['count'] < $pager['limit'])){
+            if(!(empty($params))){
+              echo Html::button('Next Page',[
+                'class'=>'text-center btn btn-success btn-lg shadow',
+                'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
+                ]);
+             }
+          }
 
 
           ?>

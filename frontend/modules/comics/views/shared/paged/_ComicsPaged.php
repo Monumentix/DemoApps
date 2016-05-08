@@ -58,6 +58,7 @@
     <div class="row ">
       <div class="col-xs-4 col-xs-offset-4">
         <h5 class="text-center nextPageWrapper  ">
+
             <div class="progress">
               <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
                   <p>Loading Data</p>
@@ -75,12 +76,14 @@
             $pager
           );
 
-          if(!(empty($params))){
-            echo Html::button('Next Page',[
-              'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
-              ]);
-           }
+          if(!($pager['count'] < $pager['limit'])){
+            if(!(empty($params))){
+              echo Html::button('Next Page',[
+                'class'=>'text-center btn btn-success btn-lg shadow',
+                'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
+                ]);
+             }            
+          }
           ?>
         </h5>
       </div>

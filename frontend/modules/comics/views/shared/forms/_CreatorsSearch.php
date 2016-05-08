@@ -12,6 +12,7 @@ use kartik\icons\Icon;
   'action'=>'',
 ]); ?>
 
+
 <div class="row">
   <div class="col-sm-12">
     <?=$form->field($model,'nameStartsWith')?>

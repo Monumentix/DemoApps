@@ -26,7 +26,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/characters/{charactersId}/series) : <small></small></h2>
+      <h2 class="endpoint">(/v1/public/characters/{charactersId}/series) : <small>Fetches lists of comic series in which a specific character appears, with optional filters. </small></h2>
     <?php endif; ?>
     </div>
 </div>

@@ -72,12 +72,14 @@
             $pager
           );
 
-          if(!(empty($params))){
-            echo Html::button('Next Page',[
-              'class'=>'text-center btn btn-success btn-lg shadow',
-              'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
-              ]);
-           }
+          if(!($pager['count'] < $pager['limit'])){
+            if(!(empty($params))){
+              echo Html::button('Next Page',[
+                'class'=>'text-center btn btn-success btn-lg shadow',
+                'onclick'=>"getNextPage('".$urlPath."',".json_encode($params).")",
+                ]);
+             }
+          }
           ?>
         </h5>
       </div>
