@@ -54,11 +54,15 @@ $data = $response['response']['data']['results'];
 
 <div class="row">
   <div class="col-sm-12">
-    <h5 class="text-right">
-      <?='Records '.(($pager['offset'] == 0) ? '1' : $pager['offset'] ) .' through '. $pager['count'] .' out of '.$pager['total'].' records'?>
-    </h5>
+    <?php
+      echo $this->render('/shared/paged/_pagerCount.php',[
+        'pager'=>$pager,
+      ]);
+    ?>
   </div>
 </div>
+
+
 
 <div class="row pagedData">
   <div class="col-sm-12">
@@ -98,6 +102,17 @@ $data = $response['response']['data']['results'];
 
   <div class="col-sm-6">
     <?php if(!empty($id)){
+
+      echo $this->render('/shared/list/_charactersList',[
+        'id'=>$id,
+        'characters'=>$comicsResponse['characters'],
+      ]);
+
+    }?>
+  </div>
+
+  <div class="col-sm-6">
+    <?php if(!empty($id)){
       echo $this->render('/shared/list/_storiesList',[
           'id'=>$id,
           'stories'=>$comicsResponse['stories'],
@@ -115,6 +130,8 @@ $data = $response['response']['data']['results'];
 
     }?>
   </div>
+
+
 </div>
 
 

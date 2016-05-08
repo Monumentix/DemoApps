@@ -14,9 +14,13 @@
     <?php foreach($creatorsPaged as $creator) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
       <div class="col-xs-2 text-center display-cell">
+
         <?php if(!(empty($creator['thumbnail']))) : ?>
-          <img src="<?=$creator['thumbnail']['path']?>/standard_medium.<?=$creator['thumbnail']['extension']?>" class="img img-thumbnail img-rounded">
+          <img src="<?=$creator['thumbnail']['path']?>/standard_medium.<?=$creator['thumbnail']['extension']?>"
+          class="img img-thumbnail img-rounded img-cover-small img-rounded"
+          onClick="showModal('<?=$creator['thumbnail']['path']?>/detail.<?=$creator['thumbnail']['extension']?>','<?=$creator['fullName']?>')">
         <?php endif; ?>
+
         <h5><?= $creator['fullName']; ?> </h5>
       </div>
       <div class="col-xs-3 display-cell text-center">

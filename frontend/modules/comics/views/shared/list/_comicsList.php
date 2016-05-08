@@ -19,7 +19,7 @@
           <ul class="comics">
             <?php foreach($comics['items'] as $comic) : ?>
               <li>
-                <a href="/comics/comics?id=<?=$comic['id']; ?> "> <?=$comic['name']; ?>  </a>
+                <a href="/comics/comics?id=<?=array_pop(explode("/",$comic['resourceURI'])); ?>">  <?=$comic['name']; ?> </a>
                 </a>
               </li>
             <?php endforeach ?>
@@ -41,9 +41,3 @@
     </div>
   </div>
 <?php endif ?>
-
-<pre>
-<?php
-print_r($comics);
-?>
-</pre>

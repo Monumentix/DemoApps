@@ -2,30 +2,38 @@
   use yii\helpers\Html;
 ?>
 
-<?php if(!empty($series['items'])) : ?>
+
   <div class="panel panel-monumentix">
     <div class='panel-heading'>
-      <h3 class="panel-title">Characters: <span class="pull-right">(<?=$series['available']?>)</span></h3>
+      <h3 class="panel-title">Characters: <span class="pull-right">(<?=(!(empty($series['available'])) ? $series['available'] : 0 )?>)</span></h3>
     </div>
     <div class='panel-body'>
 
       <?php if(!empty($listOptions['columnClass'])) : ?>
         <div class="characters">
-          <?php foreach($series['items'] as $characters) : ?>
-            <div class="<?=$listOptions['columnClass']?>"><?=$characters['name']; ?></div>
-          <?php endforeach ?>
+          <?php if(!empty($series['items'])) : ?>
+            <?php foreach($series['items'] as $characters) : ?>
+              <div class="<?=$listOptions['columnClass']?>"><?=$characters['name']; ?></div>
+            <?php endforeach ?>
+          <?php else : ?>
+            <h3>No results returned!</h3>
+          <?php endif ?>
         </div>
       <?php else : ?>
         <ul class="characters">
-          <?php foreach($series['items'] as $characters) : ?>
-            <li><?=$characters['name']; ?></li>
-          <?php endforeach ?>
+          <?php if(!empty($series['items'])) : ?>
+            <?php foreach($series['items'] as $characters) : ?>
+              <li><?=$characters['name']; ?></li>
+            <?php endforeach ?>
+          <?php else : ?>
+            <h3>No results returned!</h3>
+        <?php endif ?>
         </ul>
       <?php endif ?>
 
     </div>
     <div class='panel-footer'>
-      <p class="text-center limited-to">Showing <b><?=$series['returned']?></b> out of <b><?=$series['available']?></b> results.
+      <p class="text-center limited-to">Showing <b><?=(!(empty($series['returned'])) ? $series['returned'] : 0 ) ?>     </b> out of <b><?=(!(empty($series['available'])) ? $series['available'] : 0 ) ?>   </b> results.
       &nbsp;
           <?php
             if(!(empty($id))){
@@ -37,4 +45,3 @@
       </p>
     </div>
   </div>
-<?php endif ?>

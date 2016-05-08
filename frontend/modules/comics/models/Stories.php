@@ -7,6 +7,7 @@ use yii\base\Model;
 class Stories extends Model
 {
     public $seriesId;
+    public $comicsId;
 
     public $modifiedSince;
 

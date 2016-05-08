@@ -128,11 +128,11 @@ class ComicsController extends Controller
 
 
   /*
-  * MARVEL = GET /v1/public/series/{seriesId}/events
+  * MARVEL = GET /v1/public/comics/{comicId}/events
   *
-
+  */
   public function actionEvents($id){
-    $endpoint = 'series/'.$id.'/events';
+    $endpoint = 'comics/'.$id.'/events';
 
     $model = new Events();
     $params['filterBy'] = [];
@@ -144,29 +144,29 @@ class ComicsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->seriesId = $id;
+      $model->comicsId = $id;
     }
 
     $eventsResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $comicsResponse = $this->module->marvel->search('comics/'.$id,null);
 
-    return $this->render('seriesEvents',[
+    return $this->render('comicsEvents',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$eventsResponse,
-      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'comicsResponse'=>$comicsResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($eventsResponse),
     ]);
   }//end actionCreators
 
 
   /*
-  * MARVEL = GET /v1/public/series/{seriesId}/stories
+  * MARVEL = GET /v1/public/comics/{comicsId}/stories
   *
-
+  */
   public function actionStories($id){
-    $endpoint = 'series/'.$id.'/stories';
+    $endpoint = 'comics/'.$id.'/stories';
 
     $model = new Stories();
     $params['filterBy'] = [];
@@ -178,37 +178,40 @@ class ComicsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->seriesId = $id;
+      $model->comicsId = $id;
     }
 
     $storiesResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $seriesResponse = $this->module->marvel->search('series/'.$id,null);
+    $comicsResponse = $this->module->marvel->search('comics/'.$id,null);
 
-    return $this->render('seriesStories',[
+    return $this->render('comicsStories',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$storiesResponse,
-      'seriesResponse'=>$seriesResponse['response']['data']['results'][0],
+      'comicsResponse'=>$comicsResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($storiesResponse),
     ]);
   }//end actionStories
 
 
 
-*/
 
-
+  /*
+  *
+  * Creates a simple pager array for use to use in our views
+  *
+  * Im guessing we will need to expand upon it to incldue the search params
+  * as part of the object at some point
+  *
+  */
   private function buildRecordPager($response){
     //Set up our pager variables for use later
       $pager['count'] = $response['response']['data']['count'];
       $pager['total'] = $response['response']['data']['total'];
       $pager['offset'] = $response['response']['data']['offset'];
       $pager['limit'] = $response['response']['data']['limit'];
-
     return $pager;
   }
-
-
 
 }//end class

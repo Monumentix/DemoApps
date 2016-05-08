@@ -9,15 +9,11 @@ ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
 
-$this->title = 'Characters In '.(!(empty($comicsResponse['title'])) ? $comicsResponse['title'] :  ' No results ' );
+$this->title = 'Events In '.(!(empty($comicsResponse['title'])) ? $comicsResponse['title'] :  ' No results ' );
 
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics/comics']];
 $this->params['breadcrumbs'][] = $this->title;
-
-//LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
-//AND ALLOW US TO USE THE TITLE IN OUR NAVIGATION
-//GRAB just our results for easy use later
 
 //Tell our view which section of the response data has our results
 $data = $response['response']['data']['results'];
@@ -25,12 +21,12 @@ $data = $response['response']['data']['results'];
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-comics-characters">
+<div class="comics-comics-events">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/comics/{comicsId}/characters) : <small>Fetches lists of characters which appear in a specific comic with optional filters.</small></h2>
+      <h2 class="endpoint">(/v1/public/comics/{comicsId}/events) : <small>Fetches lists of events in which a specific comic appears, with optional filters.   </small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -49,7 +45,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_CharacterSearch.php',[
+      echo $this->render('/shared/forms/_EventsSearch.php',[
         'model'=>$model,
         ]);
     ?>
@@ -67,12 +63,13 @@ $data = $response['response']['data']['results'];
 </div>
 
 
+
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_CharactersPaged.php',[
+      echo $this->render('/shared/paged/_EventsPaged.php',[
         'seriesId'=>$id,
-        'charactersPaged'=>$data,
+        'eventsPaged'=>$data,
         'pager'=>$pager,
       ]);
     ?>
@@ -86,10 +83,12 @@ $data = $response['response']['data']['results'];
   </div>
 </div>
 
-<?php if(!(empty($comicsResponse['comics']))) : ?>
+
 <div class="row">
   <div class="col-sm-12">
     <?php
+    if(!empty($comicsResponse['comics'])){
+
       echo $this->render('/shared/list/_comicsList',[
           'listOptions'=>[
             'columnClass'=>'col-xs-6',
@@ -97,61 +96,51 @@ $data = $response['response']['data']['results'];
           'id'=>$id,
           'comics'=>$comicsResponse['comics'],
         ]);
-      ?>
+    }
+  ?>
   </div>
 
-  <div class="col-sm-12">
-    <?php if(!empty($id)){
-      echo $this->render('/shared/list/_eventsList',[
-          'id'=>$id,
-          'events'=>$comicsResponse['events'],
-        ]);
-      }?>
-  </div>
-
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
 
-      echo $this->render('/shared/list/_eventsList',[
+      echo $this->render('/shared/list/_charactersList',[
         'id'=>$id,
-        'events'=>$comicsResponse['events'],
+        'characters'=>$comicsResponse['characters'],
       ]);
 
     }?>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
-       echo $this->render('/shared/list/_storiesList',[
+      echo $this->render('/shared/list/_storiesList',[
+          'id'=>$id,
+          'stories'=>$comicsResponse['stories'],
+        ]);
+      }?>
+  </div>
+
+  <div class="col-sm-6">
+    <?php if(!empty($id)){
+      echo $this->render('/shared/list/_creatorsList',[
         'id'=>$id,
-        'stories'=>$comicsResponse['stories'],
+        'creators'=>$comicsResponse['creators'],
       ]);
     }?>
   </div>
 
-  <div class="col-sm-4">
-      <?php if(!empty($id)){
-
-         echo $this->render('/shared/list/_creatorsList',[
-          'id'=>$id,
-          'creators'=>$comicsResponse['creators'],
-        ]);
-
-      }?>
-  </div>
-</div>
-<?php endif; ?>
 
 </div>
 
+
+</div>
 <hr class="comics-divider">
-
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
 
 <?php if(1==0) {
     echo '<h5 class="text-center">Marvel API Response</h5>';
     echo '<pre class="prettyprint">';
-      print_r($data);
+      print_r($response);
     echo '</pre>';
   }
 ?>
