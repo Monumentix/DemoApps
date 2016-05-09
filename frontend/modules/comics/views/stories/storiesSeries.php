@@ -10,7 +10,7 @@ ComicsMainAsset::register($this);
 //SET OUR BREADCRUMBS
 
 
-$this->title = 'Creators For : '.(!(empty($eventsResponse['title'])) ? $eventsResponse['title'] :  ' No results ' );
+$this->title = 'Series For : '.(!(empty($storiesResponse['title'])) ? $storiesResponse['title'] :  ' No results ' );
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['/comics/evemts']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -25,12 +25,12 @@ $data = $response['response']['data']['results'];
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-events-creators">
+<div class="comics-stories-series">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/events/{eventId}/creators) : <small>Fetches lists of comic creators whose work appears in a specific event, with optional filters. </small></h2>
+      <h2 class="endpoint">(/v1/public/stories/{storyId}/series) : <small>Fetches lists of comic series in which the specified story takes place.</small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -38,9 +38,9 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
       <?php if(!empty($id)){
-        echo $this->render('/shared/detail/_eventDetail',[
+        echo $this->render('/shared/detail/_storyDetail',[
           'id'=>$id,
-          'event'=>$eventsResponse,
+          'story'=>$storiesResponse,
         ]);
       }?>
   </div>
@@ -49,7 +49,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/forms/_CreatorsSearch.php',[
+      echo $this->render('/shared/forms/_SeriesSearch.php',[
         'model'=>$model,
         ]);
     ?>
@@ -70,13 +70,13 @@ $data = $response['response']['data']['results'];
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_CreatorsPaged.php',[
+      echo $this->render('/shared/paged/_SeriesPaged.php',[
         //'seriesId'=>$id,
         'buttonParams'=>[
-          'idField'=>'eventId',
+          'idField'=>'storyId',
           'idValue'=>$id,
         ],
-        'creatorsPaged'=>$data,
+        'seriesPaged'=>$data,
         'pager'=>$pager,
       ]);
     ?>
@@ -86,7 +86,7 @@ $data = $response['response']['data']['results'];
 <hr class="comics-divider">
 <div class="row">
   <div class="col-sm-12">
-    <h3 class="text-center">Additional Event Information:</h3>
+    <h3 class="text-center">Additional Story Information:</h3>
   </div>
 </div>
 
@@ -99,26 +99,19 @@ $data = $response['response']['data']['results'];
             'columnClass'=>'col-xs-6',
           ],
           'id'=>$id,
-          'comics'=>$eventsResponse['comics'],
+          'comics'=>$storiesResponse['comics'],
         ]);
       ?>
   </div>
+</div>
 
-  <div class="col-sm-4">
-    <?php if(!empty($id)){
-       echo $this->render('/shared/list/_storiesList',[
-        'id'=>$id,
-        'stories'=>$eventsResponse['stories'],
-      ]);
-    }?>
-  </div>
-
+<div class="row">
   <div class="col-sm-4">
       <?php if(!empty($id)){
 
-         echo $this->render('/shared/list/_seriesList',[
+         echo $this->render('/shared/list/_eventsList',[
           'id'=>$id,
-          'series'=>$eventsResponse['series'],
+          'events'=>$storiesResponse['events'],
         ]);
 
       }?>
@@ -129,12 +122,22 @@ $data = $response['response']['data']['results'];
 
          echo $this->render('/shared/list/_charactersList',[
           'id'=>$id,
-          'characters'=>$eventsResponse['characters'],
+          'characters'=>$storiesResponse['characters'],
         ]);
 
       }?>
   </div>
 
+  <div class="col-sm-4">
+      <?php if(!empty($id)){
+
+         echo $this->render('/shared/list/_creatorsList',[
+          'id'=>$id,
+          'creators'=>$storiesResponse['creators'],
+        ]);
+
+      }?>
+  </div>
 </div>
 
 
