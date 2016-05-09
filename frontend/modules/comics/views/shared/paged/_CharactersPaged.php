@@ -40,7 +40,7 @@
         <?php endif; ?>
       </div>
       <div class="col-xs-1 display-cell text-center">
-        <a href="/comics/characters?id=<?=$character['id']?>" class="btn btn-info btn-xs text-center">Details</a>
+        <a href="/comics/characters?id=<?=$character['id']?>" class="btn btn-info shadow btn-xs text-center">Details</a>
       </div>
     </div>
     <?php $cnt++ ?>

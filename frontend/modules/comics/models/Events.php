@@ -11,7 +11,7 @@ class Events extends Model
     public $characterId;
     public $creatorId;
     public $storyId;
-    
+
     public $nameStartsWith;
     public $modifiedSince;
 
@@ -24,8 +24,7 @@ class Events extends Model
     public $limit;
     public $offset;
 
-    public static $LIMIT_BY_TYPES = [
-      '2'=>'FOR TESTING - 2 rows per page',
+    public static $LIMIT_BY_TYPES = [      
       '5'=>'5 rows per page',
       '10'=>'10 rows per page',
       '20'=>'20 rows per page',

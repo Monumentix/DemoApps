@@ -24,6 +24,7 @@
           <?php if(!empty($series['items'])) : ?>
             <?php foreach($series['items'] as $characters) : ?>
               <li><?=$characters['name']; ?></li>
+
             <?php endforeach ?>
           <?php else : ?>
             <h3>No results returned!</h3>

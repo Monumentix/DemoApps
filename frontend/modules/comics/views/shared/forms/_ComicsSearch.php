@@ -75,7 +75,7 @@ use kartik\icons\Icon;
 
 <div class="row">
   <div class="col-xs-12 text-center">
-    <h3><?php echo Html::submitButton(Icon::show('search').' Search', ['class' => 'btn btn-success shadow']) ?></h3>
+    <h3><?php echo Html::submitButton(Icon::show('filter').' Filter', ['class' => 'btn btn-success shadow']) ?></h3>
   </div>
 </div>
 <?php ActiveForm::end(); ?>

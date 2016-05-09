@@ -54,7 +54,7 @@ use kartik\icons\Icon;
   </div>
   <div class="col-xs-6 display-cell text-center">
     <p><b>Filter Records</b></p>
-    <?php echo Html::submitButton(Icon::show('search').' Search', ['class' => 'btn btn-success shadow']) ?>
+    <?php echo Html::submitButton(Icon::show('filter').' Filter', ['class' => 'btn btn-success shadow']) ?>
   </div>
 </div>
 <?php ActiveForm::end(); ?>
