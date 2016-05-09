@@ -71,7 +71,11 @@ $data = $response['response']['data']['results'];
   <div class="col-sm-12">
     <?php
       echo $this->render('/shared/paged/_CharactersPaged.php',[
-        'seriesId'=>$id,
+        //'seriesId'=>$id,
+        'buttonParams'=>[
+          'idField'=>'comicId',
+          'idValue'=>$id,
+        ],
         'charactersPaged'=>$data,
         'pager'=>$pager,
       ]);

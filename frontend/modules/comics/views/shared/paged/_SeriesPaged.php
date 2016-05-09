@@ -8,10 +8,10 @@
 // over and over again on each page call, and
 // should get appended in our page
 ?>
-<?php if(!(empty($seriesPages))) : ?>
+<?php if(!(empty($seriesPaged))) : ?>
   <?php $cnt = 0; ?>
   <div class="pages-wrapper">
-    <?php foreach($seriesPages as $seriesItem) :?>
+    <?php foreach($seriesPaged as $seriesItem) :?>
       <div class="row display-table  <?=(($cnt & 1 ) ? 'even' : 'odd' );?> ">
         <div class="col-xs-2 display-cell">
           <?php if(!(empty($seriesItem['thumbnail']))) : ?>

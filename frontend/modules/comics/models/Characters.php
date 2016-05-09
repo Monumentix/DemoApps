@@ -7,6 +7,9 @@ use yii\base\Model;
 class Characters extends Model
 {
     public $seriesId;
+    public $eventId;
+
+
     public $name;
     public $nameStartsWith;
     public $modifiedSince;

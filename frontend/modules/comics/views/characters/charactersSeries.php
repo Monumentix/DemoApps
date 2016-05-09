@@ -72,7 +72,7 @@ $data = $response['response']['data']['results'];
           'idField'=>'characterId',
           'idValue'=>$id,
         ],
-        'seriesPages'=>$data,
+        'seriesPaged'=>$data,
         'pager'=>$pager,
       ]);
     ?>

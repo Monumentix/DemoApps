@@ -10,7 +10,11 @@ use kartik\icons\Icon;
   //'method'=>'POST',
   'action'=>'',
 ]); ?>
-
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Filter Series:</h3>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-sm-8">

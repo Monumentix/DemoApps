@@ -67,8 +67,8 @@ if(!(empty($id))){
         'buttonParams'=>[
           'idField'=>'seriesId',
           'idValue'=>$id,
-        ],          
-        'seriesPages'=>$data,
+        ],
+        'seriesPaged'=>$data,
         'pager'=>$pager,
         ]);
     ?>

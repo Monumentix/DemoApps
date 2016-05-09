@@ -32,7 +32,7 @@ if(!(empty($id))){
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/comics/{comicId}) : <small>This method fetches a single comic resource. It is the canonical URI for any comic resource provided by the API.</small></h2>
+      <h2 class="endpoint">(/v1/public/comics/{comicId}) : <small>This method fetches a single comic resource. </small></h2>
     <?php else : ?>
       <h2 class="endpoint">(/v1/public/comics) : <small>Fetches lists of comics with optional filters.</small></h2>
     <?php endif; ?>
@@ -68,7 +68,7 @@ if(!(empty($id))){
         'buttonParams'=>[
           'idField'=>'comicId',
           'idValue'=>$id,
-        ],        
+        ],
         'comicsPaged'=>$data,
         'pager'=>$pager,
         ]);

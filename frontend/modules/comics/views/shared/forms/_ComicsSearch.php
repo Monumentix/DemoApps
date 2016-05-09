@@ -14,6 +14,11 @@ use kartik\icons\Icon;
 ]); ?>
 
 <div class="row">
+  <div class="col-sm-12">
+    <h3>Filter Comics:</h3>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-6">
     <?=$form->field($model,'titleStartsWith')?>
     <?=$form->field($model,'title')?>

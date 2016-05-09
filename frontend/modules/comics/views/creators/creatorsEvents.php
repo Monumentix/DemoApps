@@ -26,7 +26,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/creators/{creatorId}/events) : <small></small></h2>
+      <h2 class="endpoint">(/v1/public/creators/{creatorId}/events) : <small>Fetches lists of events featuring the work of a specific creator with optional filters.</small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -100,18 +100,8 @@ $data = $response['response']['data']['results'];
   ?>
   </div>
 
-  <div class="col-sm-4">
-    <?php if(!empty($id)){
-      /*
-      echo $this->render('/shared/list/_charactersList',[
-        'id'=>$id,
-        'characters'=>$creatorsResponse['characters'],
-      ]);
-      */
-    }?>
-  </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
       echo $this->render('/shared/list/_storiesList',[
           'id'=>$id,
@@ -120,18 +110,28 @@ $data = $response['response']['data']['results'];
       }?>
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
-      /*
-      echo $this->render('/shared/list/_creatorsList',[
+
+      echo $this->render('/shared/list/_seriesList',[
         'id'=>$id,
-        'creators'=>$creatorsResponse['creators'],
+        'series'=>$creatorsResponse['series'],
       ]);
-      */
+
     }?>
   </div>
 
 
+    <div class="col-sm-4">
+      <?php if(!empty($id)){
+        /*
+        echo $this->render('/shared/list/_charactersList',[
+          'id'=>$id,
+          'characters'=>$creatorsResponse['characters'],
+        ]);
+        */
+      }?>
+    </div>
 </div>
 
 

@@ -90,6 +90,41 @@ class EventsController extends Controller
 
 
 
+    /*
+    * MARVEL = GET /v1/public/creators/{creatorsId}/creators
+    *
+    */
+    public function actionCharacters($id){
+      $endpoint = 'events/'.$id.'/characters';
+
+      $model = new Characters();
+      $params['filterBy'] = [];
+
+      if(isset($_POST['Characters'])){
+        $model->attributes = $_POST['Characters'];
+          foreach($_POST['Characters'] as $key => $val){
+          if(isset($val) && ($val <> '')){
+            array_push($params['filterBy'],[$key => $val]);
+          }
+        }
+        $model->eventId = $id;
+      }
+
+      $charactersResponse = $this->module->marvel->search($endpoint,$params);
+      //This gets our series information to display at the top
+      $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+
+      return $this->render('eventsCharacters',[
+        'model'=>$model,
+        'id'=>$id,
+        'response'=>$charactersResponse,
+        'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+        'pager'=>$this->buildRecordPager($charactersResponse),
+      ]);
+    }//end actionCreators
+
+
+
 
 
   /*
@@ -124,7 +159,7 @@ class EventsController extends Controller
       'pager'=>$this->buildRecordPager($eventsResponse),
     ]);
   }//end actionCreators
-  
+
 
 
 

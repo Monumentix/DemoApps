@@ -13,7 +13,7 @@ use kartik\icons\Icon;
 
 <div class="row">
   <div class="col-sm-12">
-    <h2>Filter Events:<small> </small></h2>
+    <h3>Filter Events:<small> </small></h3>
   </div>
 </div>
 

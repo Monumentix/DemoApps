@@ -87,7 +87,7 @@ $data = $response['response']['data']['results'];
       ?>
   </div>
 
-  <div class="col-sm-12">
+  <div class="col-sm-6">
     <?php if(!empty($id)){
        echo $this->render('/shared/list/_storiesList',[
         'id'=>$id,
@@ -114,7 +114,14 @@ $data = $response['response']['data']['results'];
       }?>
   </div>
 
-
+  <div class="col-sm-6">
+    <?php if(!empty($id)){
+      echo $this->render('/shared/list/_charactersList',[
+          'id'=>$id,
+          'characters'=>$data[0]['characters'],
+        ]);
+      }?>
+  </div>
 
 
 
