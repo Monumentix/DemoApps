@@ -13,13 +13,13 @@
   <div class="pages-wrapper fjalla">
     <?php foreach($storiesPaged as $story) :?>
     <div class="row display-table  <?=(($cnt & 1 ) ? ' even ' : ' odd ' );?> ">
-      <div class="col-xs-2 text-center display-cell">
+      <div class="col-xs-4 text-center display-cell">
         <?php if(!(empty($story['thumbnail']))) : ?>
           <img src="<?=$story['thumbnail']['path']?>/standard_medium.<?=$story['thumbnail']['extension']?>" class="img img-thumbnail img-rounded">
         <?php endif; ?>
         <h4><?= $story['title']; ?></h4>
       </div>
-      <div class="col-xs-5 display-cell text-left">
+      <div class="col-xs-3 display-cell text-left">
         <?php if(!(empty($story['originalIssue']))) : ?>
           <?=$story['originalIssue']['name']?>
         <?php endif; ?>

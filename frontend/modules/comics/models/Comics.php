@@ -10,6 +10,7 @@ class Comics extends Model
     public $comicId;   //for comics searches
     public $characterId;   //for character searches
     public $creatorId;   //for character searches
+    public $storyId;
 
     public $format;
     public $formatType;

@@ -53,7 +53,7 @@ use kartik\icons\Icon;
     <?=$form->field($model,'offset')?>
   </div>
   <div class="col-xs-6 display-cell text-center">
-    <p><b>Search Marvels Database</b></p>
+    <p><b>Filter Records</b></p>
     <?php echo Html::submitButton(Icon::show('search').' Search', ['class' => 'btn btn-success shadow']) ?>
   </div>
 </div>

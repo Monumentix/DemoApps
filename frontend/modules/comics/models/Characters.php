@@ -8,7 +8,7 @@ class Characters extends Model
 {
     public $seriesId;
     public $eventId;
-
+    public $storyId;
 
     public $name;
     public $nameStartsWith;

@@ -16,22 +16,22 @@ use app\modules\comics\models\Series;
 /**
  * Default controller for the `cruddemo` module
  */
-class EventsController extends Controller
+class StoriesController extends Controller
 {
   /*
-  * MARVEL = GET /v1/public/creators
-  * MARVEL = GET /v1/public/creators/{creatorsId}
+  * MARVEL = GET /v1/public/stories
+  * MARVEL = GET /v1/public/stories/{storyId}
   *
   */
   public function actionIndex($id = null){
-    $endpoint = 'events';
+    $endpoint = 'stories';
 
-    $model = new Events();
+    $model = new Stories();
     $params['filterBy'] = [];
 
-    if(isset($_POST['Events'])){
-      $model->attributes = $_POST['Events'];
-        foreach($_POST['Events'] as $key => $val){
+    if(isset($_POST['Stories'])){
+      $model->attributes = $_POST['Stories'];
+        foreach($_POST['Stories'] as $key => $val){
         if(isset($val) && ($val <> '')){
           array_push($params['filterBy'],[$key => $val]);
         }
@@ -43,7 +43,7 @@ class EventsController extends Controller
     }
     $response = $this->module->marvel->search($endpoint,$params);
 
-    return $this->render('eventsDetail',[
+    return $this->render('storiesDetail',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$response,
@@ -55,11 +55,11 @@ class EventsController extends Controller
 
 
   /*
-  * MARVEL = GET /v1/public/events/{eventId}/comics
+  * MARVEL = GET /v1/public/stories/{storyId}/comics
   *
   */
   public function actionComics($id){
-    $endpoint = 'events/'.$id.'/comics';
+    $endpoint = 'stories/'.$id.'/comics';
 
     $model = new Comics();
     $params['filterBy'] = [];
@@ -71,19 +71,19 @@ class EventsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->eventId = $id;
+      $model->storydId = $id;
     }
 
     $comicsResponse = $this->module->marvel->search($endpoint,$params);
 
     //This gets our series information to display at the top
-    $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+    $storiesResponse = $this->module->marvel->search('stories/'.$id,null);
 
-    return $this->render('eventsComics',[
+    return $this->render('storiesComics',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$comicsResponse,
-      'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+      'storiesResponse'=>$storiesResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($comicsResponse),
     ]);
   }//end actioncreators
@@ -91,11 +91,11 @@ class EventsController extends Controller
 
 
     /*
-    * MARVEL = GET /v1/public/creators/{creatorsId}/creators
+    * MARVEL = GET /v1/public/stories/{storyId}/creators
     *
     */
     public function actionCharacters($id){
-      $endpoint = 'events/'.$id.'/characters';
+      $endpoint = 'stories/'.$id.'/characters';
 
       $model = new Characters();
       $params['filterBy'] = [];
@@ -107,18 +107,18 @@ class EventsController extends Controller
             array_push($params['filterBy'],[$key => $val]);
           }
         }
-        $model->eventId = $id;
+        $model->storyId = $id;
       }
 
       $charactersResponse = $this->module->marvel->search($endpoint,$params);
       //This gets our series information to display at the top
-      $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+      $storiesResponse = $this->module->marvel->search('stories/'.$id,null);
 
-      return $this->render('eventsCharacters',[
+      return $this->render('storiesCharacters',[
         'model'=>$model,
         'id'=>$id,
         'response'=>$charactersResponse,
-        'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+        'storiesResponse'=>$storiesResponse['response']['data']['results'][0],
         'pager'=>$this->buildRecordPager($charactersResponse),
       ]);
     }//end actionCreators
@@ -132,7 +132,7 @@ class EventsController extends Controller
   *
   */
   public function actionCreators($id){
-    $endpoint = 'events/'.$id.'/creators';
+    $endpoint = 'stories/'.$id.'/creators';
 
     $model = new Creators();
     $params['filterBy'] = [];
@@ -144,18 +144,18 @@ class EventsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->eventId = $id;
+      $model->storyId = $id;
     }
 
     $creatorsResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+    $storiesResponse = $this->module->marvel->search('stories/'.$id,null);
 
-    return $this->render('eventsCreators',[
+    return $this->render('storiesCreators',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$creatorsResponse,
-      'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+      'storiesResponse'=>$storiesResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($creatorsResponse),
     ]);
   }//end actionCreators
@@ -167,31 +167,31 @@ class EventsController extends Controller
   * MARVEL = GET /v1/public/creators/{creatorsId}/stories
   *
   */
-  public function actionStories($id){
-    $endpoint = 'events/'.$id.'/stories';
+  public function actionEvents($id){
+    $endpoint = 'stories/'.$id.'/events';
 
-    $model = new Stories();
+    $model = new Events();
     $params['filterBy'] = [];
 
-    if(isset($_POST['Stories'])){
-      $model->attributes = $_POST['Stories'];
-        foreach($_POST['Stories'] as $key => $val){
+    if(isset($_POST['Events'])){
+      $model->attributes = $_POST['Events'];
+        foreach($_POST['Events'] as $key => $val){
         if(isset($val) && ($val <> '')){
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->eventsId = $id;
+      $model->storyId = $id;
     }
 
     $storiesResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+    $storiesResponse = $this->module->marvel->search('stories/'.$id,null);
 
-    return $this->render('eventsStories',[
+    return $this->render('storiesEvents',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$storiesResponse,
-      'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+      'storiesResponse'=>$storiesResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($storiesResponse),
     ]);
   }//end actionStories
@@ -202,7 +202,7 @@ class EventsController extends Controller
   *
   */
   public function actionSeries($id){
-    $endpoint = 'events/'.$id.'/series';
+    $endpoint = 'stories/'.$id.'/series';
 
     $model = new Series();
     $params['filterBy'] = [];
@@ -214,18 +214,18 @@ class EventsController extends Controller
           array_push($params['filterBy'],[$key => $val]);
         }
       }
-      $model->eventsId = $id;
+      $model->storyId = $id;
     }
 
     $seriesResponse = $this->module->marvel->search($endpoint,$params);
     //This gets our series information to display at the top
-    $eventsResponse = $this->module->marvel->search('events/'.$id,null);
+    $storiesResponse = $this->module->marvel->search('stories/'.$id,null);
 
-    return $this->render('eventsSeries',[
+    return $this->render('storiesSeries',[
       'model'=>$model,
       'id'=>$id,
       'response'=>$seriesResponse,
-      'eventsResponse'=>$eventsResponse['response']['data']['results'][0],
+      'storiesResponse'=>$storiesResponse['response']['data']['results'][0],
       'pager'=>$this->buildRecordPager($seriesResponse),
     ]);
   }//end actionStories

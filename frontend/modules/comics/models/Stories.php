@@ -8,7 +8,8 @@ class Stories extends Model
 {
     public $seriesId;
     public $comicsId;
-    public $characterId;    
+    public $characterId;
+    public $eventsId;
 
     public $modifiedSince;
 
@@ -16,7 +17,6 @@ class Stories extends Model
     public $events;
     public $creators;
     public $characters;
-
 
     public $orderBy;
     public $limit;

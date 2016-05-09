@@ -171,3 +171,9 @@ hr.comics-divider{
 }
 
 .img-cover-small:hover{cursor:pointer;}
+
+
+
+ul.creators, ul.stories, ul.characters{list-style-type:none; padding-left:10px;}
+ul.creators li:before, ul.stories li:before, ul.characters li:before{ font-family:'FontAwesome'; content :'\f054'; margin: 0 5px 0 -20px; color: #356385;  }
+ul.creators li, ul.stories li, ul.characters li{margin:10px 0px 0px 10px; line-height: 1em; font-size:105%;}

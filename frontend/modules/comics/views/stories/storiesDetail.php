@@ -8,9 +8,9 @@ use app\modules\comics\ComicsMainAsset;
 ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
-$this->title = 'Events '.(!(empty($response['response']['data']['results'][0]['title'])) ? ' for '.$response['response']['data']['results'][0]['title'] :  ' ' );
+$this->title = 'Stories '.(!(empty($response['response']['data']['results'][0]['title'])) ? ' for '.$response['response']['data']['results'][0]['title'] :  ' ' );
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['/comics/events']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Stories'), 'url' => ['/comics/stories']];
 $this->params['breadcrumbs'][] = $this->title;
 
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
@@ -22,14 +22,14 @@ $data = $response['response']['data']['results'];
 
 <?php echo $this->render('/shared/_coverView');?>
 
-<div class="comics-events-index">
+<div class="comics-stories-index">
 
 <div class="row">
   <div class="col-sm-12">
     <?php if(!(empty($id))) : ?>
-      <h2 class="endpoint">(/v1/public/events/{eventId}) : <small>This method fetches a single event resource.</small></h2>
+      <h2 class="endpoint">(/v1/public/stories/{storyId}) : <small>This method fetches a single comic story resource. It is the canonical URI for any comic story resource provided by the API.</small></h2>
     <?php else : ?>
-      <h2 class="endpoint">(/v1/public/events) : <small>Fetches lists of events with optional filters.</small></h2>
+      <h2 class="endpoint">(/v1/public/stories) : <small>Fetches lists of comic stories with optional filters.</small></h2>
     <?php endif; ?>
     </div>
 </div>
@@ -37,7 +37,7 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-12">
     <?php if(empty($id)){
-      echo $this->render('/shared/forms/_EventsSearch.php',[
+      echo $this->render('/shared/forms/_StoriesSearch.php',[
         'model'=>$model,
         ]);
       }
@@ -59,12 +59,12 @@ $data = $response['response']['data']['results'];
 <div class="row pagedData">
   <div class="col-sm-12">
     <?php
-      echo $this->render('/shared/paged/_EventsPaged.php',[
+      echo $this->render('/shared/paged/_StoriesPaged.php',[
         'buttonParams'=>[
-          'idField'=>'eventId',
+          'idField'=>'storyId',
           'idValue'=>$id,
         ],
-        'eventsPaged'=>$data,
+        'storiesPaged'=>$data,
         'pager'=>$pager,
         ]);
     ?>
@@ -92,9 +92,9 @@ $data = $response['response']['data']['results'];
 <div class="row">
   <div class="col-sm-6">
     <?php if(!empty($id)){
-       echo $this->render('/shared/list/_storiesList',[
+       echo $this->render('/shared/list/_eventsList',[
         'id'=>$id,
-        'stories'=>$data[0]['stories'],
+        'events'=>$data[0]['events'],
       ]);
     }?>
   </div>

@@ -7,6 +7,9 @@ use yii\base\Model;
 class Series extends Model
 {
     public $id;
+    public $eventsId;
+    public $storyId;
+
     public $format;
     public $formatType;
 

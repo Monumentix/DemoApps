@@ -7,6 +7,8 @@ use yii\base\Model;
 class Creators extends Model
 {
     public $seriesId;
+    public $eventId;
+    public $storyId;
 
     public $firstName;
     public $middleName;
