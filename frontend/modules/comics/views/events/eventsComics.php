@@ -12,7 +12,7 @@ ComicsMainAsset::register($this);
 
 $this->title = 'Comics appearing in : '.(!(empty($eventsResponse['title'])) ? $eventsResponse['title'] :  ' No results ' );
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comic App'), 'url' => ['/comics']];
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['/comics/evemts']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Events'), 'url' => ['/comics/events']];
 $this->params['breadcrumbs'][] = $this->title;
 
 //LOAD OUR DATASET FROM THE RESONSE FOR EASY OF USE
@@ -90,40 +90,9 @@ $data = $response['response']['data']['results'];
   </div>
 </div>
 
+
+
 <div class="row">
-  <div class="col-sm-12">
-    <?php
-    /*
-      echo $this->render('/shared/list/_comicsList',[
-          'listOptions'=>[
-            'columnClass'=>'col-xs-6',
-          ],
-          'id'=>$id,
-          'comics'=>$eventsResponse['comics'],
-        ]);*/
-      ?>
-  </div>
-
-  <div class="col-sm-6">
-    <?php if(!empty($id)){
-       echo $this->render('/shared/list/_storiesList',[
-        'id'=>$id,
-        'stories'=>$eventsResponse['stories'],
-      ]);
-    }?>
-  </div>
-
-  <div class="col-sm-6">
-      <?php if(!empty($id)){
-
-         echo $this->render('/shared/list/_seriesList',[
-          'id'=>$id,
-          'series'=>$eventsResponse['series'],
-        ]);
-
-      }?>
-  </div>
-
   <div class="col-sm-6">
     <?php if(!empty($id)){
        echo $this->render('/shared/list/_creatorsList',[
@@ -143,8 +112,31 @@ $data = $response['response']['data']['results'];
 
       }?>
   </div>
-
 </div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <?php if(!empty($id)){
+       echo $this->render('/shared/list/_storiesList',[
+        'id'=>$id,
+        'stories'=>$eventsResponse['stories'],
+      ]);
+    }?>
+  </div>
+
+  <div class="col-sm-6">
+      <?php if(!empty($id)){
+
+         echo $this->render('/shared/list/_seriesList',[
+          'id'=>$id,
+          'series'=>$eventsResponse['series'],
+        ]);
+
+      }?>
+  </div>
+</div>
+
+
 
 
 </div>

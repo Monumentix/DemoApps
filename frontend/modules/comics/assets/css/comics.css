@@ -3,6 +3,10 @@ body.wait{
   cursor: wait;
 }
 
+.modal-backdrop.in{opacity:.85 !important;}
+
+.img-thumbnail{background-color:#000 !important;}
+
 .bangers{font-family: 'Bangers', cursive;}
 .fjalla{font-family: 'Fjalla One', sans-serif;}
 
@@ -180,3 +184,9 @@ ul.creators li, ul.stories li, ul.characters li{margin:10px 0px 0px 10px; line-h
 
 
 .comics-default-index p{font-size:120%;}
+
+
+.character-stats-wrapper{margin-bottom:20px;}
+.character-stats-wrapper .stats-row img{border-bottom: 2px solid #333;}
+.character-stats-wrapper .stats-row  {border-radius:8px;}
+.character-stats-wrapper .stats-row{border:2px solid #333; margin:0px 0px 0px 0px; background-color:#efefef; padding:0px 0px 0px 0px}
