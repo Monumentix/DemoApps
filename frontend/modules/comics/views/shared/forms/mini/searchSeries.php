@@ -11,7 +11,7 @@ use kartik\icons\Icon;
   <?php $form = ActiveForm::begin([
     //'method'=>'POST',
     'id'=>'series-mini-search-form',
-    'action'=>'/comics/comics',
+    'action'=>'/comics/series',
   ]); ?>
 
   <?=$form->field($model,'titleStartsWith')?>

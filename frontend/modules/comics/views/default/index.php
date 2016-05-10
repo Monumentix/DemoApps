@@ -8,7 +8,7 @@ use app\modules\comics\ComicsMainAsset;
 ComicsMainAsset::register($this);
 
 //SET OUR BREADCRUMBS
-$this->title = 'Series';
+$this->title = 'Marvel REST Api';
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => ['/comics']];
 
 ?>
@@ -20,7 +20,6 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => [
       <h2 class="endpoint">Marvel API : <small>Connect to and search the Marvel Universe using there API!</small>
     </div>
   </div>
-
   <div class="row">
     <div class="col-sm-12">
 
@@ -30,6 +29,13 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => [
           <hr class="comics-divider">
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-xs-12 ">
+          <h3 class="text-center">Quickly search or filter any category of iformation made available by Marvel.  </h3>
+        </div>
+      </div>
+
 
       <div class="row">
         <div class="col-xs-4 ">
@@ -56,12 +62,31 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => [
           <h3 class="text-center"><a href="/comics/stories">View Stories</a></h3>
           <div class="well well-sm">
             <h4 class="text-center">No Direct Search Available</h4><br>
-            <h4><a src="/comics/stories" class="btn btn-success shadow">Go To Stories</a></h4>
+            <h4><a href="/comics/stories" class="btn btn-success shadow">Go To Stories</a></button</h4>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+
+<hr class="comics-divider">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>REST API Consumptation : <small>Using MARVEL's developer API to search and display comic information.</small></h3>
+      <p>
+        Using the list of exposed endpoints listed below, i created a frontend to search and filter all the information.
+      </p>
+
+      <?=$this->render('endpoints'); ?>
+
+    </div>
+  </div>
+
+  <hr class="comics-divider">
+  <p class="text-center">
+    <a href="http://developer.marvel.com/docs">Marvel Developer Documentation</a>
+  </p>
 
 </div>
