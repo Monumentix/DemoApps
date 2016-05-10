@@ -20,11 +20,11 @@
             <?php endforeach ?>
           </div>
         <?php else : ?>
-          <ul class="events text-center">
+          <ul class="events text-left">
             <?php foreach($events['items'] as $event) : ?>
-              <li class="seriesEventItem">
+              <li class="--seriesEventItem">
                 <?= Html::a($event['name'],[
-                  'events','id'=>array_pop(explode("/",$event['resourceURI'])),
+                  '/comics/events','id'=>array_pop(explode("/",$event['resourceURI'])),
                 ]);?>
               </li>
             <?php endforeach ?>

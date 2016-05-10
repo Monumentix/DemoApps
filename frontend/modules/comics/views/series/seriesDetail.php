@@ -39,6 +39,20 @@ if(!(empty($id))){
     </div>
 </div>
 
+<?php if(!empty($id)): ?>
+<div class="row">
+  <div class="col-sm-12">
+      <?php
+        echo $this->render('/shared/detail/_seriesDetail',[
+          'id'=>$id,
+          'series'=>$data[0],
+        ]);
+      ?>
+  </div>
+</div>
+<hr class="comics-divider">
+<?php endif ?>
+
 <div class="row">
   <div class="col-sm-12">
     <?php
@@ -76,17 +90,6 @@ if(!(empty($id))){
 </div>
 
 <hr class="comics-divider">
-
-<div class="row">
-  <div class="col-sm-12">
-      <?php if(!empty($id)){
-        echo $this->render('/shared/detail/_seriesDetail',[
-          'id'=>$id,
-          'series'=>$data[0],
-        ]);
-      }?>
-  </div>
-</div>
 
 <div class="row">
 

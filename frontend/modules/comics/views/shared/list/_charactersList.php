@@ -17,7 +17,9 @@
         <?php else : ?>
           <ul class="characters">
             <?php foreach($characters['items'] as $character) : ?>
-              <li><?=$character['name']; ?></li>
+              <li>
+                <a href="/comics/characters?id=<?=array_pop(explode("/",$character['resourceURI'])); ?>">  <?=$character['name']; ?> </a>
+              </li>
             <?php endforeach ?>
           </ul>
         <?php endif ?>

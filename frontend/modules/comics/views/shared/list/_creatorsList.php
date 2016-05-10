@@ -18,7 +18,11 @@
         <?php else : ?>
           <ul class="creators">
             <?php foreach($creators['items'] as $creator) : ?>
-              <li><?=$creator['name']; ?></li>
+              <li>
+                <?= Html::a($creator['name'],[
+                  '/comics/creators','id'=>array_pop(explode("/",$creator['resourceURI'])),
+                ]);?>
+              </li>
             <?php endforeach ?>
           </ul>
         <?php endif ?>

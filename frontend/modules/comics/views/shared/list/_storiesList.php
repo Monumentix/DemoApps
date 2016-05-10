@@ -17,7 +17,11 @@
       <?php else : ?>
         <ul class="stories">
           <?php foreach($stories['items'] as $story) : ?>
-            <li><?= (!empty($story['name']) ? $story['name'] : 'stories/'. array_pop(explode("/",$story['resourceURI']))); ?></li>
+
+            <li class="story">
+              <a href="/comics/stories?id=<?=array_pop(explode("/",$story['resourceURI'])); ?>">  <?=$story['name']; ?> </a>
+              <?php //=(!empty($story['name']) ? $story['name'] : 'stories/'. array_pop(explode("/",$story['resourceURI']))); ?>
+            </li>
           <?php endforeach ?>
         </ul>
 

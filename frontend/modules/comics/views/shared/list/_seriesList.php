@@ -22,8 +22,10 @@
       <?php else : ?>
         <ul class="characters">
           <?php if(!empty($series['items'])) : ?>
-            <?php foreach($series['items'] as $characters) : ?>
-              <li><?=$characters['name']; ?></li>
+            <?php foreach($series['items'] as $item) : ?>
+              <li>
+                <a href="/comics/series?id=<?=array_pop(explode("/",$item['resourceURI'])); ?>">  <?=$item['name']; ?> </a>
+              </li>
 
             <?php endforeach ?>
           <?php else : ?>

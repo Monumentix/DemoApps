@@ -9,22 +9,14 @@
     </div>
     <div class='panel-body'>
       <?php if($comics['returned'] > 0 ) : ?>
-        <?php if(!empty($listOptions['columnClass'])) : ?>
-          <div class="comics">
-            <?php foreach($comics['items'] as $comic) : ?>
-              <div class="<?=$listOptions['columnClass']?>"><a href="/comics/comics?id=<?=array_pop(explode("/",$comic['resourceURI'])); ?>">  <?=$comic['name']; ?> </a></div>
-            <?php endforeach ?>
-          </div>
-          <?php else : ?>
           <ul class="comics">
             <?php foreach($comics['items'] as $comic) : ?>
-              <li>
+              <li class="comic">
                 <a href="/comics/comics?id=<?=array_pop(explode("/",$comic['resourceURI'])); ?>">  <?=$comic['name']; ?> </a>
                 </a>
               </li>
             <?php endforeach ?>
           </ul>
-        <?php endif ?>
       <?php else :?>
         <h3>No results returned.</h3>
       <?php endif ?>

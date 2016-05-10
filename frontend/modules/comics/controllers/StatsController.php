@@ -19,6 +19,7 @@ use app\modules\comics\models\Summaries;
 class StatsController extends Controller
 {
 
+  public $defaultAction = 'popular';
 
   public function actionIndex(){
     $this->render('index');
@@ -33,8 +34,6 @@ class StatsController extends Controller
       ->limit(50)
       ->all();
 
-
-
     return $this->render('popular',[
       'stats'=>$stats,
       ]);
@@ -43,12 +42,11 @@ class StatsController extends Controller
 
 
   /*
-  * Was a test action we used to load data into our db
+  * Was a test action we used to load data into our db but had issues with errors
+  * in the end it was easier to load the batches ourself.
   *
   */
   public function actionCrawl($start,$total,$pgLimit,$blnTest = false){
-
-
     $endpoint = 'characters';
 
     $params['filterBy'] = [];
@@ -75,70 +73,7 @@ class StatsController extends Controller
         }
     };
 
-    /*
-    return $this->render('statsCrawl',[
-      'model'=>$model,
-      'response'=>$response,
-      'results'=>$results,
-      'pager'=>$this->buildRecordPager($response),
-    ]);
-    */
-
-
-
-
-
-    /*
-    $endpoint = 'characters';
-
-    $model = new Characters();
-    $params['filterBy'] = [];
-
-    if(isset($_POST['Characters'])){
-      $model->attributes = $_POST['Characters'];
-        foreach($_POST['Characters'] as $key => $val){
-        if(isset($val) && ($val <> '')){
-          array_push($params['filterBy'],[$key => $val]);
-        }
-      }
-    }
-
-    if(!(is_null($id))){
-      $endpoint = $endpoint."/".$id;
-    }
-    $response = $this->module->marvel->search($endpoint,$params);
-
-
-
-    return $this->render('charactersDetail',[
-      'model'=>$model,
-      'id'=>$id,
-      'response'=>$response,
-      'pager'=>$this->buildRecordPager($response),
-    ]);
-    */
   }//end actionCrawl
 
-
-
-
-
-
-  /*
-  *
-  * Creates a simple pager array for use to use in our views
-  *
-  * Im guessing we will need to expand upon it to incldue the search params
-  * as part of the object at some point
-  *
-  */
-  private function buildRecordPager($response){
-    //Set up our pager variables for use later
-      $pager['count'] = $response['response']['data']['count'];
-      $pager['total'] = $response['response']['data']['total'];
-      $pager['offset'] = $response['response']['data']['offset'];
-      $pager['limit'] = $response['response']['data']['limit'];
-    return $pager;
-  }
 
 }//end class
