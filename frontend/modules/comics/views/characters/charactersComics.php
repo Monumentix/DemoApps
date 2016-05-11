@@ -133,7 +133,7 @@ $data = $response['response']['data']['results'];
 
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
 
-<?php if(1==1) {
+<?php if(1==0) {
     echo '<h5 class="text-center">Marvel API Response</h5>';
     echo '<pre class="prettyprint">';
       print_r($charactersResponse);

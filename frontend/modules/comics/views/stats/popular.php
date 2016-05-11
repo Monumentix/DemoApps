@@ -26,7 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php foreach($stats as $stat): ?>
       <div class="col-sm-3 text-center character-stats-wrapper">
         <div class="row stats-row">
-          <img src="<?=$stat->imgURI?>/detail.jpg" class="img -img-circle -img-thumbnail img-responsive -img-rounded center-block">
+          <a title="Go to Character Page" href="/comics/characters?id=<?=$stat->characterId?>" class="">
+            <img src="<?=$stat->imgURI?>/detail.jpg" class="img -img-circle -img-thumbnail img-responsive -img-rounded center-block">
+          </a>
           <h4><?=$stat->name?></h4>
           <div class="col-xs-3 text-center stat">
             Comics<br>

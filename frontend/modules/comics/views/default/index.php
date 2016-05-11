@@ -69,6 +69,24 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comics'), 'url' => [
 
     </div>
   </div>
+<hr class="comics-divider">
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 class="text-center">Summarized and Formatted Lists</h3>
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 well well-sm">
+          <h3 class="text-center"><?= Html::a('Top 50',
+              '/comics/stats',
+              [
+                'class'=>'btn btn-success shadow btn-lg'
+              ]
+          ); ?></h3>
+          <h4 class="text-center">50 Most Popular Characters in the Marvel Universe</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <hr class="comics-divider">
 
