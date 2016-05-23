@@ -5,12 +5,13 @@ $(window).ajaxStart(function (){
     $('body').removeClass('wait');
 });
 
+
+
 $('.seriesComicsComic').on('click','.img-thumbnail',function(){
   var detailsPanel = $(this).parent().next('.seriesComicsDetails');
   $(detailsPanel).toggle();
   $('.seriesComicsRow').hide().fadeIn('fast');
 });
-
 
 $('.seriesComicsDetails').on('click','.details',function(){
   //$(this).parent().removeClass('bigComicPreview');
@@ -18,9 +19,8 @@ $('.seriesComicsDetails').on('click','.details',function(){
   $('.seriesComicsRow').hide().fadeIn('fast');
 });
 
-function showModal(path, title){
-  //alert("move the thing");
 
+function showModal(path, title){
     //Fix to move modal before showing it
   $("#coverImageTitle").html(title);
   $("#coverImageUrl").attr("src",path);
@@ -46,6 +46,8 @@ function showModal(path, title){
 
 
 
+
+
 function getNextPage(actionPath, dataAttrs){
   try{
     $.ajax({
@@ -63,6 +65,9 @@ function getNextPage(actionPath, dataAttrs){
 
           pageButton = ($(data).find('.nextPageWrapper'));
           $(".nextPageWrapper").replaceWith(pageButton);
+
+          responseBlock = ($(data).find('.responseBlock'));
+          $(".responseBlock").replaceWith(responseBlock);
         },
         error: function(xhr, status, error){
           alert("Error Fetching Next Page: " + error);

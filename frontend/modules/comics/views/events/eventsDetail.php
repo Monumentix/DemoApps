@@ -20,7 +20,7 @@ $data = $response['response']['data']['results'];
 ?>
 
 
-<?php echo $this->render('/shared/_coverView');?>
+<?php echo $this->render('/shared/blocks/_coverView');?>
 
 <div class="comics-events-index">
 
@@ -133,13 +133,5 @@ $data = $response['response']['data']['results'];
 
 <hr class="comics-divider">
 
+<?= $this->render('/shared/blocks/_responseFooter.php',['fullResponse'=>$response]); ?>
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>
-
-
-<?php if(1==0) {
-    echo '<h5 class="text-center">Marvel API Response</h5>';
-    echo '<pre class="prettyprint">';
-      print_r($response);
-    echo '</pre>';
-  }
-?>

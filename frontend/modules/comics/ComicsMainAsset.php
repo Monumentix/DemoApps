@@ -8,7 +8,6 @@ class ComicsMainAsset extends AssetBundle {
   public $sourcePath = '@frontend/modules/comics/assets';
   public $js = [
     'js/comics.js',
-    'js/jscroll.js'
   ];
   public $css = [
       'css/comics.css'

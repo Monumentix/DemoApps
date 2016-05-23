@@ -50,10 +50,16 @@ class MarvelComponent extends Component{
         }
       }
 
+    $startTime = time(); //date('H:i:s');
     $response = Yii::$app->httpclient->get($fullUrl);
+    $endTime = time();
+
     $results = [
         'urlCalled'=>$fullUrl,
-        'response'=> $response,
+        'startTime'=>$startTime,
+        'endTime'=>$endTime,
+        'callLength'=>($endTime - $startTime).' seconds',
+        'response'=> $response
       ];
 
     return $results;

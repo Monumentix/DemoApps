@@ -31,7 +31,7 @@ class StatsController extends Controller
       ->orderBy(
         ['comicsCount'=>SORT_DESC]
       )
-      ->limit(50)
+      ->limit(30)
       ->all();
 
     return $this->render('popular',[

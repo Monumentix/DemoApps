@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $data = $response['response']['data']['results'];
 ?>
 
-<?php echo $this->render('/shared/_coverView');?>
+<?php echo $this->render('/shared/blocks/_coverView');?>
 
 <div class="comics-series-stories">
 
@@ -78,7 +78,7 @@ $data = $response['response']['data']['results'];
         'buttonParams'=>[
           'idField'=>'seriesId',
           'idValue'=>$id,
-        ],            
+        ],
         'storiesPaged'=>$data,
         'pager'=>$pager,
       ]);
@@ -136,8 +136,7 @@ $data = $response['response']['data']['results'];
 </div>
 
 </div>
-
 <hr class="comics-divider">
-<p class="text-center">
-  <?=$response['response']['attributionHTML']?>
-</p>
+
+<?= $this->render('/shared/blocks/_responseFooter.php',['fullResponse'=>$response]); ?>
+<p class="text-center"><?=$response['response']['attributionHTML']?></p>

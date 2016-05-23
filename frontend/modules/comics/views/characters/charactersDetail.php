@@ -25,7 +25,7 @@ if(!(empty($id))){
   //$data = $response['response']['data']['results'][0];
 }
 ?>
-<?php echo $this->render('/shared/_coverView');?>
+<?php echo $this->render('/shared/blocks/_coverView');?>
 
 <div class="comics-characters-index">
 
@@ -134,7 +134,6 @@ if(!(empty($id))){
 </div>
 
 </div>
-
 <hr class="comics-divider">
-
+<?= $this->render('/shared/blocks/_responseFooter.php',['fullResponse'=>$response]); ?>
 <p class="text-center"><?=$response['response']['attributionHTML']?></p>

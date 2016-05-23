@@ -24,6 +24,8 @@ class CharactersController extends Controller
   *
   */
   public function actionIndex($id = null){
+    $showResponse = TRUE;
+
     $endpoint = 'characters';
 
     $model = new Characters();
@@ -48,6 +50,7 @@ class CharactersController extends Controller
       'id'=>$id,
       'response'=>$response,
       'pager'=>$this->buildRecordPager($response),
+      'showResponse'=>$showResponse,
     ]);
   }//end actionIndex
 
